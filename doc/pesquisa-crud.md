@@ -10,17 +10,23 @@ E o CRUD é tão importante pois qualquer website dinamico ou sistemas em gerais
     Essa função torna-se essencial ja que para iniciar qualquer interação em sistemas que dependem de dados, 
     seja desde um sistema de gerenciamento de usuários ao criar um novo perfil até um e-commerce ao adicionar um novo produto. 
 
+    ![Imagem Create](assets/style/CRUD - Create.png)
+
 ## 🧐 Como funciona o Read
 
     O read existe para que o sistema possa acessar e exibir os dados. 
     De forma que a cada vez que uma solicitação de informações é realizada, o read entra em ação exibindo para gente. 
     E essa função serve para garantir que os dados armazenados possam ser recuperados e visualizados quando necessario.
 
+    ![Imagem Read](assets/style/CRUD - Read.webp)
+
 ## 🧐 Como funciona o Update
 
     O Update serve para nos possibilitar a atualização de dados que ja existem, logo essa função se torna crucial para
     manter a relevancia e a precisão das informações em um banco de dados. 
     Um exemplo fácil de um caso de Update é quando um usuário atualiza suas informações pessoais no perfil em uma rede social. 
+
+    ![Imagem Update](assets/style/CRUD - Update.png)
 
 ## 🧐 Como funciona o Delete 
 
@@ -29,8 +35,10 @@ E o CRUD é tão importante pois qualquer website dinamico ou sistemas em gerais
     Um exemplo é quando um usuário seleciona a opção de excluir conta, que diferente da opção de "Sair" que você desconecta da 
     conta mas mantem seus dados salvos, quando se é escolhido a exclusão, sua conta é permanentemente apagada.
 
+    ![Imagem delete](assets/style/CRUD - Delete.png)
+
 
 #### Referencias bibliograficas
 
-<https://querobolsa.com.br/revista/crud-o-que-e>
-<https://www.devmedia.com.br/crud-com-php-pdo/28873>
+- <https://querobolsa.com.br/revista/crud-o-que-e>
+- <https://www.devmedia.com.br/crud-com-php-pdo/28873>

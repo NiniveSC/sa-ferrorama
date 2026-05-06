@@ -22,4 +22,9 @@ E o CRUD é tão importante pois qualquer website dinamico ou sistemas em gerais
     O Update serve para nos possibilitar a atualização de dados que ja existem, logo essa função se torna crucial para
     manter a relevancia e a precisão das informações em um banco de dados. 
     Um exemplo fácil de um caso de Update é quando um usuário atualiza suas informações pessoais no perfil em uma rede social. 
-    
+
+## 🧐 Como funciona o Delete 
+
+    Como o nome ja insinua essa função serve para remover os dados de um sistema. Porém essa função deve ser manuseada com cuidado 
+    ja que uma vez que os dados são apagados, eles não podem ser recuperados. 
+    Um exemplo é quando um usuário seleciona a opção de excluir conta, que diferente da opção de "Sair" que você desconecta da conta mas mantem seus dados salvos, quando se é escolhido a exclusão, sua conta é permanentemente apagada.

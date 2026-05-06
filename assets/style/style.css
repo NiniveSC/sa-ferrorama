@@ -1,0 +1,58 @@
+:root{
+    --cor-fundo-1: #2D3250;
+    --cor-fundo-2: #c4cacf;
+    --cor-fundo-3: #d9c03d;
+    --cor-fundo-4: #ffffff;
+    --cor-texto-1: #ffffff;
+    --cor-texto-2: #2d3250;
+
+
+}
+.pagina_login{
+    background: var(--cor-fundo-2);
+    margin: 0;
+    padding: 0;
+}
+
+.texto_de_cima{
+    color: var(--cor-texto-1);
+    font-size: 31px;
+    font-weight: bold;
+    margin-top: 100px;
+    font-family: 'Verdana', sans-serif;
+    border: var(--cor-fundo-1) solid 2px;
+    width: 100%;
+    padding: 30px;
+    background-color: var(--cor-fundo-1);
+    margin: 0;
+    margin-top: 0px;
+    padding-left: 150px;
+}
+
+.texto_de_baixo{
+    color: var(--cor-texto-1);
+    font-size: 31px;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-weight: normal;
+    border: var(--cor-fundo-1) solid 2px;
+    width: 100%;
+    padding: 20px;
+    background-color: var(--cor-fundo-1);
+    margin-top: -50px;
+    padding-left: 155px;
+}
+
+.imagem_trem{
+    width: 120px;
+    height: auto;
+    margin-top: -150px;
+    margin-left: 20px;
+}
+
+form{
+    margin-top: 50px;
+    margin-left: 150px;
+    width: 300px;
+    border: var(--cor-fundo-1) solid 2px;
+    padding: 20px;
+}

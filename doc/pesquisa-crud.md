@@ -12,6 +12,14 @@ E o CRUD é tão importante pois qualquer website dinamico ou sistemas em gerais
 
 ## 🧐 Como funciona o Read
 
-    O read existe para que o sistema possa acessar e exibir os dados. De forma que 
-    a cada vez que uma solicitação de informações é realizada, o read entra em ação exibindo para gente. 
+    O read existe para que o sistema possa acessar e exibir os dados. 
+    De forma que a cada vez que uma solicitação de informações é realizada, o read entra em ação exibindo para gente. 
+
     E essa função serve para garantir que os dados armazenados possam ser recuperados e visualizados quando necessario.
+
+## 🧐 Como funciona o Update
+
+    O Update serve para nos possibilitar a atualização de dados que ja existem, logo essa função se torna crucial para
+    manter a relevancia e a precisão das informações em um banco de dados. 
+    Um exemplo fácil de um caso de Update é quando um usuário atualiza suas informações pessoais no perfil em uma rede social. 
+    

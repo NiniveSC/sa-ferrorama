@@ -14,7 +14,6 @@ E o CRUD é tão importante pois qualquer website dinamico ou sistemas em gerais
 
     O read existe para que o sistema possa acessar e exibir os dados. 
     De forma que a cada vez que uma solicitação de informações é realizada, o read entra em ação exibindo para gente. 
-
     E essa função serve para garantir que os dados armazenados possam ser recuperados e visualizados quando necessario.
 
 ## 🧐 Como funciona o Update
@@ -27,4 +26,11 @@ E o CRUD é tão importante pois qualquer website dinamico ou sistemas em gerais
 
     Como o nome ja insinua essa função serve para remover os dados de um sistema. Porém essa função deve ser manuseada com cuidado 
     ja que uma vez que os dados são apagados, eles não podem ser recuperados. 
-    Um exemplo é quando um usuário seleciona a opção de excluir conta, que diferente da opção de "Sair" que você desconecta da conta mas mantem seus dados salvos, quando se é escolhido a exclusão, sua conta é permanentemente apagada.
+    Um exemplo é quando um usuário seleciona a opção de excluir conta, que diferente da opção de "Sair" que você desconecta da 
+    conta mas mantem seus dados salvos, quando se é escolhido a exclusão, sua conta é permanentemente apagada.
+
+
+#### Referencias bibliograficas
+
+<https://querobolsa.com.br/revista/crud-o-que-e>
+<https://www.devmedia.com.br/crud-com-php-pdo/28873>

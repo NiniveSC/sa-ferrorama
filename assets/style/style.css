@@ -2,7 +2,7 @@
     --cor-fundo-1: #2D3250;
     --cor-fundo-2: #c4cacf;
     --cor-fundo-3: #d9c03d;
-    --cor-fundo-4: #ffffff;
+    --cor-fundo-4: #ffffffcc;
     --cor-texto-1: #ffffff;
     --cor-texto-2: #2d3250;
 
@@ -12,47 +12,134 @@
     background: var(--cor-fundo-2);
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column; /* Header em cima, Form embaixo */
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
-.texto_de_cima{
-    color: var(--cor-texto-1);
-    font-size: 31px;
+.meu_header {
+    background-color: var(--cor-fundo-1); /* Seu azul #2D3250 */
+    width: 100%;
+    padding: 15px 40px;
+    display: flex;
+    align-items: center;
+}
+
+.cabecalho {
+    display: flex;
+    align-items: center;            
+}
+
+.bloco-texto {
+    display: flex;
+    flex-direction: column; 
+    gap: 5px;
+}
+
+.titulo_mn {
+    color: var(--cor-texto-1) !important;
+    font-size: 30px;
     font-weight: bold;
-    margin-top: 100px;
+    margin: 0;           /* Remove o espaço extra que empurra o texto */
+    line-height: 1.1;    /* Ajusta a altura da linha para ficarem próximos */
     font-family: 'Verdana', sans-serif;
-    border: var(--cor-fundo-1) solid 2px;
-    width: 100%;
-    padding: 30px;
-    background-color: var(--cor-fundo-1);
-    margin: 0;
-    margin-top: 0px;
-    padding-left: 150px;
+    
 }
 
-.texto_de_baixo{
-    color: var(--cor-texto-1);
-    font-size: 31px;
+.subtitulo_mn {
+    color: var(--cor-texto-1) !important;
+    font-size: 20px;
+    margin: 0;           /* Remove o espaço extra */
+    font-weight: none;
     font-family: 'Trebuchet MS', sans-serif;
-    font-weight: normal;
-    border: var(--cor-fundo-1) solid 2px;
+}
+
+.imagem_trem {
+    height: 70px;        /* Ajuste conforme o tamanho do seu ícone */
+    width: auto;
+}
+
+.main_content {
+    display: flex !important;
+    justify-content: flex-end !important; /* Empurra todo o conteúdo para a DIREITA */
+    align-items: center;       /* Centraliza verticalmente */
+    min-height: 80vh;          /* Garante altura para centralizar */
+    padding-right: 10%;        /* Dá uma margem da borda direita da tela */
+    position: relative;        /* Necessário para o trem não atrapalhar */
+}
+
+/* Estilo do Card (Container do Form) */
+.container {
+    background-color: var(--cor-fundo-4);
     width: 100%;
-    padding: 20px;
+    max-width: 450px;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    z-index: 2; /* Garante que o card fique acima da imagem do trem */
+}
+
+/* Título dentro do form */
+#titulo {
+    color: var(--cor-texto-2);
+    margin-bottom: 25px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Espaçamento dos blocos de input */
+#form-login div {
+    margin-bottom: 15px;
+}
+
+/* Estilo das Labels */
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--cor-texto-2);
+    font-weight: 600;
+}
+
+/* Estilo das Caixas de Entrada */
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+/* Estilo do Botão */
+#botao-envio {
+    width: 100%;
+    padding: 12px;
     background-color: var(--cor-fundo-1);
-    margin-top: -50px;
-    padding-left: 155px;
+    color: var(--cor-texto-1);
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
 }
 
-.imagem_trem{
-    width: 120px;
+/* Link de esqueceu a senha */
+.toggle {
+    text-align: center;
+    margin-top: 15px;
+    color: #666;
+    font-size: 14px;
+}
+
+.imagem_trem_bala {
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    transform: translateX(-50%);
+    width: 1300px;
     height: auto;
-    margin-top: -150px;
-    margin-left: 20px;
-}
-
-form{
-    margin-top: 50px;
-    margin-left: 150px;
-    width: 300px;
-    border: var(--cor-fundo-1) solid 2px;
-    padding: 20px;
+    z-index: 1;
+    margin-bottom: 100px;
 }

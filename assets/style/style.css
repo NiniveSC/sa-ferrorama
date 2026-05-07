@@ -65,12 +65,12 @@
     justify-content: flex-end !important; /* Empurra todo o conteúdo para a DIREITA */
     align-items: center;       /* Centraliza verticalmente */
     min-height: 80vh;          /* Garante altura para centralizar */
-    padding-right: 10%;        /* Dá uma margem da borda direita da tela */
+    padding-right: 15%;        /* Dá uma margem da borda direita da tela */
     position: relative;        /* Necessário para o trem não atrapalhar */
 }
 
 /* Estilo do Card (Container do Form) */
-.container {
+.text-end {
     background-color: var(--cor-fundo-4);
     width: 100%;
     max-width: 450px;
@@ -91,15 +91,17 @@
 
 /* Espaçamento dos blocos de input */
 #form-login div {
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 /* Estilo das Labels */
 label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     color: var(--cor-texto-2);
-    font-weight: 600;
+    font-weight: bold;
+    text-align: left;
+    font-family: 'Trebuchet MS', sans-serif;
 }
 
 /* Estilo das Caixas de Entrada */

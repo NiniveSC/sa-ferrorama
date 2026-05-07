@@ -1,4 +1,4 @@
-:root{
+:root {
     --cor-fundo-1: #2D3250;
     --cor-fundo-2: #c4cacf;
     --cor-fundo-3: #d9c03d;
@@ -8,18 +8,21 @@
 
 
 }
-.pagina_login{
+
+.pagina_login {
     background: var(--cor-fundo-2);
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column; /* Header em cima, Form embaixo */
+    flex-direction: column;
+    /* Header em cima, Form embaixo */
     min-height: 100vh;
     box-sizing: border-box;
 }
 
 .meu_header {
-    background-color: var(--cor-fundo-1); /* Seu azul #2D3250 */
+    background-color: var(--cor-fundo-1);
+    /* Seu azul #2D3250 */
     width: 100%;
     padding: 15px 40px;
     display: flex;
@@ -28,12 +31,12 @@
 
 .cabecalho {
     display: flex;
-    align-items: center;            
+    align-items: center;
 }
 
 .bloco-texto {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     gap: 5px;
 }
 
@@ -41,32 +44,41 @@
     color: var(--cor-texto-1) !important;
     font-size: 30px;
     font-weight: bold;
-    margin: 0;           /* Remove o espaço extra que empurra o texto */
-    line-height: 1.1;    /* Ajusta a altura da linha para ficarem próximos */
+    margin: 0;
+    /* Remove o espaço extra que empurra o texto */
+    line-height: 1.1;
+    /* Ajusta a altura da linha para ficarem próximos */
     font-family: 'Verdana', sans-serif;
-    
+
 }
 
 .subtitulo_mn {
     color: var(--cor-texto-1) !important;
     font-size: 20px;
-    margin: 0;           /* Remove o espaço extra */
+    margin: 0;
+    /* Remove o espaço extra */
     font-weight: none;
     font-family: 'Trebuchet MS', sans-serif;
 }
 
 .imagem_trem {
-    height: 70px;        /* Ajuste conforme o tamanho do seu ícone */
+    height: 70px;
+    /* Ajuste conforme o tamanho do seu ícone */
     width: auto;
 }
 
 .main_content {
     display: flex !important;
-    justify-content: flex-end !important; /* Empurra todo o conteúdo para a DIREITA */
-    align-items: center;       /* Centraliza verticalmente */
-    min-height: 80vh;          /* Garante altura para centralizar */
-    padding-right: 15%;        /* Dá uma margem da borda direita da tela */
-    position: relative;        /* Necessário para o trem não atrapalhar */
+    justify-content: flex-end !important;
+    /* Empurra todo o conteúdo para a DIREITA */
+    align-items: center;
+    /* Centraliza verticalmente */
+    min-height: 80vh;
+    /* Garante altura para centralizar */
+    padding-right: 15%;
+    /* Dá uma margem da borda direita da tela */
+    position: relative;
+    /* Necessário para o trem não atrapalhar */
 }
 
 /* Estilo do Card (Container do Form) */
@@ -77,7 +89,8 @@
     padding: 40px;
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    z-index: 2; /* Garante que o card fique acima da imagem do trem */
+    z-index: 2;
+    /* Garante que o card fique acima da imagem do trem */
 }
 
 /* Título dentro do form */
@@ -144,4 +157,18 @@ input {
     height: auto;
     z-index: 1;
     margin-bottom: 100px;
+}
+
+
+/*Tela de cadastro de funcionário*/
+
+.pagina_cadastro_user {
+    background: var(--cor-fundo-2) !important;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    /* Header em cima, Form embaixo */
+    min-height: 100vh;
+    box-sizing: border-box;
 }

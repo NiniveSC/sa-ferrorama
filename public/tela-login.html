@@ -7,34 +7,46 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/style/style.css">
 </head>
+
 <body class="pagina_login">
 
-        
-    <h3 class="texto_de_cima">
-       <strong>MN Ferrovia</strong>
-    </h3>
+  <header class="meu_header">
 
-    <h3 class="texto_de_baixo">
-        Sistema de monitoramento
-        </h3>
-        <img src="../assets/style/imagem trem.png" alt="imagem do trem" class="imagem_trem">
-    
-<form>
-  <div class="container mt-5">
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-  </div>
-  <div class="container mt-5">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
-  </div>
-  <div class="container mt-5 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+    <div class="cabecalho">
+      <img src="../assets/style/imagem trem.png" alt="imagem do trem" class="imagem_trem">
+    <div class="texto_cabecalho">
+       <h1 class="titulo_mn">MN Ferrovia</h1>
+    <p class="subtitulo_mn">Sistema de monitoramento</p>
+    </div>
+    </div>
+    </header>
+
+ <main class="main_content container-fluid">
+        <div class="container">
+            <h2 id="titulo">Seja Bem vindo!</h2>
+            <form id="form-login">
+                <div id="c-email" class="conjunto">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" placeholder="Email" required>
+                </div>
+                <div id="c-senha" class="conjunto">
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" placeholder="Senha" required>
+                </div>
+                <button id="botao-envio" type="submit">Entrar</button>
+            
+            <div id="mensagem"></div>
+            <div class="toggle" id="toggle">
+                <p> Esqueceu a senha?</p>
+                </form>
+            </div>
+        </div>
+        <img src="../assets/style/imagem-trem-bala.png" alt="imagem do trem bala" class="imagem_trem_bala">
+    </main>
+
+    <footer>
+
+    </footer>
 
 
 

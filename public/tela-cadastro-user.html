@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +9,20 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/style/style.css">
 </head>
+
 <body class="pagina_cadastro_user">
-     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2D3250;">
+    <style>
+        .navbar-nav .nav-link {
+            color: #ffffff !important;
+            font-weight: bold;
+            font-size: 120%;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #c4cacf !important;
+        }
+    </style>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2D3250; padding: 15px 80px;">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,22 +30,22 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
+                    <li class="nav-item mx-3">
                         <a class="nav-link" href="#">Dashboard</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item mx-3">
                         <a class="nav-link" href="#">Sensores</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item mx-3">
                         <a class="nav-link" href="#">Trens</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item mx-3">
                         <a class="nav-link" href="#">Rotas</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item mx-3">
                         <a class="nav-link" href="#">Funcionário</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item mx-3">
                         <a class="nav-link" href="#">Relatórios</a>
                     </li>
                 </ul>
@@ -40,7 +53,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            Admin João
+                            NomeAdmin
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Sair</a></li>
@@ -50,53 +63,74 @@
             </div>
         </div>
     </nav>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title text-center mb-4">Cadastrar novo funcionário</h2>
-                        <p class="text-center text-muted mb-4">Preencha os dados abaixo para cadastrar um novo
-                            funcionário.</p>
-                        <form>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="nome" class="form-label">Nome</label>
-                                    <input type="text" class="form-control" id="nome"
-                                        placeholder="Digite o nome completo">
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="cargo" class="form-label">Cargo</label>
-                                    <select class="form-select" id="cargo">
-                                        <option selected>Selecione o cargo</option>
-                                        <option>Administrador</option>
-                                        <option>Funcionário</option>
-                                    </select>
+    <div class="d-flex align-items-center justify-content-center"
+        style="min-height: 90vh; background-color: #c4cacf; padding: 20px;">
 
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6">
+
+                    <div class="card shadow-lg border-0" style="border-radius: 20px;">
+
+                        <div class="card-body p-5">
+
+                            <h2 class="card-title text-center fw-bold mb-2">Cadastrar novo funcionário</h2>
+                            <p class="text-center text-muted mb-5">Preencha os dados abaixo para cadastrar um novo
+                                funcionário.</p>
+
+                            <form>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">Nome</label>
+                                        <input type="text" class="form-control" placeholder="Digite o nome completo">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">Cargo</label>
+                                        <select class="form-select">
+                                            <option selected>Selecione o cargo</option>
+                                            <option>Administrador</option>
+                                            <option>Funcionário</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Digite o e-mail">
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">CPF</label>
+                                        <input type="text" class="form-control" placeholder="000.000.000-00">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">Telefone</label>
+                                        <input type="tel" class="form-control" placeholder="(00) 00000-0000">
+                                    </div>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="telefone" class="form-label">Telefone</label>
-                                    <input type="tel" class="form-control" id="telefone" placeholder="(00) 00000-0000"
-                                        required>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">Email</label>
+                                    <input type="email" class="form-control" placeholder="digite o e-mail">
                                 </div>
-                            </div>
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <button type="button" class="btn btn-outline-secondary me-md-2">Cancelar</button>
-                                <button type="submit" class="btn btn-primary">Salvar</button>
-                            </div>
-                        </form>
+
+                                <div class="row mb-4">
+                                    <div class="col-md-12">
+                                        <label class="form-label fw-bold">Senha</label>
+                                        <input type="password" class="form-control" placeholder="Crie uma senha forte">
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-center gap-3">
+                                    <button type="button" class="btn btn-light border px-4"
+                                        style="font-family: 'Trebuchet MS', sans-serif; border-color: #d9c03d;">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary px-4"
+                                        style="background-color: #2D3250; font-family: 'Trebuchet MS', sans-serif;">Cadastrar</button>
+                                </div>
+                            </form>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <footer>
 
     </footer>
@@ -105,4 +139,5 @@
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
 </body>
+
 </html>

@@ -78,7 +78,7 @@
     /* Centraliza verticalmente */
     min-height: 80vh;
     /* Garante altura para centralizar */
-    
+
     /* Dá uma margem da borda direita da tela */
 }
 
@@ -179,4 +179,65 @@ input {
 
 .pagina-home {
     background-color: var(--cor-fundo-2) !important;
+}
+.boas-vindas {
+        color: var(--cor-texto-2);
+        font-size: 45px;
+        font-family: 'Verdana', sans-serif;
+        font-weight: bold;
+        text-align: left;
+        padding-left: 6%;
+        margin-top: 8%;
+    }
+.texto-home {
+    color: var(--cor-texto-2);
+    font-size: 30px;
+    font-family: 'Trebuchet MS', sans-serif;
+    text-align: left;
+    padding-left: 6%;
+    font-weight: bold;
+}
+  
+.card-botao {
+    background-color: #ffffff !important;
+    /* Garante o fundo branco */
+    border: none !important;
+    border-radius: 20px !important;
+
+    /* Cria a sombra suave de fundo */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+
+    /* Define um tamanho fixo vertical para os botões */
+    width: 260px;
+    height: 310px;
+
+    /* Centraliza a imagem dentro do botão */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+
+    margin-top: 10%;
+
+}
+
+.botoes-home {
+    gap: 100px !important;
+    /* Espaçamento entre os botões */
+
+    /* Garante que a imagem se ajuste bem dentro do card */
+    .card-botao img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    /* Efeito opcional: leve destaque ao passar o mouse */
+    .card-botao:hover {
+        transform: translateY(-3px);
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.12);
+        background-color: #ffffff !important;
+    }
+
+    
 }

@@ -2,7 +2,7 @@
     --cor-fundo-1: #2D3250;
     --cor-fundo-2: #c4cacf;
     --cor-fundo-3: #d9c03d;
-    --cor-fundo-4: #ffffffcc;
+    --cor-fundo-4: #ffffff;
     --cor-texto-1: #ffffff;
     --cor-texto-2: #2d3250;
 
@@ -10,7 +10,10 @@
 }
 
 .pagina_login {
-    background: var(--cor-fundo-2);
+    background-image: url('../img/tela-login/imagem-de-fundo.png');
+    background-size: cover;
+    background-position: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/tela-login/imagem-de-fundo.png');
     margin: 0;
     padding: 0;
     display: flex;
@@ -69,16 +72,14 @@
 
 .main_content {
     display: flex !important;
-    justify-content: flex-end !important;
+    justify-content: center !important;
     /* Empurra todo o conteúdo para a DIREITA */
     align-items: center;
     /* Centraliza verticalmente */
     min-height: 80vh;
     /* Garante altura para centralizar */
-    padding-right: 15%;
+    
     /* Dá uma margem da borda direita da tela */
-    position: relative;
-    /* Necessário para o trem não atrapalhar */
 }
 
 /* Estilo do Card (Container do Form) */
@@ -148,16 +149,7 @@ input {
     font-size: 14px;
 }
 
-.imagem_trem_bala {
-    position: absolute;
-    bottom: 0;
-    left: 25%;
-    transform: translateX(-50%);
-    width: 47%;
-    height: auto;
-    z-index: 1;
-    margin-bottom: 100px;
-}
+
 
 
 /*Tela de cadastro de funcionário*/

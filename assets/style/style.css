@@ -174,3 +174,9 @@ input {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.219);
     margin: auto;
 }
+
+/*Tela home */
+
+.pagina-home {
+    background-color: var(--cor-fundo-2) !important;
+}

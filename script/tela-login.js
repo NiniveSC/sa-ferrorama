@@ -112,9 +112,13 @@ document.getElementById("form-login").onsubmit = (e) => {
             <p>Operação realizada com sucesso!</p>
         </div>
     `;
+
+    if (!esqueceuASenha) {
+
     setTimeout(() => {
         window.location.href = "tela-geral-home.html";
-    }, 1000)
+    }, 1000);
 
+}
     document.getElementById("form-login").reset();
 };

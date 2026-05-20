@@ -284,3 +284,35 @@ input {
 
     
 }
+
+/* Tela de funcionários cadastrados */
+
+.pagina-funcionarios-cadastrados {
+    background-color: var(--cor-fundo-2) !important;
+}
+
+.table {
+    background-color: var(--cor-fundo-4) !important;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 15%;
+}
+
+.container h1 {
+    color: var(--cor-texto-2);
+    font-size: 36px;
+    font-family: 'Verdana', sans-serif;
+    font-weight: bold;
+    text-align: left;
+    text-align: center;
+}
+
+.linha-decorativa {
+    border: none;           /* Remove a borda padrão do navegador */
+    height: 4px;            /* Espessura da linha */
+    background-color: var(--cor-fundo-3); /* Cor da linha */
+    opacity: 1;             /* Garante que o Bootstrap não mude a opacidade dela */
+    margin: 30px 0;         /* Espaçamento */
+    max-width: 10%;
+    text-align: center;
+}

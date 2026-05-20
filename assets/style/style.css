@@ -177,27 +177,61 @@ input {
 
 /*Tela home */
 
+
 .pagina-home {
     background-color: var(--cor-fundo-2) !important;
 }
 .boas-vindas {
         color: var(--cor-texto-2);
-        font-size: 45px;
+        font-size: 55px;
         font-family: 'Verdana', sans-serif;
         font-weight: bold;
         text-align: left;
-        padding-left: 6%;
+        padding-left: 13%;
         margin-top: 8%;
     }
 .texto-home {
     color: var(--cor-texto-2);
-    font-size: 30px;
+    font-size: 40px;
     font-family: 'Trebuchet MS', sans-serif;
     text-align: left;
-    padding-left: 6%;
+    padding-left: 13%;
     font-weight: bold;
 }
-  
+
+.carrossel-card {
+    background-color: #ffffff !important;
+    border-radius: 25px !important;
+    padding: 40px 60px !important;  /*padding horizontal e vertical para maior espaçamento interno */
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.06) !important;
+    overflow: hidden;
+    margin-top: 10% !important;
+    margin-right: auto;
+    padding-right: 30%;
+    max-width: 1000px; 
+}
+
+/* Controla a altura máxima da área interna onde o gráfico aparece */
+.carrossel-card .carousel-inner {
+    max-height: 250px; /* Aumentado ligeiramente para acomodar o gráfico maior */
+    display: flex;
+    align-items: center;
+}
+
+/* Garante que o gráfico não distorça e fique centralizado */
+.carrossel-card .carousel-item img {
+    max-height: 250px;   
+    width: auto !important; /
+    object-fit: contain; 
+    margin: 0 auto;      
+}
+
+
+.carrossel-card .carousel-control-prev-icon,
+.carrossel-card .carousel-control-next-icon {
+    filter: invert(1) grayscale(100%) opacity(0.6); /* Deixa as setas escuras */
+}
+
 .card-botao {
     background-color: #ffffff !important;
     /* Garante o fundo branco */
@@ -217,7 +251,7 @@ input {
     justify-content: center;
     padding: 15px;
 
-    margin-top: 10%;
+    margin-top: 5%;
 
 }
 

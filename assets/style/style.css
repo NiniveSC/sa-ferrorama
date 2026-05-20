@@ -188,7 +188,7 @@ input {
         font-weight: bold;
         text-align: left;
         padding-left: 13%;
-        margin-top: 8%;
+        margin-top: 20%;
     }
 .texto-home {
     color: var(--cor-texto-2);
@@ -197,6 +197,15 @@ input {
     text-align: left;
     padding-left: 13%;
     font-weight: bold;
+}
+.linha-decorativa {
+    border: none;           /* Remove a borda padrão do navegador */
+    height: 4px;            /* Espessura da linha */
+    background-color: var(--cor-fundo-3); /* Cor da linha */
+    opacity: 1;             /* Garante que o Bootstrap não mude a opacidade dela */
+    margin: 30px 0;         /* Espaçamento */
+    max-width: 10%;
+    margin-left: 13%;
 }
 
 .carrossel-card {
@@ -221,7 +230,7 @@ input {
 /* Garante que o gráfico não distorça e fique centralizado */
 .carrossel-card .carousel-item img {
     max-height: 250px;   
-    width: auto !important; /
+    width: auto !important; 
     object-fit: contain; 
     margin: 0 auto;      
 }
@@ -251,7 +260,7 @@ input {
     justify-content: center;
     padding: 15px;
 
-    margin-top: 5%;
+    margin-top: 8%;
 
 }
 

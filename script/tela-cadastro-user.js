@@ -40,7 +40,7 @@ document.getElementById("form-cadastro").onsubmit = (e) => {
 
     if (!/^\+55 \(\d{2}\) 9\d{4}-\d{4}$/.test(telefone)) {
 
-        alert("Telefone inválido! Use +55 (xx) 9xxxx-xxxx");
+        alert("Telefone inválido! Use (xx) 9xxxx-xxxx");
         return;
     }
 
@@ -66,9 +66,10 @@ document.getElementById("form-cadastro").onsubmit = (e) => {
 
     document.getElementById("form-cadastro").reset();
 
-    window.location.href = "../public/funcionarios-cadastrados";
-
+    window.location.href = "funcionarios-cadastrados.html";
 
 }
 
-
+document.getElementById("botao-cancelar").onclick = () => {
+    window.location.href = "funcionarios-cadastrados.html";
+}

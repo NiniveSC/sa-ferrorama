@@ -148,25 +148,6 @@ input {
     color: #666;
     font-size: 14px;
 }
-/*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-/*Tela home*/
-
-.pagina-home {
-    margin: 0;
-}
-.navbar-nav {
-            color: #ffffff !important;
-            font-weight: bold;
-            font-size: 120%;
-            background-color: #2D3250;
-            padding: 15px 80px;
-            display: flex;
-
-        }
-
-        .navbar-nav .nav-link:hover {
-            color: #c4cacf !important;
-        }
 
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -200,16 +181,40 @@ input {
 
 .pagina-home {
     background-color: var(--cor-fundo-2) !important;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
+
+.navbar {
+    background-color: var(--cor-fundo-1) !important;
+    padding: 25px 80px;
+    width: 100%;
+}
+
+.navbar-nav {
+    color: var(--cor-texto-1) !important;
+    font-weight: bold;
+    font-size: 22px;
+    gap: 10px;
+
+}
+
+.navbar-nav .nav-link:hover {
+    color: #c4cacf !important;
+}
+
+
 .boas-vindas {
-        color: var(--cor-texto-2);
-        font-size: 55px;
-        font-family: 'Verdana', sans-serif;
-        font-weight: bold;
-        text-align: left;
-        padding-left: 13%;
-        margin-top: 20%;
-    }
+    color: var(--cor-texto-2);
+    font-size: 55px;
+    font-family: 'Verdana', sans-serif;
+    font-weight: bold;
+    text-align: left;
+    padding-left: 13%;
+    margin-top: 20%;
+}
+
 .texto-home {
     color: var(--cor-texto-2);
     font-size: 40px;
@@ -218,12 +223,18 @@ input {
     padding-left: 13%;
     font-weight: bold;
 }
+
 .linha-decorativa {
-    border: none;           /* Remove a borda padrão do navegador */
-    height: 4px;            /* Espessura da linha */
-    background-color: var(--cor-fundo-3); /* Cor da linha */
-    opacity: 1;             /* Garante que o Bootstrap não mude a opacidade dela */
-    margin: 30px 0;         /* Espaçamento */
+    border: none;
+    /* Remove a borda padrão do navegador */
+    height: 4px;
+    /* Espessura da linha */
+    background-color: var(--cor-fundo-3);
+    /* Cor da linha */
+    opacity: 1;
+    /* Garante que o Bootstrap não mude a opacidade dela */
+    margin: 30px 0;
+    /* Espaçamento */
     max-width: 10%;
     margin-left: 13%;
 }
@@ -231,34 +242,37 @@ input {
 .carrossel-card {
     background-color: #ffffff !important;
     border-radius: 25px !important;
-    padding: 40px 60px !important;  /*padding horizontal e vertical para maior espaçamento interno */
+    padding: 40px 60px !important;
+    /*padding horizontal e vertical para maior espaçamento interno */
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.06) !important;
     overflow: hidden;
     margin-top: 10% !important;
     margin-right: auto;
     padding-right: 30%;
-    max-width: 1000px; 
+    max-width: 1000px;
 }
 
 /* Controla a altura máxima da área interna onde o gráfico aparece */
 .carrossel-card .carousel-inner {
-    max-height: 250px; /* Aumentado ligeiramente para acomodar o gráfico maior */
+    max-height: 250px;
+    /* Aumentado ligeiramente para acomodar o gráfico maior */
     display: flex;
     align-items: center;
 }
 
 /* Garante que o gráfico não distorça e fique centralizado */
 .carrossel-card .carousel-item img {
-    max-height: 250px;   
-    width: auto !important; 
-    object-fit: contain; 
-    margin: 0 auto;      
+    max-height: 250px;
+    width: auto !important;
+    object-fit: contain;
+    margin: 0 auto;
 }
 
 
 .carrossel-card .carousel-control-prev-icon,
 .carrossel-card .carousel-control-next-icon {
-    filter: invert(1) grayscale(100%) opacity(0.6); /* Deixa as setas escuras */
+    filter: invert(1) grayscale(100%) opacity(0.6);
+    /* Deixa as setas escuras */
 }
 
 .card-botao {
@@ -302,7 +316,7 @@ input {
         background-color: #ffffff !important;
     }
 
-    
+
 }
 
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -314,72 +328,92 @@ input {
 }
 
 table {
- 
-  margin-top: 2%;
-  width: 100%;               /* Ou a largura que você já estiver usando */
-  border-radius: 15px;       /* Altere o valor (ex: 8px, 12px, 16px) para controlar o arredondamento */
-  overflow: hidden;          /* Impede que o fundo das células passe por cima do arredondamento */
-  border: 5px solid #727070; /* Adiciona uma borda para destacar o arredondamento */
-  border-collapse: collapse;
+
+    margin-top: 2%;
+    width: 100%;
+    /* Ou a largura que você já estiver usando */
+    border-radius: 15px;
+    /* Altere o valor (ex: 8px, 12px, 16px) para controlar o arredondamento */
+    overflow: hidden;
+    /* Impede que o fundo das células passe por cima do arredondamento */
+    border: 5px solid #727070;
+    /* Adiciona uma borda para destacar o arredondamento */
+    border-collapse: collapse;
 }
+
 .container-branco {
-  background-color: #ffffff;
-  border-radius: 16px;
-  padding: 8%;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 8%;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 /* Esta classe resolve o problema do navegador ignorar o arredondamento da tabela */
 .borda-tabela {
-  border: 2px solid #72707056; /* A borda externa cinza que sumiu */
-  border-radius: 10px;       /* O arredondamento da tabela */
-  overflow: hidden;          /* Corta as células para seguirem o arredondamento */
+    border: 2px solid #72707056;
+    /* A borda externa cinza que sumiu */
+    border-radius: 10px;
+    /* O arredondamento da tabela */
+    overflow: hidden;
+    /* Corta as células para seguirem o arredondamento */
 }
 
 .borda-tabela table {
-  border-collapse: collapse;
-  width: 100%;
+    border-collapse: collapse;
+    width: 100%;
 }
 
 /* Linhas apenas internas */
-.borda-tabela th, 
+.borda-tabela th,
 .borda-tabela td {
-  border-bottom: 1px solid #72707056;
-  border-right: 1px solid #72707056;
-  padding: 14px 16px;
+    border-bottom: 1px solid #72707056;
+    border-right: 1px solid #72707056;
+    padding: 14px 16px;
 }
-.borda-tabela th:last-child, 
-.borda-tabela td:last-child { border-right: none; }
-.borda-tabela tr:last-child td { border-bottom: none; }
+
+.borda-tabela th:last-child,
+.borda-tabela td:last-child {
+    border-right: none;
+}
+
+.borda-tabela tr:last-child td {
+    border-bottom: none;
+}
+
 /* Garante que a tabela interna se ajuste ao container */
 .container-branco table {
-  width: 100%;
-    border-collapse: collapse; /* Mantém o estilo de borda separado para o arredondamento */
+    width: 100%;
+    border-collapse: collapse;
+    /* Mantém o estilo de borda separado para o arredondamento */
 }
+
 /* Aplica a linha vertical tanto no cabeçalho quanto no corpo da tabela */
-th, td {
-  border-right: 3px solid #72707056; /* A mesma cor de linha que você está usando */
-  padding: 14px 16px;
-  text-align: left;
+th,
+td {
+    border-right: 3px solid #72707056;
+    /* A mesma cor de linha que você está usando */
+    padding: 14px 16px;
+    text-align: left;
 }
 
 /* IMPORTANTE: Remove a linha vertical da última coluna (Ações) */
-th:last-child, td:last-child {
-  border-right: none;
+th:last-child,
+td:last-child {
+    border-right: none;
 }
 
 th {
-  font-family: 'Verdana', sans-serif;
-  font-size: 18px;
-  text-align: center;
-  color: var(--cor-texto-2);
+    font-family: 'Verdana', sans-serif;
+    font-size: 18px;
+    text-align: center;
+    color: var(--cor-texto-2);
 }
 
 td {
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 20px;
-  color: var(--cor-texto-2);
-  text-align: center;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    color: var(--cor-texto-2);
+    text-align: center;
 }
 
 .container h1 {
@@ -392,14 +426,106 @@ td {
 }
 
 .linha-decorativa-2 {
-    border: none;           /* Remove a borda padrão do navegador */
-    height: 4px;            /* Espessura da linha */
-    background-color: var(--cor-fundo-3); /* Cor da linha */
-    opacity: 1;             /* Garante que o Bootstrap não mude a opacidade dela */
-    margin: 30px 0;         /* Espaçamento */
+    border: none;
+    /* Remove a borda padrão do navegador */
+    height: 4px;
+    /* Espessura da linha */
+    background-color: var(--cor-fundo-3);
+    /* Cor da linha */
+    opacity: 1;
+    /* Garante que o Bootstrap não mude a opacidade dela */
+    margin: 30px 0;
+    /* Espaçamento */
     max-width: 10%;
-    margin-left: auto; /* Centraliza a linha horizontalmente */
-    margin-right: auto; /* Centraliza a linha horizontalmente */
+    margin-left: auto;
+    /* Centraliza a linha horizontalmente */
+    margin-right: auto;
+    /* Centraliza a linha horizontalmente */
 }
 
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/*Cadastro de sensores*/
+
+/* Configurações Globais e Resets */
+.pagina-cadastro-sensores {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+/* Container Principal da Tela de Cadastro */
+.pagina-cadastro-container {
+    min-height: 90vh;
+    background-color: #c4cacf;
+    padding: 20px;
+}
+
+/* Card do Formulário */
+.card-cadastro {
+    border-radius: 20px;
+}
+
+/* Tipografia Comum dos Botões */
+.btn-custom {
+    font-family: 'Trebuchet MS', sans-serif;
+    padding-left: 1.5rem !important;  /* Equivalente ao px-4 do Bootstrap */
+    padding-right: 1.5rem !important; /* Equivalente ao px-4 do Bootstrap */
+}
+
+/* Botão Cancelar */
+#botao-cancelar {
+    border-color: #d9c03d !important;
+}
+
+/* Botão Cadastrar (Enviar) */
+#envio-cadastro {
+    background-color: #2D3250 !important;
+    border-color: #2D3250 !important;
+}
+
+/* Botão Editar (Visualizar) */
+#botao-visualizar {
+    background-color: #d9c03d !important;
+    color: #2d3250 !important;
+    border-color: #d9c03d !important;
+}
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/*cadastro de funcionarios*/
+
+.pg-cadastro-funcionario {
+    min-height: 90vh;
+    background-color: #c4cacf;
+    padding: 20px;
+}
+
+/* Card do formulário de funcionários */
+.card-cadastro-funcionario {
+    border-radius: 20px;
+}
+
+/* Estilo de tipografia padrão para os botões desta página */
+.btn-func-custom {
+    font-family: 'Trebuchet MS', sans-serif;
+    padding-left: 1.5rem !important;  
+    padding-right: 1.5rem !important; 
+}
+
+/* Botão Cancelar (Borda Amarela) */
+#btn-func-cancelar {
+    border-color: #d9c03d !important;
+}
+
+/* Botão Cadastrar Funcionário (Azul Escuro) */
+#btn-func-cadastrar {
+    background-color: #2D3250 !important;
+    border-color: #2D3250 !important;
+}
+
+/* Botão Editar/Visualizar Funcionário (Amarelo) */
+#btn-func-editar {
+    background-color: #d9c03d !important;
+    color: #2d3250 !important;
+    border-color: #d9c03d !important;
+}

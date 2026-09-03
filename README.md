@@ -91,6 +91,59 @@ Para manter a organização durante o projeto e facilitar o trabalho colaborativ
 - **Banco de Dados** - nomes em maiúsculo
 - **IDs e Classes HTML/CSS** -  nomes relacionados a função ou ao elemento
 
+## ✅Requisitos funcionais
+
+## Autenticação
+
+| Código | Descrição |
+|--------|-----------|
+| RF01 | O sistema deve permitir que o administrador faça login com e-mail e senha. |
+| RF02 | O sistema deve criar uma sessão ao autenticar o usuário e destruí-la ao realizar o logout, redirecionando-o automaticamente para a tela de login. |
+
+## Sensores
+
+| Código | Descrição |
+|--------|-----------|
+| RF03 | O sistema deve permitir registrar sensores. |
+| RF04 | O sistema deve permitir a visualização detalhada de um sensor específico a partir da listagem principal. |
+| RF05 | O sistema deve permitir a remoção de sensores, apresentando uma tela de confirmação antes da exclusão definitiva. |
+| RF06 | O sistema deve exibir dados atualizados vindos dos sensores IoT, como velocidade do trem, localização no mapa e status operacional (normal, alerta ou falha). |
+
+## Relatórios
+
+| Código | Descrição |
+|--------|-----------|
+| RF07 | O sistema deve permitir a geração de relatórios sobre a operação ferroviária, incluindo gráficos interativos e análise de tendências. |
+| RF08 | O sistema deve permitir a consulta de relatórios gerados anteriormente, com filtros por período e tipo de falha. |
+
+## Locomotivas (Trens)
+
+| Código | Descrição |
+|--------|-----------|
+| RF09 | O sistema deve permitir o cadastro das locomotivas (trens) que compõem a frota. |
+| RF10 | O sistema deve permitir editar as locomotivas (trens) cadastrados. |
+| RF11 | O sistema deve permitir excluir as locomotivas (trens) cadastrados. |
+| RF12 | O sistema deve permitir visualizar as locomotivas (trens) cadastrados. |
+
+## Funcionários
+
+| Código | Descrição |
+|--------|-----------|
+| RF13 | O sistema deve permitir visualizar os funcionários cadastrados. |
+| RF14 | O sistema deve permitir cadastrar novos funcionários. |
+| RF15 | O sistema deve permitir editar os funcionários cadastrados. |
+| RF16 | O sistema deve permitir excluir os funcionários cadastrados. |
+
+## Rotas
+
+| Código | Descrição |
+|--------|-----------|
+| RF17 | O sistema deve permitir cadastrar rotas. |
+| RF18 | O sistema deve permitir editar rotas. |
+| RF19 | O sistema deve permitir listar rotas. |
+| RF20 | O sistema deve permitir excluir rotas. |
+
+
 
 ## 🧮 Metodologia de trabalho da equipe
 

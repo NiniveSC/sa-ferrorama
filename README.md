@@ -116,7 +116,7 @@ Para manter a organização durante o projeto e facilitar o trabalho colaborativ
 | RF07 | O sistema deve permitir a geração de relatórios sobre a operação ferroviária, incluindo gráficos interativos e análise de tendências. |
 | RF08 | O sistema deve permitir a consulta de relatórios gerados anteriormente, com filtros por período e tipo de falha. |
 
-## Locomotivas (Trens)
+## Locomotivas 
 
 | Código | Descrição |
 |--------|-----------|

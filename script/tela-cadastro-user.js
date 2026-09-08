@@ -66,10 +66,10 @@ document.getElementById("form-cadastro").onsubmit = (e) => {
 
     document.getElementById("form-cadastro").reset();
 
-    window.location.href = "funcionarios-cadastrados.html";
+    window.location.href = "funcionarios-cadastrados.php";
 
 }
 
 document.getElementById("botao-cancelar").onclick = () => {
-    window.location.href = "funcionarios-cadastrados.html";
+    window.location.href = "funcionarios-cadastrados.php";
 }

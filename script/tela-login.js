@@ -116,7 +116,7 @@ document.getElementById("form-login").onsubmit = (e) => {
     if (!esqueceuASenha) {
 
     setTimeout(() => {
-        window.location.href = "tela-geral-home.html";
+        window.location.href = "tela-geral-home.php";
     }, 1000);
 
 }

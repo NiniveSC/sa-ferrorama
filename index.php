@@ -7,7 +7,7 @@
 <body>
 
     <script>
-        window.location.href = "public/tela-login.html";
+        window.location.href = "public/tela-login.php";
     </script>
 
 </body>

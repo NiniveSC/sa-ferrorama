@@ -20,22 +20,22 @@
             <div class="collapse navbar-collapse justify-content-between" id="navbar-Nav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item mx-3">
-                        <a class="nav-link" href="tela-geral-home.html">Dashboard</a>
+                        <a class="nav-link" href="tela-geral-home.php">Dashboard</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link" href="tela-lista-sensores.html">Sensores</a>
+                        <a class="nav-link" href="tela-lista-sensores.php">Sensores</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link" href="tela-lista-trens.html">Trens</a>
+                        <a class="nav-link" href="tela-lista-trens.php">Trens</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link" href="tela-lista-rotas.html">Rotas</a>
+                        <a class="nav-link" href="tela-lista-rotas.php">Rotas</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link" href="funcionarios-cadastrados.html">Funcionário</a>
+                        <a class="nav-link" href="funcionarios-cadastrados.php">Funcionário</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link" href="tela-relatorios.html">Relatórios</a>
+                        <a class="nav-link" href="tela-relatorios.php">Relatórios</a>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -44,7 +44,7 @@
                             NomeAdmin
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="tela-login.html">Sair</a></li>
+                            <li><a class="dropdown-item" href="tela-login.php">Sair</a></li>
                         </ul>
                     </li>
                 </ul>

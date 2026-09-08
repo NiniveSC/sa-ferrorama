@@ -14,7 +14,7 @@
     <header class="meu_header">
 
         <div class="cabecalho">
-            <img src="../assets/img/tela-login/imagem trem.png" alt="imagem do trem" class="imagem_trem">
+            <img src="../../assets/img/tela-login/imagem trem.png" alt="imagem do trem" class="imagem_trem">
             <div class="texto_cabecalho">
                 <h1 class="titulo_mn">MN Ferrovia</h1>
                 <p class="subtitulo_mn">Sistema de monitoramento</p>

@@ -66,7 +66,7 @@ document.getElementById("form-cadastro").onsubmit = (e) => {
 
     document.getElementById("form-cadastro").reset();
 
-    window.location.href = "funcionarios-cadastrados.php";
+    window.location.href = "public/funcionarios/funcionarios-cadastrados.php";
 
 }
 

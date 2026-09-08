@@ -65,10 +65,10 @@
                 <div id="carouselExample" class="carousel slide carrossel-card">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="../assets/img/tela-home/grafico-1.png" class="d-block w-100" alt="Relatórios">
+                            <img src="../../assets/img/tela-home/grafico-1.png" class="d-block w-100" alt="Relatórios">
                         </div>
                         <div class="carousel-item">
-                            <img src="../assets/img/tela-home/grafico-2.png" class="d-block w-100" alt="Relatórios">
+                            <img src="../../assets/img/tela-home/grafico-2.png" class="d-block w-100" alt="Relatórios">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -82,19 +82,19 @@
                 </div>
             </div> </div> <div class="botoes-home d-flex justify-content-center flex-wrap">
             <button type="button" id="buttonFuncionarios" class="btn card-botao funcionarios">
-                <img src="../assets/img/tela-home/funcionarios.png" alt="Funcionários">
+                <img src="../../assets/img/tela-home/funcionarios.png" alt="Funcionários">
             </button>
             <button type="button" class="btn card-botao btn-outline-sensores">
-                <img src="../assets/img/tela-home/sensores.png" alt="Sensores">
+                <img src="../../assets/img/tela-home/sensores.png" alt="Sensores">
             </button>
             <button type="button" class="btn card-botao btn-outline-rotas">
-                <img src="../assets/img/tela-home/rotas.png" alt="Rotas">
+                <img src="../../assets/img/tela-home/rotas.png" alt="Rotas">
             </button>
             <button type="button" class="btn card-botao btn-outline-trens">
-                <img src="../assets/img/tela-home/trens.png" alt="Trens">
+                <img src="../../assets/img/tela-home/trens.png" alt="Trens">
             </button>
             <button type="button" class="btn card-botao btn-outline-relatorios">
-                <img src="../assets/img/tela-home/relatorios.png" alt="Relatórios">
+                <img src="../../assets/img/tela-home/relatorios.png" alt="Relatórios">
             </button>
         </div>
 

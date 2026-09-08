@@ -50,3 +50,77 @@ try {
 - Orientação a Objetos: Toda a comunicação é feita através de objetos e métodos limpos e previsíveis.
 - Múltiplos Formatos de Retorno (Fetch Modes): Permite buscar dados retornando como array associativo `PDO::FETCH_ASSOC`, objeto `PDO::FETCH_OBJ`, array numérico `PDO::FETCH_NUM` ou mapeando diretamente para instâncias de classes personalizadas `PDO::FETCH_CLASS`.
 - Suporte a Transações: Permite agrupar várias operações de banco de dados (`beginTransaction(), commit(), rollBack()`) garantindo que todas sejam concluídas juntas ou canceladas em caso de falha.
+
+## Diferenças entre PDO e MySQLi
+PDO:
+- É uma extensão do PHP utilizada para conexão e interação com bancos de dados.
+- Permite trabalhar com diferentes tipos de bancos de dados, como MySQL, PostgreSQL e SQLite.
+- Possui suporte a Prepared Statements, aumentando a segurança contra SQL Injection.
+- É mais flexível quando existe a possibilidade de trocar o banco de dados no futuro. <br>
+
+MySQLi:
+- É uma extensão do PHP utilizada especificamente para trabalhar com bancos de dados MySQL.
+- Possui suporte a Prepared Statements, ajudando na proteção contra SQL Injection.
+- Pode ser utilizada tanto no estilo procedural quanto no orientado a objetos.
+- É uma opção adequada para sistemas que utilizam exclusivamente MySQL.
+
+## Vantagens e desvantagens de utilizar PDO
+Vantagens:
+- Permite trabalhar com diferentes bancos de dados, como MySQL, PostgreSQL, SQLite e SQL Server.
+- Possui suporte a Prepared Statements, aumentando a segurança contra SQL Injection.
+- Possui uma interface padronizada, facilitando o desenvolvimento.
+- Permite o tratamento de erros e exceções.
+- Possui suporte a transações. <br>
+
+Desvantagens:
+- Pode ser necessário instalar ou ativar o driver específico do banco de dados que será utilizado.
+- Apesar de facilitar a troca de banco, algumas consultas podem precisar de alterações quando se muda de SGBD, devido às diferenças entre os bancos.
+- É exclusivamente orientado a objetos, o que pode ser menos familiar para quem está começando com PHP.
+
+## O que são Prepared Statements e por que são importantes
+Prepared Statements são uma forma mais segura de executar comandos SQL. Em vez de colocar diretamente os dados fornecidos pelo usuário dentro da consulta, utilizamos parâmetros, que são preenchidos separadamente.
+
+Exemplo sem Prepared Statement:
+```php
+$nome = $_POST['nome'];
+
+$sql = "INSERT INTO clientes (nome) VALUES ('$nome')";
+$conn->query($sql);
+```
+
+Nesse caso, o valor recebido pelo usuário é colocado diretamente dentro da consulta SQL.
+
+Exemplo utilizando Prepared Statement:
+```php
+$nome = $_POST['nome'];
+
+$sql = "INSERT INTO clientes (nome) VALUES (?)";
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $nome);
+$stmt->execute();
+```
+Nesse exemplo, o ? funciona como um espaço reservado para o valor. O bind_param() informa qual dado será colocado nesse espaço.
+
+
+Prepared Statements são importantes principalmente porque aumentam a segurança da aplicação, ajudando a proteger o banco de dados contra SQL Injection.
+
+Por exemplo, para realizar uma busca:
+```php
+$email = $_POST['email'];
+
+$sql = "SELECT * FROM clientes WHERE email = ?";
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $email);
+$stmt->execute();
+
+$resultado = $stmt->get_result();
+```
+Nesse caso, o e-mail é tratado como dado, e não como parte do comando SQL. Isso dificulta que uma entrada maliciosa seja interpretada como um comando pelo banco de dados.
+
+## Em quais situações o PDO pode ser uma boa escolha
+- Quando é necessário mais segurança: o PDO permite utilizar Prepared Statements, ajudando a proteger o sistema contra SQL Injection.
+- Quando o projeto pode utilizar diferentes bancos de dados: o PDO possui suporte a bancos como MySQL, PostgreSQL, SQLite, Oracle e SQL Server.
+- Quando o sistema possui muitas consultas ao banco: seus recursos ajudam a manter o código mais organizado e fácil de manter.
+- Quando é necessário trabalhar com transações: o PDO permite controlar operações que precisam ser executadas juntas, garantindo maior segurança dos dados.

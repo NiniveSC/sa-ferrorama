@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../../assets/style/style.css">
 </head>
 
-<body class="pagina_cadastro_trem">
+<body class="pagina_cadastro_user">
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -53,12 +53,12 @@
     </nav>
 
     
-    <div class="d-flex align-items-center justify-content-center pg-cadastro-trem">
+    <div class="d-flex align-items-center justify-content-center pg-cadastro-funcionario">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 col-lg-6">
 
-                <div class="card shadow-lg border-0 card-cadastro-trens">
+                <div class="card shadow-lg border-0 card-cadastro-funcionario">
                     <div class="card-body p-5">
 
                         <h2 class="card-title text-center fw-bold mb-2">Cadastrar novo trem</h2>

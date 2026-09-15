@@ -1,3 +1,3 @@
 document.getElementById("buttonFuncionarios").addEventListener("click", function() {
-    window.location.href = "funcionarios-cadastrados.php";
+    window.location.href = "../public/funcionarios/funcionarios-cadastrados.php";
 });

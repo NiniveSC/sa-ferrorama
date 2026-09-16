@@ -59,10 +59,11 @@
             <div class="col-12 col-md-8 col-lg-6">
 
                 <div class="card shadow-lg border-0 card-cadastro-funcionario">
-                    <div class="card-body p-5">
-
-                        <h2 class="card-title text-center fw-bold mb-2">Cadastrar novo funcionário</h2>
-                        <p class="text-center text-muted mb-5">Preencha os dados abaixo para cadastrar um novo funcionário.</p>
+                    <div class="card-body px-5 pt-3 pb-5">
+                        <h2 class="card-title text-center fw-bold mb-2" style="color: #2d3250;">
+    Editar Funcionários
+</h2>
+<br>
 
                         <form id="form-cadastro-funcionario">
                             <div class="row mb-3">
@@ -103,10 +104,16 @@
                                 </div>
                             </div>
 
-                            <div class="d-flex justify-content-center gap-3">
-                                <button type="button" id="btn-func-cancelar" class="btn btn-light border btn-func-custom">Cancelar</button>
-                                <button type="submit" id="btn-func-cadastrar" class="btn btn-primary btn-func-custom">Cadastrar</button>
-                                <button type="button" id="btn-func-editar" class="btn btn-secondary btn-func-custom">Editar</button>
+                           <div class="d-flex justify-content-center gap-4">
+
+                                <button type="button" id="btn-func-cancelar" class="btn btn-light border btn-func-custom">
+                                    ← Voltar
+                                </button>
+
+                                 <button type="submit" id="btn-func-editar" class="btn btn-func-custom">
+                                     Editar
+                                </button>
+
                             </div>
                         </form>
 

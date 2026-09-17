@@ -102,19 +102,19 @@
                        
                       <div class="confirmacao-exclusao mb-4">
 
-    <img src="../../assets/img/icone_alerta.png" alt="Alerta">
+                        <img src="../../assets/img/icone_alerta.png" alt="Alerta">
 
-    <div>
-        <strong>
-            Deseja mesmo excluir?
-        </strong>
+                          <div>
+                            <strong>
+                                 Deseja mesmo excluir?
+                             </strong>
 
-        <p>
-            Os dados do funcionário excluído não podem ser resgatados.
-        </p>
-    </div>
+                             <p>
+                                  Os dados do funcionário excluído não podem ser resgatados.
+                            </p>
+                            </div>
 
-</div>
+                        </div>
 
                        
                         <div class="d-flex justify-content-center gap-5">

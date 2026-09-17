@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotas Cadastradas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../assets/style/style.css">
+</head>
+
+<body class="pagina-rotas-cadastradas">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbar-Nav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="tela-geral-home.php">Dashboard</a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="tela-lista-sensores.php">Sensores</a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="tela-lista-trens.php">Trens</a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="tela-lista-rotas.php">Rotas</a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="funcionarios-cadastrados.php">Funcionário</a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="tela-relatorios.php">Relatórios</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            NomeAdmin
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="tela-login.php">Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+  <main class="container rotas-main">
+
+    <div class="container-branco">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h1 class="m-0">Rotas</h1>
+
+            <button type="button" id="btn-nova-rota" class="btn btn-secondary">
+                + &nbsp; Nova rota
+            </button>
+        </div>
+        <br>
+            <div class="borda-tabela">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Localização</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>001</td>
+                            <td>Linha A - Estação Central</td>
+                            <td>Ativo</td>
+                            <td>
+                                <button class="btn btn-info text-white">Visualizar</button>
+                                <button class="btn btn-primary">Editar</button>
+                                <button class="btn btn-danger">Excluir</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>Linha B - Pátio Sul</td>
+                            <td>Ativo</td>
+                            <td>
+                                <button class="btn btn-info text-white">Visualizar</button>
+                                <button class="btn btn-primary">Editar</button>
+                                <button class="btn btn-danger">Excluir</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>003</td>
+                            <td>Linha C - Estação Norte</td>
+                            <td>Inativo</td>
+                            <td>
+                                <button class="btn btn-info text-white">Visualizar</button>
+                                <button class="btn btn-primary">Editar</button>
+                                <button class="btn btn-danger">Excluir</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>004</td>
+                            <td>Linha D - Pátio Norte</td>
+                            <td>Manutenção</td>
+                            <td>
+                                <button class="btn btn-info text-white">Visualizar</button>
+                                <button class="btn btn-primary">Editar</button>
+                                <button class="btn btn-danger">Excluir</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+    </footer>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -669,4 +669,42 @@ td {
 }
 
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-/*excluir rotas*/
+/*listar rotas*/
+
+.pagina-rotas-cadastradas {
+    background-color: var(--cor-fundo-2) !important;
+    min-height: 100vh;
+}
+
+.pagina-rotas-cadastradas .container-branco {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 70px;
+    box-sizing: border-box;
+}
+
+.pagina-rotas-cadastradas .rotas-main {
+    width: 100%;
+    max-width: 1200px;
+    min-height: calc(100vh - 100px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.pagina-rotas-cadastradas .container-branco {
+    width: 100%;
+    max-width: 1000px;
+}
+
+#btn-nova-rota {
+    background-color: #2D3250 !important;
+    border-color: #2D3250 !important;
+    width: 180px;
+    font-weight: bold;
+}
+
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*listar rotas*/

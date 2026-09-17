@@ -605,4 +605,126 @@ td {
 }
 
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-/*proxima tela*/
+/*excluir rotas*/
+
+.dados-funcionario {
+    border: 1px solid #999;
+    border-radius: 15px;
+    padding: 15px 30px;
+}
+
+.label-funcionario {
+    width: 220px;
+    font-weight: bold;
+}
+
+.valor-funcionario {
+    font-weight: 600;
+}
+
+.confirmacao-exclusao {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    border: 1px solid #ff0019;
+    background-color: #f5b5b8;
+    border-radius: 15px;
+    padding: 20px 30px;
+}
+
+.confirmacao-exclusao img {
+    width: 65px;
+}
+
+.confirmacao-exclusao strong {
+    color: #2b2d52;
+    font-size: 21px;
+}
+
+.confirmacao-exclusao p {
+    color: #2b2d52;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 2px 0 0 0;
+}
+
+.btn-func-custom {
+    width: 250px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#btn-rota-cancelar {
+    border: 1px solid #d4af37 !important;
+    background-color: transparent !important;
+    color: #2b2d52;
+}
+
+#btn-rota-cancelar:hover {
+    background-color: rgba(212, 175, 55, 0.1) !important;
+}
+
+.card-title {
+    color: #2b2d52;
+}
+
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*listar rotas*/
+
+.pagina-rotas-cadastradas {
+    background-color: var(--cor-fundo-2) !important;
+    min-height: 100vh;
+}
+
+.pagina-rotas-cadastradas .container-branco {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 70px;
+    box-sizing: border-box;
+}
+
+.pagina-rotas-cadastradas .rotas-main {
+    width: 100%;
+    max-width: 1200px;
+    min-height: calc(100vh - 100px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.pagina-rotas-cadastradas .container-branco {
+    width: 100%;
+    max-width: 1000px;
+}
+
+#btn-nova-rota {
+    background-color: #2D3250 !important;
+    border-color: #2D3250 !important;
+    width: 180px;
+    font-weight: bold;
+}
+
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*cadastrar rotas*/
+
+.pg-cadastro-rotas {
+    min-height: calc(100vh - 100px); /* Ocupa a tela inteira descontando a altura da navbar */
+    background-color: var(--cor-fundo-2);
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 40px 20px;
+}
+
+.card-cadastro-rotas {
+    border-radius: 20px;
+    background-color: var(--cor-fundo-4);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+
+
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*editar rotas*/

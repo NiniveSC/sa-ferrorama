@@ -70,45 +70,50 @@
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">ID do sensor</label>
-                                        <input type="text" id="id-sensor" class="form-control" placeholder="Digite o ID do sensor">
+                                        <input type="number" name="id_sensor" id="id-sensor" class="form-control" placeholder="Digite o ID do sensor">
                                     </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold">Nome</label>
-                                        <input type="text" id="nome-sensor" class="form-control" placeholder="Digite o nome do sensor">
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold">Localização</label>
-                                        <input type="text" id="localizacao-cadastro" class="form-control" placeholder="Digite a localização">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold">Status</label>
-                                        <select id="status-cadastro" class="form-select">
-                                            <option value="" selected>Selecione o status</option>
-                                            <option value="Ativo">Ativo</option>
-                                            <option value="Inativo">Inativo</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
+                                <div class="col-md-6">
                                         <label class="form-label fw-bold">Tipo de Sensor</label>
-                                        <select id="tipo-sensor" class="form-select">
+                                        <select name="tipo_sensor" id="tipo-sensor" class="form-select">
                                             <option value="" selected>Selecione o tipo de sensor</option>
                                             <option value="Temperatura">Temperatura</option>
                                             <option value="Velocidade">Velocidade</option>
                                             <option value="Localizador">Localizador</option>
                                         </select>
+                                    </div>  
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">Localização</label>
+                                        <input type="text" name="localizacao_sensor" id="localizacao-cadastro" class="form-control" placeholder="Digite a localização">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">Status</label>
+                                        <select name="status_sensor" id="status-cadastro" class="form-select">
+                                            <option value="" selected>Selecione o status</option>
+                                            <option value="Ativo">Ativo</option>
+                                            <option value="Inativo">Inativo</option>
+                                            <option value="Manutenção">Manutenção</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">ID trem</label>
+                                        <input type="number" name="id_trem" id="id-trem" class="form-control" placeholder="ID do trem relacionado">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">ID rota</label>
+                                        <input type="number" name="id_rota" id="id-rota" class="form-control" placeholder="ID da rota relacionad">
                                     </div>
                                 </div>
 
                                 <div class="d-flex justify-content-center gap-3">
                                     <button type="button" id="botao-cancelar" class="btn btn-light border btn-custom">Cancelar</button>
                                     <button type="submit" id="envio-cadastro" class="btn btn-primary btn-custom">Cadastrar</button>
-                                    <button type="button" id="botao-visualizar" class="btn btn-secondary btn-custom">Editar</button>
+
                                 </div>
                             </form>
 

@@ -85,7 +85,7 @@
                             <option value="" selected disabled>Status</option>
                             <option value="ativa">Ativa</option>
                             <option value="inativa">Inativa</option>
-                            <option value="em_manutencao">Em Manutenção</option>
+                            <option value="em_concerto">Em concerto</option>
                         </select>
                     </div>
                 </div>

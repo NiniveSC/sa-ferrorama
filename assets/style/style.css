@@ -605,5 +605,68 @@ td {
 }
 
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-/*editar rotas*/
+/*excluir rotas*/
 
+.dados-funcionario {
+    border: 1px solid #999;
+    border-radius: 15px;
+    padding: 15px 30px;
+}
+
+.label-funcionario {
+    width: 220px;
+    font-weight: bold;
+}
+
+.valor-funcionario {
+    font-weight: 600;
+}
+
+.confirmacao-exclusao {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    border: 1px solid #ff0019;
+    background-color: #f5b5b8;
+    border-radius: 15px;
+    padding: 20px 30px;
+}
+
+.confirmacao-exclusao img {
+    width: 65px;
+}
+
+.confirmacao-exclusao strong {
+    color: #2b2d52;
+    font-size: 21px;
+}
+
+.confirmacao-exclusao p {
+    color: #2b2d52;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 2px 0 0 0;
+}
+
+.btn-func-custom {
+    width: 250px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#btn-rota-cancelar {
+    border: 1px solid #d4af37 !important;
+    background-color: transparent !important;
+    color: #2b2d52;
+}
+
+#btn-rota-cancelar:hover {
+    background-color: rgba(212, 175, 55, 0.1) !important;
+}
+
+.card-title {
+    color: #2b2d52;
+}
+
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*excluir rotas*/

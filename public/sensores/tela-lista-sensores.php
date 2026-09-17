@@ -64,6 +64,7 @@
                             <th>ID</th>
                             <th>Localização</th>
                             <th>Status</th>
+                            <th>Tipo</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
@@ -72,6 +73,7 @@
                             <td>001</td>
                             <td>Linha A - Estação Central</td>
                             <td>Ativo</td>
+                            <td>Temperatura</td>
                             <td>
                                 <button class="btn btn-primary">Editar</button>
                                 <button class="btn btn-danger">Excluir</button>
@@ -81,6 +83,7 @@
                             <td>002</td>
                             <td>Linha B - Pátio Sul</td>
                             <td>Ativo</td>
+                            <td>Velocidade</td>
                             <td>
                                 <button class="btn btn-primary">Editar</button>
                                 <button class="btn btn-danger">Excluir</button>
@@ -90,6 +93,7 @@
                             <td>003</td>
                             <td>Linha C - Estação Norte</td>
                             <td>Inativo</td>
+                            <td>Temperatura</td>
                             <td>
                                 <button class="btn btn-primary">Editar</button>
                                 <button class="btn btn-danger">Excluir</button>
@@ -99,6 +103,7 @@
                             <td>004</td>
                             <td>Linha D - Pátio Norte</td>
                             <td>Manutenção</td>
+                            <td>Localizador</td>
                             <td>
                                 <button class="btn btn-primary">Editar</button>
                                 <button class="btn btn-danger">Excluir</button>

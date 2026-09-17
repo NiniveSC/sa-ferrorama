@@ -765,3 +765,16 @@ td {
 }
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /*editar rotas*/
+
+#btn-rota-cadastrar,
+#btn-rota-editar {
+    background-color: var(--cor-fundo-1) !important;
+    border-color: var(--cor-fundo-1) !important;
+    color: var(--cor-texto-1) !important;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    padding: 8px 30px;
+    border-radius: 8px;
+}
+
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/

@@ -707,4 +707,24 @@ td {
 }
 
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-/*listar rotas*/
+/*cadastrar rotas*/
+
+.pg-cadastro-rotas {
+    min-height: calc(100vh - 100px); /* Ocupa a tela inteira descontando a altura da navbar */
+    background-color: var(--cor-fundo-2);
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 40px 20px;
+}
+
+.card-cadastro-rotas {
+    border-radius: 20px;
+    background-color: var(--cor-fundo-4);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+
+
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*editar rotas*/

@@ -6,12 +6,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_sensor = $_POST['id_sensor'] ;
     $status_sensor = $_POST['status_sensor']   ;
     $tipo_sensor = $_POST['tipo_sensor'] ;
-    $localização_sensor = $_POST['loalizacao_sensor'] ;
+    $localizacao_sensor = $_POST['loalizacao_sensor'] ;
 
     $id_trem = !empty($_POST['id_trem']) ? $_POST['id_trem'] : null;
     $id_rota = !empty($_POST['id_rota']) ? $_POST['id_rota'] : null;
 
-    $pdo = conectar;
+    $pdo = conectar();
     $sql = "INSERT INTO Sensor (id_sensor, status_sensor, tipo_sensor, localizacao_sensor, id_trem, id_rota)
     VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <h2 class="card-title text-center fw-bold mb-2">Cadastrar novo sensor</h2>
                             <p class="text-center text-muted mb-5">Preencha os dados abaixo para cadastrar um novo sensor.</p>
 
-                            <form id="form-cadastro">
+                            <form id="form-cadastro" action="" method="POST">
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">ID do sensor</label>
@@ -139,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">ID rota</label>
-                                        <input type="number" name="id_rota" id="id-rota" class="form-control" placeholder="ID da rota relacionad">
+                                        <input type="number" name="id_rota" id="id-rota" class="form-control" placeholder="ID da rota relacionada">
                                     </div>
                                 </div>
 

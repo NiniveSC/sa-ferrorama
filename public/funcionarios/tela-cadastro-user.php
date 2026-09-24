@@ -106,7 +106,6 @@
                             <div class="d-flex justify-content-center gap-3">
                                 <button type="button" id="btn-func-cancelar" class="btn btn-light border btn-func-custom">Cancelar</button>
                                 <button type="submit" id="btn-func-cadastrar" class="btn btn-primary btn-func-custom">Cadastrar</button>
-                                <button type="button" id="btn-func-editar" class="btn btn-secondary btn-func-custom">Editar</button>
                             </div>
                         </form>
 

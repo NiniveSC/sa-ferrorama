@@ -92,8 +92,17 @@ $sensores = $resultado->fetch_all(MYSQLI_ASSOC);
                             <td><?= $sensor['status_sensor'] ?></td>
                             <td><?= $sensor['tipo_sensor'] ?></td>
                             <td>
-                                <button class="btn btn-primary">Editar</button>
-                                <button class="btn btn-danger">Excluir</button>
+                                
+                                <button class="btn btn-primary" 
+                                        onclick="window.location.href='editar-sensores.php?id=<?= $sensor['id_sensor'] ?>'">
+                                    Editar
+                                </button>
+
+                                    
+                                <button class="btn btn-danger" 
+                                        onclick="if(confirm('Tem certeza que deseja excluir este sensor?')) { window.location.href='excluir-sensores.php?id=<?= $sensor['id_sensor'] ?>'; }">
+                                    Excluir
+                                </button>
                             </td>
                         </tr>
                         <?php endforeach; ?>

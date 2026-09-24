@@ -3,32 +3,33 @@ require '../../infra/conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
-    $id_sensor = $_POST['id_sensor'] ;
-    $status_sensor = $_POST['status_sensor']   ;
-    $tipo_sensor = $_POST['tipo_sensor'] ;
-    $localizacao_sensor = $_POST['loalizacao_sensor'] ;
+    $id_sensor          = $_POST['id_sensor'];
+    $status_sensor      = $_POST['status_sensor'];
+    $tipo_sensor        = $_POST['tipo_sensor'];
+    $localizacao_sensor = $_POST['localizacao_sensor'];
 
-    $id_trem = !empty($_POST['id_trem']) ? $_POST['id_trem'] : null;
-    $id_rota = !empty($_POST['id_rota']) ? $_POST['id_rota'] : null;
+    $id_trem = !empty($_POST['id_trem']) ? (int)$_POST['id_trem'] : null;
+    $id_rota = !empty($_POST['id_rota']) ? (int)$_POST['id_rota'] : null;
 
-    $pdo = conectar();
     $sql = "INSERT INTO Sensor (id_sensor, status_sensor, tipo_sensor, localizacao_sensor, id_trem, id_rota)
-    VALUES (?, ?, ?, ?, ?, ?)";
+            VALUES (?, ?, ?, ?, ?, ?)";
 
-    $stmt = $pdo->prepare($sql);
+    $stmt = $conexao->prepare($sql);
 
-    $stmt->execute([
-        $id_sensor, 
-        $status_sensor, 
-        $tipo_sensor, 
-        $localizacao_sensor, 
-        $id_trem, 
-        $id_rota
-    ]);
+    if (!$stmt) {
+        die("Erro no SQL/Banco: " . $conexao->error);
+    }
 
-    header("Location: tela-lista-sensores.php");
-    exit;
+    $stmt->bind_param("isssii", $id_sensor, $status_sensor, $tipo_sensor, $localizacao_sensor, $id_trem, $id_rota);
 
+    if ($stmt->execute()) {
+        header("Location: tela-lista-sensores.php");
+        exit;
+    } else {
+        die("Erro na execução: " . $stmt->error);
+    }
+
+    $stmt->close();
 }
 ?>
 <!DOCTYPE html>

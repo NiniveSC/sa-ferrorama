@@ -1,3 +1,37 @@
+<?php
+require '../../infra/conexao.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+    $id_sensor          = $_POST['id_sensor'];
+    $status_sensor      = $_POST['status_sensor'];
+    $tipo_sensor        = $_POST['tipo_sensor'];
+    $localizacao_sensor = $_POST['localizacao_sensor'];
+
+    $id_trem = !empty($_POST['id_trem']) ? (int)$_POST['id_trem'] : null;
+    $id_rota = !empty($_POST['id_rota']) ? (int)$_POST['id_rota'] : null;
+
+    $sql = "INSERT INTO Sensor (id_sensor, status_sensor, tipo_sensor, localizacao_sensor, id_trem, id_rota)
+            VALUES (?, ?, ?, ?, ?, ?)";
+
+    $stmt = $conexao->prepare($sql);
+
+    if (!$stmt) {
+        die("Erro no SQL/Banco: " . $conexao->error);
+    }
+
+    $stmt->bind_param("isssii", $id_sensor, $status_sensor, $tipo_sensor, $localizacao_sensor, $id_trem, $id_rota);
+
+    if ($stmt->execute()) {
+        header("Location: tela-lista-sensores.php");
+        exit;
+    } else {
+        die("Erro na execução: " . $stmt->error);
+    }
+
+    $stmt->close();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,7 +100,7 @@
                             <h2 class="card-title text-center fw-bold mb-2">Cadastrar novo sensor</h2>
                             <p class="text-center text-muted mb-5">Preencha os dados abaixo para cadastrar um novo sensor.</p>
 
-                            <form id="form-cadastro">
+                            <form id="form-cadastro" action="" method="POST">
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">ID do sensor</label>
@@ -106,7 +140,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">ID rota</label>
-                                        <input type="number" name="id_rota" id="id-rota" class="form-control" placeholder="ID da rota relacionad">
+                                        <input type="number" name="id_rota" id="id-rota" class="form-control" placeholder="ID da rota relacionada">
                                     </div>
                                 </div>
 

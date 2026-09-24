@@ -69,15 +69,15 @@
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label class="form-label fw-bold">ID do sensor</label>
-                                    <input type="text" id="nome-cadastro" class="form-control" placeholder="Digite o ID do sensor">
+                                    <input type="text" name="id_sensor" id="nome-cadastro" class="form-control" placeholder="Digite o ID do sensor">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label fw-bold">Tipo</label>
-                                    <select id="cargo-cadastro" class="form-select">
+                                    <select name="tipo_sensor" id="cargo-cadastro" class="form-select">
                                         <option value="" selected>Selecione o tipo</option>
-                                        <option value="Administrador">Temperatura</option>
-                                        <option value="Funcionário">Velocidade</option>
-                                        <option value="Funcionário">Localizador</option>
+                                        <option value="Temperatura">Temperatura</option>
+                                        <option value="Velocidade">Velocidade</option>
+                                        <option value="Localizador">Localizador</option>
                                     </select>
                                 </div>
                             </div>
@@ -85,12 +85,12 @@
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label class="form-label fw-bold">Localização</label>
-                                    <input type="text" id="cpf-cadastro" class="form-control" placeholder="Digite a localização do sensor">
+                                    <input type="text" name="localizacao_sensor" id="localizacao-sensor" class="form-control" placeholder="Digite a localização do sensor">
                                 </div>
                                 
                                 <div class="col-md-6">
                                     <label class="form-label fw-bold">Status do sensor</label>
-                                    <select id="status-trem" class="form-select">
+                                    <select name="status_sensor" id="status-trem" class="form-select">
                                         <option value="" selected>Selecione o status</option>
                                         <option value="ativo">Ativo</option>
                                         <option value="inativo">Inativo</option>

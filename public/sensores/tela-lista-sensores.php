@@ -1,3 +1,18 @@
+<?php
+require '../../infra/conexao.php';
+
+// Remova a linha $pdo = conectar(); e use a variável $conexao direta:
+$sql = "SELECT * FROM Sensor";
+$resultado = $conexao->query($sql);
+
+if (!$resultado) {
+    die("Erro na consulta: " . $conexao->error);
+}
+
+// Busca todos os dados cadastrados em formato de array
+$sensores = $resultado->fetch_all(MYSQLI_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,47 +83,29 @@
                             <th>Ações</th>
                         </tr>
                     </thead>
+                    <?php foreach ($sensores as $sensor): ?>
+                    
                     <tbody>
                         <tr>
-                            <td>001</td>
-                            <td>Linha A - Estação Central</td>
-                            <td>Ativo</td>
-                            <td>Temperatura</td>
+                            <td><?= $sensor['id_sensor'] ?></td>
+                            <td><?= $sensor['localizacao_sensor'] ?></td>
+                            <td><?= $sensor['status_sensor'] ?></td>
+                            <td><?= $sensor['tipo_sensor'] ?></td>
                             <td>
-                                <button class="btn btn-primary">Editar</button>
-                                <button class="btn btn-danger">Excluir</button>
+                                
+                                <button class="btn btn-primary" 
+                                        onclick="window.location.href='editar-sensores.php?id=<?= $sensor['id_sensor'] ?>'">
+                                    Editar
+                                </button>
+
+                                    
+                                <button class="btn btn-danger" 
+                                        onclick="if(confirm('Tem certeza que deseja excluir este sensor?')) { window.location.href='excluir-sensores.php?id=<?= $sensor['id_sensor'] ?>'; }">
+                                    Excluir
+                                </button>
                             </td>
                         </tr>
-                        <tr>
-                            <td>002</td>
-                            <td>Linha B - Pátio Sul</td>
-                            <td>Ativo</td>
-                            <td>Velocidade</td>
-                            <td>
-                                <button class="btn btn-primary">Editar</button>
-                                <button class="btn btn-danger">Excluir</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>003</td>
-                            <td>Linha C - Estação Norte</td>
-                            <td>Inativo</td>
-                            <td>Temperatura</td>
-                            <td>
-                                <button class="btn btn-primary">Editar</button>
-                                <button class="btn btn-danger">Excluir</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>004</td>
-                            <td>Linha D - Pátio Norte</td>
-                            <td>Manutenção</td>
-                            <td>Localizador</td>
-                            <td>
-                                <button class="btn btn-primary">Editar</button>
-                                <button class="btn btn-danger">Excluir</button>
-                            </td>
-                        </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

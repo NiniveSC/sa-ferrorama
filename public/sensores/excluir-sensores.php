@@ -1,3 +1,18 @@
+<?php
+require '../../infra/conexao.php';
+
+$id = $_GET['id'];
+
+$pdo = conectar();
+$sql = "DELETE FROM sensor WHERE id_sensor = ?";
+$stmt = $pdo->prepare($sql);
+$stm->execute([$id]);
+
+header("Location: tela-lista-sensores.php")
+exit;
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 

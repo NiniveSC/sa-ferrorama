@@ -1,3 +1,20 @@
+<?php
+
+include "../../infra/conexao.php";
+
+$stmt = $conexao->prepare("
+    SELECT Pessoa.id_administrador, Pessoa.nome_cadastro, Pessoa.email_cadastro,
+           Pessoa.telefone_cadastro, Perfil.cargo
+    FROM Pessoa
+    INNER JOIN Perfil ON Pessoa.id_perfil = Perfil.id_perfil
+");
+
+$stmt->execute();
+
+$resultado = $stmt->get_result();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,47 +86,42 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>João Leandro</td>
-                            <td>joao_leandro@email.com</td>
-                            <td>47 99759 0890</td>
-                            <td>Funcionario</td>
-                            <td>
-                                <button class="btn btn-primary">Editar</button>
-                                <button class="btn btn-danger">Excluir</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Maria Carvalho</td>
-                            <td>maria_carvalho@email.com</td>
-                            <td>47 99876 1102</td>
-                            <td>Funcionario</td>
-                            <td>
-                                <button class="btn btn-primary">Editar</button>
-                                <button class="btn btn-danger">Excluir</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Luiza Gonçalves</td>
-                            <td>luiza_goncalves@email.com</td>
-                            <td>47 99012 6709</td>
-                            <td>Funcionario</td>
-                            <td>
-                                <button class="btn btn-primary">Editar</button>
-                                <button class="btn btn-danger">Excluir</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Otavio Costa</td>
-                            <td>otavio_costa@email.com</td>
-                            <td>47 99234 7203</td>
-                            <td>Admin</td>
-                            <td>
-                                <button class="btn btn-primary">Editar</button>
-                                <button class="btn btn-danger">Excluir</button>
-                            </td>
-                        </tr>
-                    </tbody>
+
+    <?php while ($funcionario = $resultado->fetch_assoc()) { ?>
+
+        <tr>
+            <td>
+                <?php echo htmlspecialchars($funcionario["nome_cadastro"]); ?>
+            </td>
+
+            <td>
+                <?php echo htmlspecialchars($funcionario["email_cadastro"]); ?>
+            </td>
+
+            <td>
+                <?php echo htmlspecialchars($funcionario["telefone_cadastro"]); ?>
+            </td>
+
+            <td>
+                <?php echo htmlspecialchars($funcionario["cargo"]); ?>
+            </td>
+
+            <td>
+                <a href="editar-funcionarios.php?id=<?php echo $funcionario["id_administrador"]; ?>"
+                    class="btn btn-primary">
+                    Editar
+                </a>
+
+                <a href="excluir-funcionarios.php?id=<?php echo $funcionario["id_administrador"]; ?>"
+                    class="btn btn-danger">
+                    Excluir
+                </a>
+            </td>
+        </tr>
+
+    <?php } ?>
+
+</tbody>
                 </table>
             </div>
         </div>

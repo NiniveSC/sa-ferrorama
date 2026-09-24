@@ -1,113 +1,339 @@
-CREATE DATABASE IF NOT EXISTS SA_Ferrorama;
+<?php
 
-USE SA_Ferrorama;
+echo "PHP funcionando";
+
+include "../../infra/conexao.php";
+
+$mensagem = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $nome = trim($_POST["nome_cadastro"]);
+    $cargo = $_POST["cargo_cadastro"];
+    $cpf = trim($_POST["cpf_cadastro"]);
+    $telefone = trim($_POST["telefone_cadastro"]);
+    $email = trim($_POST["email_cadastro"]);
+    $senha = $_POST["senha_cadastro"];
+
+    if ($nome == "" || $cargo == "" || $cpf == "" || $telefone == "" || $email == "" || $senha == "") {
+
+        $mensagem = "Preencha todos os campos.";
+
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
+        $mensagem = "E-mail inválido.";
+
+    } elseif (strlen($senha) < 8) {
+
+        $mensagem = "A senha deve ter pelo menos 8 caracteres.";
+
+    } elseif ($cargo != "Administrador" && $cargo != "Funcionário") {
+
+        $mensagem = "Cargo inválido.";
+
+    } else {
+
+        if ($cargo == "Administrador") {
+            $id_perfil = 1;
+        } else {
+            $id_perfil = 2;
+        }
+
+        $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+
+        $sql = "INSERT INTO Pessoa
+                (nome_cadastro, email_cadastro, telefone_cadastro, cpf_cadastro, senha_cadastro, id_perfil)
+                VALUES (?, ?, ?, ?, ?, ?)";
+
+        $stmt = $conexao->prepare($sql);
+
+        $stmt->bind_param(
+            "sssssi",
+            $nome,
+            $email,
+            $telefone,
+            $cpf,
+            $senha_hash,
+            $id_perfil
+        );
+
+       if ($stmt->execute()) {
+    $mensagem = "Funcionário cadastrado com sucesso!";
+} else {
+    $mensagem = "Erro ao cadastrar funcionário: " . $stmt->error;
+}
+
+        $stmt->close();
+    }
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Funcionário</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../../assets/style/style.css">
+</head>
+
+<body class="pagina_cadastro_user">
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-between" id="navbar-Nav">
+
+                <ul class="navbar-nav me-auto">
+
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="tela-geral-home.php">Dashboard</a>
+                    </li>
+
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="tela-lista-sensores.php">Sensores</a>
+                    </li>
+
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="tela-lista-trens.php">Trens</a>
+                    </li>
+
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="tela-lista-rotas.php">Rotas</a>
+                    </li>
+
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="funcionarios-cadastrados.php">Funcionário</a>
+                    </li>
+
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="tela-relatorios.php">Relatórios</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            NomeAdmin
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="tela-login.php">Sair</a>
+                            </li>
+                        </ul>
+
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
 
 
-CREATE TABLE Perfil (
-    id_perfil INT NOT NULL,
-    cargo VARCHAR(45) NOT NULL,
+    <div class="d-flex align-items-center justify-content-center pg-cadastro-funcionario">
 
-    PRIMARY KEY (id_perfil)
-);
+        <div class="container">
 
+            <div class="row justify-content-center">
 
-CREATE TABLE Pessoa (
-    id_administrador INT NOT NULL,
-    nome_cadastro VARCHAR(60) NOT NULL,
-    email_cadastro VARCHAR(60) NOT NULL,
-    telefone_cadastro VARCHAR(20) NOT NULL,
-    cpf_cadastro VARCHAR(14) NOT NULL,
-    senha_cadastro VARCHAR(20) NOT NULL,
-    id_perfil INT NOT NULL,
+                <div class="col-12 col-md-8 col-lg-6">
 
-    PRIMARY KEY (id_administrador),
+                    <div class="card shadow-lg border-0 card-cadastro-funcionario">
 
-    FOREIGN KEY (id_perfil)
-    REFERENCES Perfil(id_perfil)
-);
+                        <div class="card-body p-5">
+
+                            <h2 class="card-title text-center fw-bold mb-2">
+                                Cadastrar novo funcionário
+                            </h2>
+
+                            <p class="text-center text-muted mb-5">
+                                Preencha os dados abaixo para cadastrar um novo funcionário.
+                            </p>
 
 
-CREATE TABLE Trem (
-    id_trem INT NOT NULL,
-    nome_trem VARCHAR(60) NOT NULL,
-    tipo_trem VARCHAR(60) NOT NULL,
-    status_trem ENUM('Ativo', 'Inativo', 'Manutenção') NOT NULL,
-    localizacao_trem VARCHAR(60) NOT NULL,
+                            <?php if ($mensagem != "") { ?>
 
-    PRIMARY KEY (id_trem)
-);
+                                <p class="text-center">
+                                    <?php echo htmlspecialchars($mensagem); ?>
+                                </p>
+
+                            <?php } ?>
 
 
-CREATE TABLE Rota (
-    id_rota INT NOT NULL,
-    nome_rota VARCHAR(60) NOT NULL,
-    status_rota ENUM('Ativo', 'Inativo', 'Manutenção') NOT NULL,
-    localizacao_rota VARCHAR(60) NOT NULL,
+                            <form method="POST" id="form-cadastro-funcionario">
 
-    PRIMARY KEY (id_rota)
-);
+                                <div class="row mb-3">
 
+                                    <div class="col-md-6">
 
-CREATE TABLE Sensor (
-    id_sensor INT NOT NULL,
-    status_sensor ENUM('Ativo', 'Inativo', 'Manutenção') NOT NULL,
-    tipo_sensor ENUM('Temperatura', 'Velocidade', 'Localizador') NOT NULL,
-    localizacao_sensor VARCHAR(65) NOT NULL,
-    id_trem INT NULL,
-    id_rota INT NULL,
+                                        <label class="form-label fw-bold">
+                                            Nome Completo
+                                        </label>
 
-    PRIMARY KEY (id_sensor),
+                                        <input type="text"
+                                            id="nome-cadastro"
+                                            name="nome_cadastro"
+                                            class="form-control"
+                                            placeholder="Digite o nome completo">
 
-    FOREIGN KEY (id_trem)
-    REFERENCES Trem(id_trem),
-
-    FOREIGN KEY (id_rota)
-    REFERENCES Rota(id_rota)
-);
+                                    </div>
 
 
-CREATE TABLE Trem_rota (
-    id_trem_rota INT NOT NULL,
-    Trem_id_trem INT NOT NULL,
-    Rota_id_rota INT NOT NULL,
+                                    <div class="col-md-6">
 
-    PRIMARY KEY (id_trem_rota),
+                                        <label class="form-label fw-bold">
+                                            Cargo
+                                        </label>
 
-    FOREIGN KEY (Trem_id_trem)
-    REFERENCES Trem(id_trem),
+                                        <select id="cargo-cadastro"
+                                            name="cargo_cadastro"
+                                            class="form-select">
 
-    FOREIGN KEY (Rota_id_rota)
-    REFERENCES Rota(id_rota)
-);
+                                            <option value="" selected>
+                                                Selecione o cargo
+                                            </option>
 
+                                            <option value="Administrador">
+                                                Administrador
+                                            </option>
 
-CREATE TABLE Leitura_sensor (
-    id_leitura_sensor INT NOT NULL,
-    velocidade DECIMAL(10,2) NOT NULL,
-    data_hora DATETIME NOT NULL,
-    temperatura DECIMAL(5,2) NOT NULL,
-    consumo_energia DECIMAL(10,2) NOT NULL,
-    latitude DECIMAL(10,8) NOT NULL,
-    longitude DECIMAL(11,8) NOT NULL,
-    Sensor_id_sensor INT NOT NULL,
+                                            <option value="Funcionário">
+                                                Funcionário
+                                            </option>
 
-    PRIMARY KEY (id_leitura_sensor),
+                                        </select>
 
-    FOREIGN KEY (Sensor_id_sensor)
-    REFERENCES Sensor(id_sensor)
-);
+                                    </div>
+
+                                </div>
 
 
-CREATE TABLE Falha (
-    id_falha INT NOT NULL,
-    tipo_falha VARCHAR(60) NOT NULL,
-    descricao_falha VARCHAR(255) NOT NULL,
-    data_hora DATETIME NOT NULL,
-    status_falha ENUM('Aberta', 'Resolvida') NOT NULL,
-    Sensor_id_sensor INT NOT NULL,
+                                <div class="row mb-3">
 
-    PRIMARY KEY (id_falha),
+                                    <div class="col-md-6">
 
-    FOREIGN KEY (Sensor_id_sensor)
-    REFERENCES Sensor(id_sensor)
-);
+                                        <label class="form-label fw-bold">
+                                            CPF
+                                        </label>
+
+                                        <input type="text"
+                                            id="cpf-cadastro"
+                                            name="cpf_cadastro"
+                                            class="form-control"
+                                            placeholder="000.000.000-00">
+
+                                    </div>
+
+
+                                    <div class="col-md-6">
+
+                                        <label class="form-label fw-bold">
+                                            Telefone
+                                        </label>
+
+                                        <input type="tel"
+                                            id="telefone-cadastro"
+                                            name="telefone_cadastro"
+                                            class="form-control"
+                                            placeholder="(00) 90000-0000">
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="mb-3">
+
+                                    <label class="form-label fw-bold">
+                                        Email
+                                    </label>
+
+                                    <input type="email"
+                                        id="email-cadastro"
+                                        name="email_cadastro"
+                                        class="form-control"
+                                        placeholder="digite o e-mail">
+
+                                </div>
+
+
+                                <div class="row mb-4">
+
+                                    <div class="col-md-12">
+
+                                        <label class="form-label fw-bold">
+                                            Senha
+                                        </label>
+
+                                        <input type="password"
+                                            id="senha-cadastro"
+                                            name="senha_cadastro"
+                                            class="form-control"
+                                            placeholder="Crie uma senha forte">
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="d-flex justify-content-center gap-3">
+
+                                    <a href="funcionarios-cadastrados.php"
+                                        id="btn-func-cancelar"
+                                        class="btn btn-light border btn-func-custom">
+                                        Cancelar
+                                    </a>
+
+                                    <button type="submit"
+                                        id="btn-func-cadastrar"
+                                        class="btn btn-primary btn-func-custom">
+                                        Cadastrar
+                                    </button>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <footer>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForClyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous">
+    </script>
+
+</body>
+
+</html>

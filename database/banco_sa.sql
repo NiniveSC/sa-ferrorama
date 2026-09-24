@@ -52,7 +52,7 @@ CREATE TABLE Sensor (
     id_sensor INT NOT NULL,
     status_sensor ENUM('Ativo', 'Inativo', 'Manutenção') NOT NULL,
     tipo_sensor ENUM('Temperatura', 'Velocidade', 'Localizador') NOT NULL,
-    localizacao_sensor VARCHAR(65) NOT NULL,
+    localizacao_sensor VARCHAR(65) NOT NULL, -- colocar no phpMyAdmin e remover a coluna "nome_sensor"
     id_trem INT NULL,
     id_rota INT NULL,
 

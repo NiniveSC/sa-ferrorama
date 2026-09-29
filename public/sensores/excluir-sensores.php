@@ -1,15 +1,24 @@
 <?php
-require '../../infra/conexao.php';
 
-$id = $_GET['id'];
+include("../../infra/conexao.php");
 
-$pdo = conectar();
-$sql = "DELETE FROM sensor WHERE id_sensor = ?";
-$stmt = $pdo->prepare($sql);
-$stm->execute([$id]);
+$id = $_GET["id"];
 
-header("Location: tela-lista-sensores.php")
-exit;
+$sql = "DELETE FROM sensor WHERE id_sensor = $id ";
+
+if ($conexao->query($sql) === TRUE) {
+        header("Location: excluir-sensores.php");
+        exit();
+    } else {
+        // Redireciona via header sem enviar echo/script antes (evita o erro 'Headers already sent')
+        header("Location: excluir-sensores.php?erro=1");
+        exit();
+    }
+} else {
+    // Se não houver ID válido na URL, retorna imediatamente para a lista
+    header("Location: tela-lista-sensores.php");
+    exit();
+}
 ?>
 
 

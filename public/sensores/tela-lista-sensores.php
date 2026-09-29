@@ -100,8 +100,8 @@ $sensores = $resultado->fetch_all(MYSQLI_ASSOC);
 
                                     
                                 <button class="btn btn-danger" 
-                                        onclick="if(confirm('Tem certeza que deseja excluir este sensor?')) { window.location.href='excluir-sensores.php?id=<?= $sensor['id_sensor'] ?>'; }">
-                                    Excluir
+                                        onclick="window.location.href='excluir-sensor.php?id_sensor=<?= $sensor['id_sensor'] ?>'">
+                                     Excluir
                                 </button>
                             </td>
                         </tr>

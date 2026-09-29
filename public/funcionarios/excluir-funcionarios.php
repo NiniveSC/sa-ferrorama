@@ -1,3 +1,21 @@
+<?php
+include "../../infra/conexao.php";
+
+$id = (int) $_GET["id"];
+
+$sql = "SELECT * FROM Pessoa WHERE id_administrador = $id";
+$resultado = mysqli_query($conexao, $sql);
+$funcionario = mysqli_fetch_assoc($resultado);
+
+if (isset($_POST["excluir"])) {
+    $sql = "DELETE FROM Pessoa WHERE id_administrador = $id";
+    mysqli_query($conexao, $sql);
+
+    header("Location: funcionarios-cadastrados.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -73,7 +91,7 @@
                                 </span>
 
                                 <span class="valor-funcionario">
-                                    001
+                                    <?php echo $funcionario["id_administrador"]; ?>
                                 </span>
                             </div>
 
@@ -83,7 +101,7 @@
                                 </span>
 
                                 <span class="valor-funcionario">
-                                    Maria Carvalho
+                                    <?php echo $funcionario["nome_cadastro"]; ?>
                                 </span>
                             </div>
 
@@ -93,7 +111,7 @@
                                 </span>
 
                                 <span class="valor-funcionario">
-                                    maria_carvalho@email.com
+                                    <?php echo $funcionario["email_cadastro"]; ?>
                                 </span>
                             </div>
 
@@ -119,19 +137,20 @@
                        
                         <div class="d-flex justify-content-center gap-5">
 
-                            <button type="button"
-                                    id="btn-func-cancelar"
-                                    class="btn btn-light border btn-func-custom">
-                                Cancelar
-                            </button>
+    <a href="funcionarios-cadastrados.php"
+       class="btn btn-light border btn-func-custom">
+        Cancelar
+    </a>
 
-                            <button type="button"
-                                    id="btn-func-excluir"
-                                    class="btn btn-danger btn-func-custom">
-                                Excluir
-                            </button>
+    <form method="POST">
+        <button type="submit"
+                name="excluir"
+                class="btn btn-danger btn-func-custom">
+            Excluir
+        </button>
+    </form>
 
-                        </div>
+</div>
 
                     </div>
                 </div>

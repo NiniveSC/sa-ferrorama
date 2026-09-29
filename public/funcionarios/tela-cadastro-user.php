@@ -1,3 +1,36 @@
+<?php
+include "../../infra/conexao.php";
+
+if (isset($_POST['cadastrar'])) {
+
+    $nome = $_POST["nome_cadastro"];
+    $cargo = $_POST["cargo"];
+    $cpf = $_POST["cpf_cadastro"];
+    $telefone = $_POST["telefone_cadastro"];
+    $email = $_POST["email_cadastro"];
+    $senha = $_POST["senha_cadastro"];
+
+    if ($cargo == "Administrador") {
+        $id_perfil = 1;
+    } else {
+        $id_perfil = 2;
+    }
+
+    $senha = password_hash($senha, PASSWORD_DEFAULT);
+
+    $sql = "INSERT INTO Pessoa
+    (nome_cadastro, email_cadastro, telefone_cadastro, cpf_cadastro, senha_cadastro, id_perfil)
+    VALUES (?, ?, ?, ?, ?, ?)";
+
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param("sssssi", $nome, $email, $telefone, $cpf, $senha, $id_perfil);
+    $stmt->execute();
+
+    header("Location: funcionarios-cadastrados.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,15 +97,15 @@
                         <h2 class="card-title text-center fw-bold mb-2">Cadastrar novo funcionário</h2>
                         <p class="text-center text-muted mb-5">Preencha os dados abaixo para cadastrar um novo funcionário.</p>
 
-                        <form id="form-cadastro-funcionario">
+                        <form id="form-cadastro-funcionario" method="POST">
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label class="form-label fw-bold">Nome Completo</label>
-                                    <input type="text" id="nome-cadastro" class="form-control" placeholder="Digite o nome completo">
+                                    <input type="text" id="nome-cadastro" name="nome_cadastro" class="form-control" placeholder="Digite o nome completo" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label fw-bold">Cargo</label>
-                                    <select id="cargo-cadastro" class="form-select">
+                                    <select id="cargo-cadastro" name="cargo" class="form-select" required>
                                         <option value="" selected>Selecione o cargo</option>
                                         <option value="Administrador">Administrador</option>
                                         <option value="Funcionário">Funcionário</option>
@@ -83,29 +116,28 @@
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label class="form-label fw-bold">CPF</label>
-                                    <input type="text" id="cpf-cadastro" class="form-control" placeholder="000.000.000-00">
+                                    <input type="text" id="cpf-cadastro" name="cpf_cadastro" class="form-control" placeholder="000.000.000-00" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label fw-bold">Telefone</label>
-                                    <input type="tel" id="telefone-cadastro" class="form-control" placeholder="(00) 90000-0000">
+                                    <input type="tel" id="telefone-cadastro" name="telefone_cadastro" class="form-control" placeholder="(00) 90000-0000" required>
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label fw-bold">Email</label>
-                                <input type="email" id="email-cadastro" class="form-control" placeholder="digite o e-mail">
+                                <input type="email" id="email-cadastro" name="email_cadastro" class="form-control" placeholder="digite o e-mail" required>
                             </div>
 
                             <div class="row mb-4">
                                 <div class="col-md-12">
                                     <label class="form-label fw-bold">Senha</label>
-                                    <input type="password" id="senha-cadastro" class="form-control" placeholder="Crie uma senha forte">
+                                    <input type="password" id="senha-cadastro" name="senha_cadastro" class="form-control" placeholder="Crie uma senha forte" required>
                                 </div>
                             </div>
 
                             <div class="d-flex justify-content-center gap-3">
-                                <button type="button" id="btn-func-cancelar" class="btn btn-light border btn-func-custom">Cancelar</button>
-                                <button type="submit" id="btn-func-cadastrar" class="btn btn-primary btn-func-custom">Cadastrar</button>
+                                <button type="submit" name="cadastrar" id="btn-func-cadastrar" class="btn btn-primary btn-func-custom">Cadastrar</button>
                             </div>
                         </form>
 
@@ -123,7 +155,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
-        <script src="../script/tela-cadastro-user.js"></script>
 </body>
 
 </html>

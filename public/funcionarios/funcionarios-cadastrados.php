@@ -2,16 +2,12 @@
 
 include "../../infra/conexao.php";
 
-$stmt = $conexao->prepare("
-    SELECT Pessoa.id_administrador, Pessoa.nome_cadastro, Pessoa.email_cadastro,
-           Pessoa.telefone_cadastro, Perfil.cargo
-    FROM Pessoa
-    INNER JOIN Perfil ON Pessoa.id_perfil = Perfil.id_perfil
-");
+$sql = "SELECT Pessoa.id_administrador, Pessoa.nome_cadastro,
+        Pessoa.email_cadastro, Pessoa.telefone_cadastro, Perfil.cargo
+        FROM Pessoa
+        INNER JOIN Perfil ON Pessoa.id_perfil = Perfil.id_perfil";
 
-$stmt->execute();
-
-$resultado = $stmt->get_result();
+$resultado = mysqli_query($conexao, $sql);
 
 ?>
 

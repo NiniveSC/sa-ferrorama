@@ -1,3 +1,18 @@
+<?php
+
+include "../../infra/conexao.php";
+
+$id = (int) $_GET["id"];
+
+$sql = "DELETE FROM Pessoa WHERE id_administrador=$id";
+
+mysqli_query($conexao, $sql);
+
+header("Location: funcionarios-cadastrados.php");
+
+exit();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

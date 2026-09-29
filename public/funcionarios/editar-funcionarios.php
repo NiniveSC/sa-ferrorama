@@ -1,3 +1,35 @@
+<?php
+
+include "../../infra/conexao.php";
+
+$id = $_POST["id"];
+$nome = $_POST["nome"];
+$cargo = $_POST["cargo"];
+$cpf = $_POST["cpf"];
+$telefone = $_POST["telefone"];
+$email = $_POST["email"];
+
+if ($cargo == "Administrador") {
+    $id_perfil = 1;
+} else {
+    $id_perfil = 2;
+}
+
+$sql = "UPDATE Pessoa SET
+nome_cadastro='$nome',
+email_cadastro='$email',
+telefone_cadastro='$telefone',
+cpf_cadastro='$cpf',
+id_perfil='$id_perfil'
+WHERE id_administrador = '$id'";
+
+mysqli_query($conexao, $sql);
+
+header("Location: funcionarios-cadastrados.php");
+exit();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

@@ -64,9 +64,9 @@ $sensores = $resultado->fetch_all(MYSQLI_ASSOC);
             </div>
         </div>
     </nav>
-    <main class="container mt-4">
-        <h1>Sensores Cadastrados</h1>
-        <hr class="linha-decorativa-2">
+    <main class="container mt-4 d-flex flex-column align-items-center">
+        <h1 class="text-center mb-3">Sensores Cadastrados</h1>
+        <hr class="linha-decorativa-2 w-100">
         <div class="container-branco">
             <div class="borda-tabela">
                 <table class="table table-bordered">
@@ -87,16 +87,15 @@ $sensores = $resultado->fetch_all(MYSQLI_ASSOC);
                             <td><?= $sensor['status_sensor'] ?></td>
                             <td><?= $sensor['tipo_sensor'] ?></td>
                             <td>
-                                <!-- Ajustado o id_sensor= para casar com a tela de edição -->
+                             
                                 <button class="btn btn-primary" 
                                         onclick="window.location.href='editar-sensores.php?id_sensor=<?= $sensor['id_sensor'] ?>'">
                                     Editar
                                 </button>
 
-                                <button class="btn btn-danger" 
-                                        onclick="window.location.href='excluir-sensor.php?id_sensor=<?= $sensor['id_sensor'] ?>'">
-                                     Excluir
-                                </button>
+                                <a href="excluir-sensores.php?id_sensor=<?= $sensor['id_sensor'] ?>" class="btn btn-danger">
+                                    Excluir
+                                </a>
                             </td>
                         </tr>
                         <?php endforeach; ?>

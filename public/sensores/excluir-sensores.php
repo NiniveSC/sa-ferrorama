@@ -1,22 +1,17 @@
 <?php
+include "../../infra/conexao.php";
 
-include("../../infra/conexao.php");
+$id = (int) $_GET["id_sensor"];
 
-$id = $_GET["id"];
+$sql = "SELECT * FROM sensores WHERE id_sensor = $id";
+$resultado = mysqli_query($conexao, $sql);
+$sensores = mysqli_fetch_assoc($resultado);
 
-$sql = "DELETE FROM sensor WHERE id_sensor = $id ";
+if (isset($_POST["excluir"])) {
+    $sql = "DELETE FROM sensores WHERE id_sensor = $id";
+    mysqli_query($conexao, $sql);
 
-if ($conexao->query($sql) === TRUE) {
-        header("Location: excluir-sensores.php");
-        exit();
-    } else {
-        // Redireciona via header sem enviar echo/script antes (evita o erro 'Headers already sent')
-        header("Location: excluir-sensores.php?erro=1");
-        exit();
-    }
-} else {
-    // Se não houver ID válido na URL, retorna imediatamente para a lista
-    header("Location: tela-lista-sensores.php");
+    header("Location: ../excluir-sensores.php");
     exit();
 }
 ?>

@@ -1,7 +1,6 @@
 <?php
 require '../../infra/conexao.php';
 
-// Remova a linha $pdo = conectar(); e use a variável $conexao direta:
 $sql = "SELECT * FROM Sensor";
 $resultado = $conexao->query($sql);
 
@@ -9,24 +8,23 @@ if (!$resultado) {
     die("Erro na consulta: " . $conexao->error);
 }
 
-// Busca todos os dados cadastrados em formato de array
 $sensores = $resultado->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Funcionários Cadastrados</title>
+    <title>Sensores Cadastrados</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="../../assets/style/style.css">
 </head>
 
 <body class="pagina-funcionarios-cadastrados">
-    <nav class="navbar navbar-expand-lg navbar-dark">
+   <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,8 +64,6 @@ $sensores = $resultado->fetch_all(MYSQLI_ASSOC);
             </div>
         </div>
     </nav>
-
-
     <main class="container mt-4">
         <h1>Sensores Cadastrados</h1>
         <hr class="linha-decorativa-2">
@@ -83,22 +79,20 @@ $sensores = $resultado->fetch_all(MYSQLI_ASSOC);
                             <th>Ações</th>
                         </tr>
                     </thead>
-                    <?php foreach ($sensores as $sensor): ?>
-                    
                     <tbody>
+                        <?php foreach ($sensores as $sensor): ?>
                         <tr>
                             <td><?= $sensor['id_sensor'] ?></td>
                             <td><?= $sensor['localizacao_sensor'] ?></td>
                             <td><?= $sensor['status_sensor'] ?></td>
                             <td><?= $sensor['tipo_sensor'] ?></td>
                             <td>
-                                
+                                <!-- Ajustado o id_sensor= para casar com a tela de edição -->
                                 <button class="btn btn-primary" 
-                                        onclick="window.location.href='editar-sensores.php?id=<?= $sensor['id_sensor'] ?>'">
+                                        onclick="window.location.href='editar-sensores.php?id_sensor=<?= $sensor['id_sensor'] ?>'">
                                     Editar
                                 </button>
 
-                                    
                                 <button class="btn btn-danger" 
                                         onclick="window.location.href='excluir-sensor.php?id_sensor=<?= $sensor['id_sensor'] ?>'">
                                      Excluir

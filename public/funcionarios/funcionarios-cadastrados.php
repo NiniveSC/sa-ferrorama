@@ -5,7 +5,8 @@ include "../../infra/conexao.php";
 $sql = "SELECT Pessoa.id_administrador, Pessoa.nome_cadastro,
         Pessoa.email_cadastro, Pessoa.telefone_cadastro, Perfil.cargo
         FROM Pessoa
-        INNER JOIN Perfil ON Pessoa.id_perfil = Perfil.id_perfil";
+        INNER JOIN Perfil ON Pessoa.id_perfil = Perfil.id_perfil
+        ORDER BY Pessoa.nome_cadastro ASC";
 
 $resultado = mysqli_query($conexao, $sql);
 

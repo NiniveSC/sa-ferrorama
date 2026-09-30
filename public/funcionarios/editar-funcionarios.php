@@ -2,31 +2,40 @@
 
 include "../../infra/conexao.php";
 
-$id = $_POST["id"];
-$nome = $_POST["nome"];
-$cargo = $_POST["cargo"];
-$cpf = $_POST["cpf"];
-$telefone = $_POST["telefone"];
-$email = $_POST["email"];
+$id = (int) $_GET["id"];
 
-if ($cargo == "Administrador") {
-    $id_perfil = 1;
-} else {
-    $id_perfil = 2;
+$sql = "SELECT * FROM Pessoa WHERE id_administrador = $id";
+$resultado = mysqli_query($conexao, $sql);
+
+$funcionario = mysqli_fetch_assoc($resultado);
+
+if (isset($_POST["editar"])) {
+
+    $nome = $_POST["nome"];
+    $cargo = $_POST["cargo"];
+    $cpf = $_POST["cpf"];
+    $telefone = $_POST["telefone"];
+    $email = $_POST["email"];
+
+    if ($cargo == "Administrador") {
+        $id_perfil = 1;
+    } else {
+        $id_perfil = 2;
+    }
+
+    $sql = "UPDATE Pessoa SET
+    nome_cadastro='$nome',
+    email_cadastro='$email',
+    telefone_cadastro='$telefone',
+    cpf_cadastro='$cpf',
+    id_perfil='$id_perfil'
+    WHERE id_administrador = '$id'";
+
+    mysqli_query($conexao, $sql);
+
+    header("Location: funcionarios-cadastrados.php");
+    exit();
 }
-
-$sql = "UPDATE Pessoa SET
-nome_cadastro='$nome',
-email_cadastro='$email',
-telefone_cadastro='$telefone',
-cpf_cadastro='$cpf',
-id_perfil='$id_perfil'
-WHERE id_administrador = '$id'";
-
-mysqli_query($conexao, $sql);
-
-header("Location: funcionarios-cadastrados.php");
-exit();
 
 ?>
 
@@ -97,36 +106,40 @@ exit();
 </h2>
 <br>
 
-                        <form id="form-cadastro-funcionario">
+                        <form id="form-cadastro-funcionario" method="POST">
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label class="form-label fw-bold">Nome Completo</label>
-                                    <input type="text" id="nome-cadastro" class="form-control" placeholder="Digite o nome completo">
+                                    <input type="text" id="nome-cadastro" name="nome" class="form-control"
+    value="<?php echo $funcionario['nome_cadastro']; ?>" placeholder="Digite o nome completo">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label fw-bold">Cargo</label>
-                                    <select id="cargo-cadastro" class="form-select">
-                                        <option value="" selected>Selecione o cargo</option>
-                                        <option value="Administrador">Administrador</option>
-                                        <option value="Funcionário">Funcionário</option>
-                                    </select>
+                                    <select id="cargo-cadastro" name="cargo" class="form-select">
+    <option value="">Selecione o cargo</option>
+    <option value="Administrador">Administrador</option>
+    <option value="Funcionário">Funcionário</option>
+</select>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label class="form-label fw-bold">CPF</label>
-                                    <input type="text" id="cpf-cadastro" class="form-control" placeholder="000.000.000-00">
+                                    <input type="text" id="cpf-cadastro" name="cpf" class="form-control"
+    value="<?php echo $funcionario['cpf_cadastro']; ?>" placeholder="000.000.000-00">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label fw-bold">Telefone</label>
-                                    <input type="tel" id="telefone-cadastro" class="form-control" placeholder="(00) 90000-0000">
+                                    <input type="tel" id="telefone-cadastro" name="telefone" class="form-control"
+    value="<?php echo $funcionario['telefone_cadastro']; ?>" placeholder="(00) 90000-0000">
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label fw-bold">Email</label>
-                                <input type="email" id="email-cadastro" class="form-control" placeholder="digite o e-mail">
+                                <input type="email" id="email-cadastro" name="email" class="form-control"
+    value="<?php echo $funcionario['email_cadastro']; ?>" placeholder="digite o e-mail">
                             </div>
 
                             <div class="row mb-4">
@@ -138,13 +151,13 @@ exit();
 
                            <div class="d-flex justify-content-center gap-4">
 
-                                <button type="button" id="btn-func-cancelar" class="btn btn-light border btn-func-custom">
-                                    ← Voltar
-                                </button>
+                               <a href="funcionarios-cadastrados.php" id="btn-func-cancelar" class="btn btn-light border btn-func-custom">
+    ← Voltar
+</a>
 
-                                 <button type="submit" id="btn-func-editar" class="btn btn-func-custom">
-                                     Editar
-                                </button>
+                                 <button type="submit" name="editar" id="btn-func-editar" class="btn btn-func-custom">
+    Editar
+</button>
 
                             </div>
                         </form>

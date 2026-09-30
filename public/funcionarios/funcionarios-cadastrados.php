@@ -66,10 +66,27 @@ $resultado = mysqli_query($conexao, $sql);
     </nav>
 
 
-    <main class="container mt-4">
-        <h1>Funcionários Cadastrados</h1>
-        <hr class="linha-decorativa-2">
-        <div class="container-branco">
+<main class="container mt-4">
+
+    <div class="container-branco">
+
+        <div class="titulo-funcionarios">
+            <h1>Lista de Funcionários Cadastrados</h1>
+
+           <a href="tela-cadastro-user.php"
+   class="btn-novo-funcionario"
+   style="background-color: #2D3250 !important;
+          color: white !important;
+          font-weight: bold !important;
+          text-decoration: none !important;
+          padding: 10px 20px;
+          border-radius: 8px;
+          border: 1px solid #2D3250;
+          display: inline-block;">
+    + Novo funcionário
+</a>
+        </div>
+
             <div class="borda-tabela">
                 <table class="table table-bordered">
                     <thead>

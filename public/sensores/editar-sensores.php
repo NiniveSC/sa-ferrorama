@@ -151,10 +151,10 @@ if (!$sensor) {
 
                                 <div class="d-flex justify-content-center gap-4">
                                     <a href="tela-lista-sensores.php" class="btn btn-light border btn-func-custom text-decoration-none d-flex align-items-center justify-content-center">
-                                        ← Voltar
+                                        Voltar
                                     </a>
 
-                                    <button type="submit" class="btn btn-func-custom btn-primary">
+                                    <button type="submit" class="btn btn-func-custom btn-primary" style="background-color: #2D3250 !important;">
                                         Editar
                                     </button>
                                 </div>

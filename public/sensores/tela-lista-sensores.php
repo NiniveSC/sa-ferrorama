@@ -1,5 +1,6 @@
 <?php
-require '../../infra/conexao.php';
+
+include "../../infra/conexao.php";
 
 $sql = "SELECT * FROM Sensor";
 $resultado = $conexao->query($sql);
@@ -8,11 +9,10 @@ if (!$resultado) {
     die("Erro na consulta: " . $conexao->error);
 }
 
-$sensores = $resultado->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -30,6 +30,7 @@ $sensores = $resultado->fetch_all(MYSQLI_ASSOC);
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            
             <div class="collapse navbar-collapse justify-content-between" id="navbar-Nav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item mx-3">
@@ -64,10 +65,29 @@ $sensores = $resultado->fetch_all(MYSQLI_ASSOC);
             </div>
         </div>
     </nav>
-    <main class="container mt-4 d-flex flex-column align-items-center">
-        <h1 class="text-center mb-3">Sensores Cadastrados</h1>
-        <hr class="linha-decorativa-2 w-100">
+
+
+<main class="container mt-4">
+
         <div class="container-branco">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="m-0">Lista de Sensores Cadastrados</h1>
+
+            <a href="cadastro-sensores.php"
+                class="btn-novo-funcionario"
+                style="background-color: #2D3250 !important;
+                       color: white !important;
+                       font-weight: bold !important;
+                       text-decoration: none !important;
+                       padding: 10px 20px;
+                       border-radius: 8px;
+                       border: 1px solid #2D3250;
+                       display: inline-block;">
+                + Novo sensor
+            </a>
+        </div>
+
             <div class="borda-tabela">
                 <table class="table table-bordered">
                     <thead>
@@ -80,30 +100,49 @@ $sensores = $resultado->fetch_all(MYSQLI_ASSOC);
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($sensores as $sensor): ?>
-                        <tr>
-                            <td><?= $sensor['id_sensor'] ?></td>
-                            <td><?= $sensor['localizacao_sensor'] ?></td>
-                            <td><?= $sensor['status_sensor'] ?></td>
-                            <td><?= $sensor['tipo_sensor'] ?></td>
-                            <td>
-                             
-                                <button class="btn btn-primary" 
-                                        onclick="window.location.href='editar-sensores.php?id_sensor=<?= $sensor['id_sensor'] ?>'">
-                                    Editar
-                                </button>
 
-                                <a href="excluir-sensores.php?id_sensor=<?= $sensor['id_sensor'] ?>" class="btn btn-danger">
-                                    Excluir
-                                </a>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </main>
+             <?php while ($sensor = $resultado->fetch_assoc()) { ?>
+
+            <tr>
+                    <td>
+                        <?php echo htmlspecialchars($sensor['id_sensor']); ?>
+                    </td>
+
+                    <td>
+                        <?php echo htmlspecialchars($sensor['localizacao_sensor']); ?>
+                    </td>
+
+                    <td>
+                        <?php echo htmlspecialchars($sensor['status_sensor']); ?>
+                    </td>
+
+                    <td>
+                        <?php echo htmlspecialchars($sensor['tipo_sensor']); ?>
+                    </td>
+
+                    <td>
+                        <a href="editar-sensores.php?id_sensor=<?php echo $sensor['id_sensor']; ?>"
+                            class="btn btn-primary"
+                            style="background-color: #2D3250 !important;">
+                            Editar
+                        </a>
+
+
+                        <a href="excluir-sensores.php?id_sensor=<?php echo $sensor['id_sensor']; ?>"
+                            class="btn btn-danger"
+                            style="background-color: #df3535 !important;">
+
+                            Excluir
+                        </a>
+                    </td>
+            </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+</div>
+
+</main>
+
 </body>
 
 </html>

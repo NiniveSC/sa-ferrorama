@@ -1,4 +1,12 @@
 <?php
+session_start();
+require_once "../../infra/permissoes.php";
+
+if (!ehAdministrador()) {
+    header("Location: ../tela-geral-home.php");
+    exit;
+}
+
 include "../../infra/conexao.php";
 
 if (isset($_POST['cadastrar'])) {
@@ -137,8 +145,12 @@ if (isset($_POST['cadastrar'])) {
                             </div>
 
                             <div class="d-flex justify-content-center gap-3">
-                                <button type="submit" name="cadastrar" id="btn-func-cadastrar" class="btn btn-primary btn-func-custom">Cadastrar</button>
-                            </div>
+    <a href="funcionarios-cadastrados.php" class="btn btn-voltar">← Voltar</a>
+
+    <button type="submit" name="cadastrar" id="btn-func-cadastrar" class="btn btn-primary btn-func-custom">
+        Cadastrar
+    </button>
+</div>
                         </form>
 
                     </div>

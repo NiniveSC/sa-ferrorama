@@ -1,6 +1,9 @@
 <?php
 
+session_start();
+
 include "../../infra/conexao.php";
+include "../../infra/permissoes.php";
 
 $sql = "SELECT Pessoa.id_administrador, Pessoa.nome_cadastro,
         Pessoa.email_cadastro, Pessoa.telefone_cadastro, Perfil.cargo
@@ -74,18 +77,22 @@ $resultado = mysqli_query($conexao, $sql);
         <div class="titulo-funcionarios">
             <h1>Lista de Funcionários Cadastrados</h1>
 
-           <a href="tela-cadastro-user.php"
-   class="btn-novo-funcionario"
-   style="background-color: #2D3250 !important;
-          color: white !important;
-          font-weight: bold !important;
-          text-decoration: none !important;
-          padding: 10px 20px;
-          border-radius: 8px;
-          border: 1px solid #2D3250;
-          display: inline-block;">
-    + Novo funcionário
-</a>
+ <?php if (ehAdministrador()) { ?>
+
+    <a href="tela-cadastro-user.php"
+       class="btn-novo-funcionario"
+       style="background-color: #2D3250 !important;
+              color: white !important;
+              font-weight: bold !important;
+              text-decoration: none !important;
+              padding: 10px 20px;
+              border-radius: 8px;
+              border: 1px solid #2D3250;
+              display: inline-block;">
+        + Novo funcionário
+    </a>
+
+<?php } ?>
         </div>
 
             <div class="borda-tabela">
@@ -120,17 +127,23 @@ $resultado = mysqli_query($conexao, $sql);
                 <?php echo htmlspecialchars($funcionario["cargo"]); ?>
             </td>
 
-            <td>
-                <a href="editar-funcionarios.php?id=<?php echo $funcionario["id_administrador"]; ?>"
-                    class="btn btn-primary">
-                    Editar
-                </a>
+           <td>
 
-                <a href="excluir-funcionarios.php?id=<?php echo $funcionario["id_administrador"]; ?>"
-                    class="btn btn-danger">
-                    Excluir
-                </a>
-            </td>
+    <?php if (ehAdministrador()) { ?>
+
+        <a href="editar-funcionarios.php?id=<?php echo $funcionario["id_administrador"]; ?>"
+            class="btn btn-primary">
+            Editar
+        </a>
+
+        <a href="excluir-funcionarios.php?id=<?php echo $funcionario["id_administrador"]; ?>"
+            class="btn btn-danger">
+            Excluir
+        </a>
+
+    <?php } ?>
+
+</td>
         </tr>
 
     <?php } ?>

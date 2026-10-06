@@ -1,4 +1,12 @@
 <?php
+session_start();
+require_once "../../infra/permissoes.php";
+
+if (!ehAdministrador()) {
+    header("Location: ../tela-geral-home.php");
+    exit;
+}
+
 include "../../infra/conexao.php";
 
 $id = (int) $_GET["id"];

@@ -1,3 +1,34 @@
+<?php
+require '../../infra/conexao.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+    $id_trem          = $_POST['id_sensor'];
+    $status_trem      = $_POST['status_sensor'];
+    $tipo_trem        = $_POST['tipo_sensor'];
+    $localizacao_trem = $_POST['localizacao_sensor'];
+
+    $sql = "INSERT INTO Trem (id_trem, status_trem, tipo_trem, localizacao_trem)
+            VALUES (?, ?, ?, ?)";
+
+    $stmt = $conexao->prepare($sql);
+
+    if (!$stmt) {
+        die("Erro no SQL/Banco: " . $conexao->error);
+    }
+
+    $stmt->bind_param("isss", $id_trem, $status_trem, $tipo_trem, $localizacao_trem);
+
+    if ($stmt->execute()) {
+        header("Location: tela-lista-trens.php");
+        exit;
+    } else {
+        die("Erro na execução: " . $stmt->error);
+    }
+
+    $stmt->close();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,17 +93,17 @@
                     <div class="card-body p-5">
 
                         <h2 class="card-title text-center fw-bold mb-2">Cadastrar novo trem</h2>
-                        <p class="text-center text-muted mb-5">Preencha os dados abaixo para cadastrar um novo trem.</p>
+                        <p class="text-center text-muted mb-3">Preencha os dados abaixo para cadastrar um novo trem.</p>
 
                         <form id="form-cadastro-trens">
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label class="form-label fw-bold">ID do trem</label>
-                                    <input type="text" id="nome-cadastro" class="form-control" placeholder="Digite o ID do trem">
+                                    <input type="text" id="nome-cadastro" name="id_trem" class="form-control" placeholder="Digite o ID do trem">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label fw-bold">Tipo</label>
-                                    <select id="cargo-cadastro" class="form-select">
+                                    <select name="tipo_trem" id="cargo-cadastro" class="form-select">
                                         <option value="" selected>Selecione o tipo</option>
                                         <option value="Administrador">Carga viva</option>
                                         <option value="Funcionário">Transporte de pessoas</option>
@@ -86,25 +117,22 @@
 
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <label class="form-label fw-bold">Modelo</label>
-                                    <input type="text" id="modelo-trem" class="form-control" placeholder="Insira o modelo do trem">
+                                    <label class="form-label fw-bold">Localização</label>
+                                    <input type="text" id="localizacao-trem" name="localizacao_trem" class="form-control" placeholder="Insira a localização do trem">
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label fw-bold">Localização</label>
-                                    <input type="text" id="localizacao-trem" class="form-control" placeholder="Insira a localização do trem">
-                                </div>
-                            </div>
-
-                             <div class="col-md-6">
                                     <label class="form-label fw-bold">Status do trem</label>
-                                    <select id="status-trem" class="form-select">
+                                    <select name="status_trem" id="status-trem" class="form-select">
                                         <option value="" selected>Selecione o status</option>
                                         <option value="ativo">Ativo</option>
                                         <option value="inativo">Inativo</option>
                                         <option value="em concerto" >Em concerto</option>
                                     </select>
                                 </div>
+                           
                             </div>
+
+                             
 
                             <div class="d-flex justify-content-center gap-3">
                                 <button type="button" id="btn-func-cancelar" class="btn btn-light border btn-func-custom">Cancelar</button>

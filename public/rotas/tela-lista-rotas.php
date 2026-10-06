@@ -61,7 +61,7 @@
             <h1 class="m-0">Rotas</h1>
 
             <button type="button" id="btn-nova-rota" class="btn btn-secondary">
-                + &nbsp; Nova rota
+                + Nova rota
             </button>
         </div>
         <br>

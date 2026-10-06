@@ -1,3 +1,36 @@
+<?php
+
+session_start();
+
+include "../../infra/conexao.php";
+
+if (isset($_POST["entrar"])) {
+
+    $email = $_POST["email"];
+    $senha = $_POST["senha"];
+
+    $resultado = mysqli_query($conexao, "SELECT * FROM Pessoa WHERE email_cadastro = '$email'");
+
+    $usuario = mysqli_fetch_assoc($resultado);
+
+    if ($usuario && password_verify($senha, $usuario["senha_cadastro"])) {
+
+        $_SESSION["id_administrador"] = $usuario["id_administrador"];
+        $_SESSION["id_perfil"] = $usuario["id_perfil"];
+        $_SESSION["nome"] = $usuario["nome_cadastro"];
+
+        header("Location: ../dashboard/tela-geral-home.php");
+        exit();
+
+    } else {
+
+        $erro = "Email ou senha incorretos.";
+
+    }
+}
+
+?>
+
 <html lang="en">
 
 <head>
@@ -25,18 +58,26 @@
     <main class="main_content container-fluid">
         <div class="text-end">
             <h2 id="titulo">Seja Bem vindo!</h2>
-            <form id="form-login">
+            <form method="POST">
                 <div id="c-email" class="conjunto">
                     <label for="email">Email:</label>
-                    <input type="email" id="email" placeholder="Email" required>
+                    <input type="email" id="email" name="email" placeholder="Email" required>
                 </div>
                 <div id="c-senha" class="conjunto">
                     <label for="senha">Senha:</label>
-                    <input type="password" id="senha" placeholder="Senha" required>
+                    <input type="password" id="senha" name="senha" placeholder="Senha" required>
                 </div>
-                <button id="botao-envio" type="submit">Entrar</button>
+                <button id="botao-envio" type="submit" name="entrar">Entrar</button>
 
-                <div id="mensagem"></div>
+                <div id="mensagem">
+
+    <?php
+    if (isset($erro)) {
+        echo $erro;
+    }
+    ?>
+
+</div>
                 <div class="toggle" id="toggle">
                     <p> Esqueceu a senha?</p>
             </form>
@@ -49,7 +90,6 @@
     </footer>
 
 
-    <script src="../script/tela-login.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>

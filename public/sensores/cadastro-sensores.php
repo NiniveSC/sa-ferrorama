@@ -145,9 +145,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </div>
 
                                 <div class="d-flex justify-content-center gap-3">
-                                    <button type="button" id="botao-cancelar" class="btn btn-light border btn-custom">Cancelar</button>
-                                    <button type="submit" id="envio-cadastro" class="btn btn-primary btn-custom">Cadastrar</button>
+                                    <a href="tela-lista-sensores.php" 
+                                        id="botao-cancelar" 
+                                        class="btn btn-light border btn-custom d-inline-flex align-items-center justify-content-center">
+                                        Cancelar
+                                    </a>
 
+                                    <button type="submit" id="envio-cadastro" class="btn btn-primary btn-custom">Cadastrar</button>
+                                    
                                 </div>
                             </form>
 

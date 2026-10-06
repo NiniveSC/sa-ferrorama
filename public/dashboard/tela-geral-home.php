@@ -1,3 +1,8 @@
+<?php
+session_start();
+require_once "../../infra/permissoes.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,25 +23,25 @@
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-between" id="navbar-Nav">
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item mx-3">
                         <a class="nav-link" href="tela-geral-home.php">Dashboard</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link" href="tela-lista-sensores.php">Sensores</a>
+                        <a class="nav-link" href="../sensores/tela-lista-sensores.php">Sensores</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link" href="tela-lista-trens.php">Trens</a>
+                        <a class="nav-link" href="../tremd/tela-lista-trens.php">Trens</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link" href="tela-lista-rotas.php">Rotas</a>
+                        <a class="nav-link" href="../rotas/tela-lista-rotas.php">Rotas</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link" href="funcionarios-cadastrados.php">Funcionário</a>
+                        <a class="nav-link" href="../funcionarios/funcionarios-cadastrados.php">Funcionário</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link" href="tela-relatorios.php">Relatórios</a>
+                        <a class="nav-link" href="../relatorios/tela-relatorios.php">Relatórios</a>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -45,7 +50,7 @@
                             NomeAdmin
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="tela-login.php">Sair</a></li>
+                            <li><a class="dropdown-item" href="../login/tela-login.php">Sair</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -103,8 +108,6 @@
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
                 crossorigin="anonymous"></script>
-
-                <script src="tela-cadastro-user.js"></script>
 
 </body>
 

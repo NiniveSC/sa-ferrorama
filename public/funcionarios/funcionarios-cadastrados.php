@@ -2,6 +2,7 @@
 
 session_start();
 
+require_once __DIR__ . "/../../infra/verifica_sessao.php";
 include "../../infra/conexao.php";
 include "../../infra/permissoes.php";
 
@@ -62,7 +63,7 @@ $resultado = mysqli_query($conexao, $sql);
                             NomeAdmin
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="tela-login.php">Sair</a></li>
+                            <li><a class="dropdown-item" href="../login/logout.php">Sair</a></li>
                         </ul>
                     </li>
                 </ul>

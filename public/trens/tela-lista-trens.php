@@ -1,3 +1,16 @@
+<?php
+
+include "../../infra/conexao.php";
+
+$sql = "SELECT * FROM Trem";
+$resultado = $conexao->query($sql);
+
+if (!$resultado) {
+    die("Erro na consulta: " . $conexao->error);
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +30,7 @@
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            
             <div class="collapse navbar-collapse justify-content-between" id="navbar-Nav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item mx-3">
@@ -53,72 +67,82 @@
     </nav>
 
 
-    <main class="container mt-4">
-        <h1>Trens Cadastrados</h1>
-        <hr class="linha-decorativa-2">
+<main class="container mt-4">
+
         <div class="container-branco">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="m-0">Lista de trens Cadastrados</h1>
+
+            <a href="cadastro-sensores.php"
+                class="btn-novo-funcionario"
+                style="background-color: #2D3250 !important;
+                       color: white !important;
+                       font-weight: bold !important;
+                       text-decoration: none !important;
+                       padding: 10px 20px;
+                       border-radius: 8px;
+                       border: 1px solid #2D3250;
+                       display: inline-block;">
+                + Novo Trem
+            </a>
+        </div>
+
             <div class="borda-tabela">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Tipo</th>
-                            <th>Modelo</th>
                             <th>Localização</th>
                             <th>Status</th>
+                            <th>Tipo</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>01</td>
-                            <td>Carga comum</td>
-                            <td>TGV</td>
-                            <td>Rota 01</td>
-                            <td>Ativo</td>
-                            <td>
-                                <button class="btn btn-primary">Editar</button>
-                                <button class="btn btn-danger">Excluir</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>02</td>
-                            <td>Carga a granel líquida</td>
-                            <td>Shinkansen</td>
-                            <td>Rota 04</td>
-                            <td>Em concerto</td>
-                            <td>
-                                <button class="btn btn-primary">Editar</button>
-                                <button class="btn btn-danger">Excluir</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>03</td>
-                            <td>Carga a granel</td>
-                            <td>Al Boraq</td>
-                            <td>Rota 08</td>
-                            <td>Ativo</td>
-                            <td>
-                                <button class="btn btn-primary">Editar</button>
-                                <button class="btn btn-danger">Excluir</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>04</td>
-                            <td>Carga a granel em seco</td>
-                            <td>Transist</td>
-                            <td>Rota 03</td>
-                            <td>Inativo</td>
-                            <td>
-                                <button class="btn btn-primary">Editar</button>
-                                <button class="btn btn-danger">Excluir</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </main>
+
+             <?php while ($trem = $resultado->fetch_assoc()) { ?>
+
+            <tr>
+                    <td>
+                        <?php echo htmlspecialchars($trem['id_trem']); ?>
+                    </td>
+
+                    <td>
+                        <?php echo htmlspecialchars($trem['localizacao_trem']); ?>
+                    </td>
+
+                    <td>
+                        <?php echo htmlspecialchars($trem['status_trem']); ?>
+                    </td>
+
+                    <td>
+                        <?php echo htmlspecialchars($trem['tipo_trem']); ?>
+                    </td>
+
+                    <td>
+                        <a href="editar-trens.php?id_trem=<?php echo $trem['id_trem']; ?>"
+                            class="btn btn-primary"
+                            style="background-color: #2D3250 !important;">
+                            Editar
+                        </a>
+
+
+                        <a href="excluir-trens.php?id_trem=<?php echo $trem['id_trem']; ?>"
+                            class="btn btn-danger"
+                            style="background-color: #df3535 !important;">
+
+                            Excluir
+                        </a>
+                    </td>
+            </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+</div>
+
+</main>
+
 </body>
 
 </html>

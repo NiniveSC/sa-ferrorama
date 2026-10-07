@@ -4,30 +4,8 @@ session_start();
 
 include "../../infra/conexao.php";
 
-if (isset($_POST["entrar"])) {
 
-    $email = $_POST["email"];
-    $senha = $_POST["senha"];
 
-    $resultado = mysqli_query($conexao, "SELECT * FROM Pessoa WHERE email_cadastro = '$email'");
-
-    $usuario = mysqli_fetch_assoc($resultado);
-
-    if ($usuario && password_verify($senha, $usuario["senha_cadastro"])) {
-
-        $_SESSION["id_administrador"] = $usuario["id_administrador"];
-        $_SESSION["id_perfil"] = $usuario["id_perfil"];
-        $_SESSION["nome"] = $usuario["nome_cadastro"];
-
-        header("Location: ../dashboard/tela-geral-home.php");
-        exit();
-
-    } else {
-
-        $erro = "Email ou senha incorretos.";
-
-    }
-}
 
 ?>
 
@@ -97,3 +75,29 @@ if (isset($_POST["entrar"])) {
 </body>
 
 </html>
+
+<?php
+if (isset($_POST["entrar"])) {
+
+    $email = $_POST["email"];
+    $senha = $_POST["senha"];
+
+    $resultado = mysqli_query($conexao, "SELECT * FROM Pessoa WHERE email_cadastro = '$email'");
+
+    $usuario = mysqli_fetch_assoc($resultado);
+
+    if ($usuario && password_verify($senha, $usuario["senha_cadastro"])) {
+
+        $_SESSION["id_administrador"] = $usuario["id_administrador"];
+        $_SESSION["id_perfil"] = $usuario["id_perfil"];
+        $_SESSION["nome"] = $usuario["nome_cadastro"];
+
+        header("Location: ../dashboard/tela-geral-home.php");
+        exit();
+
+    } else {
+
+        $erro = "Email ou senha incorretos.";
+
+    }
+}

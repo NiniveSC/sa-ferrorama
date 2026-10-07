@@ -3,10 +3,10 @@ require '../../infra/conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
-    $id_trem          = $_POST['id_sensor'];
-    $status_trem      = $_POST['status_sensor'];
-    $tipo_trem        = $_POST['tipo_sensor'];
-    $localizacao_trem = $_POST['localizacao_sensor'];
+    $id_trem          = $_POST['id_trem'];
+    $status_trem      = $_POST['status_trem'];
+    $tipo_trem        = $_POST['tipo_trem'];
+    $localizacao_trem = $_POST['localizacao_trem'];
 
     $sql = "INSERT INTO Trem (id_trem, status_trem, tipo_trem, localizacao_trem)
             VALUES (?, ?, ?, ?)";

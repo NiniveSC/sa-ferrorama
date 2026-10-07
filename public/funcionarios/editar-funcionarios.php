@@ -1,6 +1,8 @@
 <?php
 
 session_start();
+
+require_once __DIR__ . "/../../infra/verifica_sessao.php";
 require_once "../../infra/permissoes.php";
 
 if (!ehAdministrador()) {
@@ -16,6 +18,7 @@ $sql = "SELECT * FROM Pessoa WHERE id_administrador = $id";
 $resultado = mysqli_query($conexao, $sql);
 
 $funcionario = mysqli_fetch_assoc($resultado);
+
 
 if (isset($_POST["editar"])) {
 
@@ -44,6 +47,7 @@ if (isset($_POST["editar"])) {
     header("Location: funcionarios-cadastrados.php");
     exit();
 }
+
 
 ?>
 
@@ -93,7 +97,7 @@ if (isset($_POST["editar"])) {
                             NomeAdmin
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="tela-login.php">Sair</a></li>
+                            <li><a class="dropdown-item" href="../login/logout.php">Sair</a></li>
                         </ul>
                     </li>
                 </ul>

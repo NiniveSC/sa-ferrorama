@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+require_once __DIR__ . "/../../infra/verifica_sessao.php";
 require_once "../../infra/permissoes.php";
 
 if (!ehAdministrador()) {
@@ -85,7 +87,7 @@ if (isset($_POST['cadastrar'])) {
                             NomeAdmin
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="tela-login.php">Sair</a></li>
+                            <li><a class="dropdown-item" href="../login/logout.php">Sair</a></li>
                         </ul>
                     </li>
                 </ul>

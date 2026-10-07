@@ -7,9 +7,9 @@ $mensagem_erro = "";
 
 // Se enviou o formulário, atualiza no banco
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $tipo_trem = $_POST["tipo_trem"];
-    $localizacao_trem = $_POST["localizacao_trem"];
-    $status_trem = $_POST["status_trem"];
+    $tipo_trem = $_POST["tipo_trem"] ?? '';
+    $localizacao_trem = $_POST["localizacao_trem"] ?? '';
+    $status_trem = $_POST["status_trem"] ?? '';
 
     if (!empty($tipo_trem) && !empty($localizacao_trem) && !empty($status_trem) && $id_trem > 0) {
         $sql_update = "UPDATE Trem SET 
@@ -43,7 +43,7 @@ if (!$trem) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -96,71 +96,63 @@ if (!$trem) {
         </div>
     </nav>
 
-    
     <div class="d-flex align-items-center justify-content-center pg-cadastro-funcionario">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-8 col-lg-6">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6">
 
-                <div class="card shadow-lg border-0 card-cadastro-funcionario">
-                    <div class="card-body px-5 pt-3 pb-5">
-                        <h2 class="card-title text-center fw-bold mb-2" style="color: #2d3250;">
-    Editar Trens
-</h2>
-<br>
+                    <div class="card shadow-lg border-0 card-cadastro-funcionario">
+                        <div class="card-body p-4">
+                            <h2 class="card-title text-center fw-bold mb-4" style="color: #2d3250;">
+                                Editar Trem
+                            </h2>
 
-                        <?php if (!empty($mensagem_erro)): ?>
+                            <?php if (!empty($mensagem_erro)): ?>
                                 <div class="alert alert-danger" role="alert">
-                                    <?= $mensagem_erro ?>
+                                    <?= htmlspecialchars($mensagem_erro) ?>
                                 </div>
                             <?php endif; ?>
 
-                        <form id="form-cadastro-funcionario">
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">ID do trem</label>
-                                    <input type="text" id="nome-cadastro" class="form-control" value="<?= $sensor['id_sensor'] ?>" disabled placeholder="Digite o ID do trem">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Tipo</label>
-                                    <select id="cargo-cadastro" class="form-select">
-                                        <option value="" selected>Selecione o tipo</option>
-                                        <option value="Carga viva"             <?= ($trem['tipo_trem'] == 'Carga viva') ? 'selected' : '' ?>>Carga viva</option>
-                                        <option value="Transporte de pessoas"  <?= ($trem['tipo_trem'] == 'Transporte de pessoas') ? 'selected' : '' ?>>Transporte de pessoas</option>
-                                        <option value="Carga a granel"         <?= ($trem['tipo_trem'] == 'Carga a granel') ? 'selected' : '' ?>>Carga a granel</option>
-                                        <option value="Carga a granel em seco" <?= ($trem['tipo_trem'] == 'Carga a granel em seco') ? 'selected' : '' ?>>Carga a granel em seco</option>
-                                        <option value="Carga a granel líquida" <?= ($trem['tipo_trem'] == 'Carga a granel líquida') ? 'selected' : '' ?>>Carga a granel líquida</option>
-                                        <option value="Carga Geral"            <?= ($trem['tipo_trem'] == 'Carga Geral') ? 'selected' : '' ?>>Carga Geral</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-        
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Localização</label>
-                                    <input type="tel" id="telefone-cadastro" class="form-control" placeholder="Insira a localização do trem"
-                                           value="<?= $sensor['localizacao_sensor'] ?>" required>
+                            <form action="" method="POST" id="form-cadastro-funcionario">
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">ID do trem</label>
+                                        <input type="text" class="form-control" value="<?= htmlspecialchars($trem['id_trem']) ?>" disabled>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">Tipo</label>
+                                        <select name="tipo_trem" id="cargo-cadastro" class="form-select" required>
+                                            <option value="" disabled>Selecione o tipo</option>
+                                            <option value="Carga viva" <?= ($trem['tipo_trem'] == 'Carga viva') ? 'selected' : '' ?>>Carga viva</option>
+                                            <option value="Transporte de pessoas" <?= ($trem['tipo_trem'] == 'Transporte de pessoas') ? 'selected' : '' ?>>Transporte de pessoas</option>
+                                            <option value="Carga a granel" <?= ($trem['tipo_trem'] == 'Carga a granel') ? 'selected' : '' ?>>Carga a granel</option>
+                                            <option value="Carga a granel em seco" <?= ($trem['tipo_trem'] == 'Carga a granel em seco') ? 'selected' : '' ?>>Carga a granel em seco</option>
+                                            <option value="Carga a granel líquida" <?= ($trem['tipo_trem'] == 'Carga a granel líquida') ? 'selected' : '' ?>>Carga a granel líquida</option>
+                                            <option value="Carga Geral" <?= ($trem['tipo_trem'] == 'Carga Geral') ? 'selected' : '' ?>>Carga Geral</option>
+                                        </select>
+                                    </div>
                                 </div>
 
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Status do trem</label>
-                                    <select id="status-trem" class="form-select">
-                                        <option value="" selected>Selecione o status</option>
-                                        <option value="ativo"      <?= ($sensor['status_sensor'] == 'Ativo') ? 'selected' : '' ?>>Ativo</option>
-                                        <option value="inativo"    <?= ($sensor['status_sensor'] == 'Inativo') ? 'selected' : '' ?>>Inativo</option>
-                                        <option value="manutencao" <?= ($sensor['status_sensor'] == 'Manutenção') ? 'selected' : '' ?> >Manutenção</option>
-                                    </select>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">Localização</label>
+                                        <input type="text" name="localizacao_trem" class="form-control" placeholder="Insira a localização do trem"
+                                               value="<?= htmlspecialchars($trem['localizacao_trem']) ?>" required>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">Status do trem</label>
+                                        <select name="status_trem" id="status-trem" class="form-select" required>
+                                            <option value="" disabled>Selecione o status</option>
+                                            <option value="Ativo" <?= ($trem['status_trem'] == 'Ativo' || $trem['status_trem'] == 'ativo') ? 'selected' : '' ?>>Ativo</option>
+                                            <option value="Inativo" <?= ($trem['status_trem'] == 'Inativo' || $trem['status_trem'] == 'inativo') ? 'selected' : '' ?>>Inativo</option>
+                                            <option value="manutencao" <?= ($trem['status_trem'] == 'Manuenção' || $trem['status_trem'] == 'manutencao') ? 'selected' : '' ?>>Manuenção</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
 
-                              
-                            </div>
-
-                            
-
-                           <div class="d-flex justify-content-center gap-4">
-                                    <a href="tela-lista-sensores.php" class="btn btn-light border btn-func-custom text-decoration-none d-flex align-items-center justify-content-center">
+                                <div class="d-flex justify-content-center gap-3 mt-4">
+                                    <a href="tela-lista-trens.php" class="btn btn-light border btn-func-custom text-decoration-none d-flex align-items-center justify-content-center">
                                         Voltar
                                     </a>
 
@@ -168,24 +160,21 @@ if (!$trem) {
                                         Editar
                                     </button>
                                 </div>
-                        </form>
+                            </form>
 
+                        </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
     </div>
-</div>
-    <footer>
-
-    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
-        <script src=""></script>
+
 </body>
 
-</html>
 
+ </html>

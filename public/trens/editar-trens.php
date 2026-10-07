@@ -1,25 +1,25 @@
 <?php
 require '../../infra/conexao.php';
 
-// Busca o id_sensor vindo da URL
-$id_sensor = isset($_GET["id_sensor"]) ? (int) $_GET["id_sensor"] : 0;
+// Busca o id_trem vindo da URL
+$id_trem = isset($_GET["id_trem"]) ? (int) $_GET["id_trem"] : 0;
 $mensagem_erro = "";
 
 // Se enviou o formulário, atualiza no banco
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $tipo_sensor = $_POST["tipo_sensor"];
-    $localizacao_sensor = $_POST["localizacao_sensor"];
-    $status_sensor = $_POST["status_sensor"];
+    $tipo_trem = $_POST["tipo_trem"];
+    $localizacao_trem = $_POST["localizacao_trem"];
+    $status_trem = $_POST["status_trem"];
 
-    if (!empty($tipo_sensor) && !empty($localizacao_sensor) && !empty($status_sensor) && $id_sensor > 0) {
-        $sql_update = "UPDATE Sensor SET 
-                        tipo_sensor = '$tipo_sensor', 
-                        localizacao_sensor = '$localizacao_sensor', 
-                        status_sensor = '$status_sensor' 
-                       WHERE id_sensor = $id_sensor";
+    if (!empty($tipo_trem) && !empty($localizacao_trem) && !empty($status_trem) && $id_trem > 0) {
+        $sql_update = "UPDATE Trem SET 
+                        tipo_trem = '$tipo_trem', 
+                        localizacao_trem = '$localizacao_trem', 
+                        status_trem = '$status_trem' 
+                       WHERE id_trem = $id_trem";
 
         if (mysqli_query($conexao, $sql_update)) {
-            header("Location: tela-lista-sensores.php");
+            header("Location: tela-lista-trens.php");
             exit();
         } else {
             $mensagem_erro = "Erro no banco de dados: " . mysqli_error($conexao);
@@ -29,16 +29,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 
-// Carrega dados atuais do sensor
-$sensor = null;
-if ($id_sensor > 0) {
-    $sql_select = "SELECT * FROM Sensor WHERE id_sensor = $id_sensor";
+// Carrega dados atuais do trem
+$trem = null;
+if ($id_trem > 0) {
+    $sql_select = "SELECT * FROM Trem WHERE id_trem = $id_trem";
     $resultado = mysqli_query($conexao, $sql_select);
-    $sensor = mysqli_fetch_assoc($resultado);
+    $trem = mysqli_fetch_assoc($resultado);
 }
 
-if (!$sensor) {
-    header("Location: tela-lista-sensores.php");
+if (!$trem) {
+    header("Location: tela-lista-trens.php");
     exit();
 }
 ?>
@@ -139,16 +139,17 @@ if (!$sensor) {
         
                                 <div class="col-md-6">
                                     <label class="form-label fw-bold">Localização</label>
-                                    <input type="tel" id="telefone-cadastro" class="form-control" placeholder="Insira a localização do trem">
+                                    <input type="tel" id="telefone-cadastro" class="form-control" placeholder="Insira a localização do trem"
+                                           value="<?= $sensor['localizacao_sensor'] ?>" required>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label class="form-label fw-bold">Status do trem</label>
                                     <select id="status-trem" class="form-select">
                                         <option value="" selected>Selecione o status</option>
-                                        <option value="ativo">Ativo</option>
-                                        <option value="inativo">Inativo</option>
-                                        <option value="em concerto" >Em concerto</option>
+                                        <option value="ativo"      <?= ($sensor['status_sensor'] == 'Ativo') ? 'selected' : '' ?>>Ativo</option>
+                                        <option value="inativo"    <?= ($sensor['status_sensor'] == 'Inativo') ? 'selected' : '' ?>>Inativo</option>
+                                        <option value="manutencao" <?= ($sensor['status_sensor'] == 'Manutenção') ? 'selected' : '' ?> >Manutenção</option>
                                     </select>
                                 </div>
                             </div>

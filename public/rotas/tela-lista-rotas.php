@@ -1,5 +1,18 @@
+<?php
+
+include "../../infra/conexao.php";
+
+$sql = "SELECT * FROM Rota";
+$resultado = $conexao->query($sql);
+
+if (!$resultado) {
+    die("Erro na consulta: " . $conexao->error);
+}
+
+?>
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -10,13 +23,14 @@
     <link rel="stylesheet" href="../../assets/style/style.css">
 </head>
 
-<body class="pagina-rotas-cadastradas">
-    <nav class="navbar navbar-expand-lg navbar-dark">
+<body class="pagina-funcionarios-cadastrados">
+   <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            
             <div class="collapse navbar-collapse justify-content-between" id="navbar-Nav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item mx-3">
@@ -53,82 +67,82 @@
     </nav>
 
 
-  <main class="container rotas-main">
+<main class="container mt-4">
 
-    <div class="container-branco">
+        <div class="container-branco">
 
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h1 class="m-0">Rotas</h1>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="m-0">Lista de Rotas Cadastradas</h1>
 
-            <button type="button" id="btn-nova-rota" class="btn btn-secondary">
+            <a href="cadastrar-rotas.php"
+                class="btn-novo-funcionario"
+                style="background-color: #2D3250 !important;
+                       color: white !important;
+                       font-weight: bold !important;
+                       text-decoration: none !important;
+                       padding: 10px 20px;
+                       border-radius: 8px;
+                       border: 1px solid #2D3250;
+                       display: inline-block;">
                 + Nova rota
-            </button>
+            </a>
         </div>
-        <br>
+
             <div class="borda-tabela">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Localização</th>
-                            <th>Status</th>
+                            <th>Nome da Rota</th>
+                            <th>Distância (km)</th>
+                            <th>Duração</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>001</td>
-                            <td>Linha A - Estação Central</td>
-                            <td>Ativo</td>
-                            <td>
-                                <button class="btn btn-info text-white">Visualizar</button>
-                                <button class="btn btn-primary">Editar</button>
-                                <button class="btn btn-danger">Excluir</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>002</td>
-                            <td>Linha B - Pátio Sul</td>
-                            <td>Ativo</td>
-                            <td>
-                                <button class="btn btn-info text-white">Visualizar</button>
-                                <button class="btn btn-primary">Editar</button>
-                                <button class="btn btn-danger">Excluir</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>003</td>
-                            <td>Linha C - Estação Norte</td>
-                            <td>Inativo</td>
-                            <td>
-                                <button class="btn btn-info text-white">Visualizar</button>
-                                <button class="btn btn-primary">Editar</button>
-                                <button class="btn btn-danger">Excluir</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>004</td>
-                            <td>Linha D - Pátio Norte</td>
-                            <td>Manutenção</td>
-                            <td>
-                                <button class="btn btn-info text-white">Visualizar</button>
-                                <button class="btn btn-primary">Editar</button>
-                                <button class="btn btn-danger">Excluir</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </main>
 
-    <footer>
-    </footer>
+             <?php while ($rota = $resultado->fetch_assoc()) { ?>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
+            <tr>
+                    <td>
+                        <?php echo htmlspecialchars($rota['id_rota']); ?>
+                    </td>
+
+                    <td>
+                        <?php echo htmlspecialchars($rota['nome_rota']); ?>
+                    </td>
+
+                    <td>
+                        <?php echo htmlspecialchars($rota['distancia_km']); ?>
+                    </td>
+
+                    <td>
+                        <?php echo htmlspecialchars($rota['duracao_estimada']); ?>
+                    </td>
+
+                    <td>
+                        <a href="editar-rotas.php?id_rota=<?php echo $rota['id_rota']; ?>"
+                            class="btn btn-primary"
+                            style="background-color: #2D3250 !important;">
+                            Editar
+                        </a>
+
+
+                        <a href="excluir-rotas.php?id_rota=<?php echo $rota['id_rota']; ?>"
+                            class="btn btn-danger"
+                            style="background-color: #df3535 !important;">
+
+                            Excluir
+                        </a>
+                    </td>
+            </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+</div>
+
+</main>
+
 </body>
 
 </html>

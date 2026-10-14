@@ -1,3 +1,51 @@
+
+<?php
+session_start();
+
+require_once __DIR__ . "/../../infra/verifica_sessao.php";
+require_once "../../infra/permissoes.php";
+
+if (!ehAdministrador()) {
+    header("Location: ../dashboard/tela-geral-home.php");
+    exit;
+}
+
+include "../../infra/conexao.php";
+
+if (!isset($_GET["id"]) || !is_numeric($_GET["id"])) {
+    header("Location: tela-lista-rotas.php");
+    exit;
+}
+
+$id = (int) $_GET["id"];
+
+$sql = "SELECT * FROM Rotas WHERE id_rota = ?";
+$stmt = $conexao->prepare($sql);
+$stmt->bind_param("i", $id);
+$stmt->execute();
+
+$resultado = $stmt->get_result();
+$rota = $resultado->fetch_assoc();
+
+if (!$rota) {
+    header("Location: tela-lista-rotas.php");
+    exit;
+}
+
+if (isset($_POST["excluir"])) {
+    $sql = "DELETE FROM Rotas WHERE id_rota = ?";
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param("i", $id);
+
+    if ($stmt->execute()) {
+        header("Location: tela-lista-rotas.php");
+        exit;
+    } else {
+        $erro = "Não foi possível excluir a rota.";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -5,22 +53,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Excluir Rota</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/style/style.css">
 </head>
 
 <body class="pagina_excluir_user">
+
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbar-Nav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item mx-3">
-                        <a class="nav-link" href="tela-geral-home.php">Dashboard</a>
+                        <a class="nav-link" href="../dashboard/tela-geral-home.php">Dashboard</a>
                     </li>
                     <li class="nav-item mx-3">
                         <a class="nav-link" href="tela-lista-sensores.php">Sensores</a>
@@ -37,14 +81,12 @@
                     <li class="nav-item mx-3">
                         <a class="nav-link" href="tela-relatorios.php">Relatórios</a>
                     </li>
-
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            NomeAdmin
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <?php echo htmlspecialchars($_SESSION["nome"]); ?>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="tela-login.php">Sair</a></li>
+                            <li><a class="dropdown-item" href="../login/logout.php">Sair</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -52,102 +94,88 @@
         </div>
     </nav>
 
-    
-<div class="d-flex align-items-center justify-content-center pg-cadastro-funcionario">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-8 col-lg-8">
+    <div class="d-flex align-items-center justify-content-center pg-cadastro-funcionario">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-8">
 
-                <div class="card shadow-lg border-0 card-cadastro-funcionario">
-                    <div class="card-body p-5">
+                    <div class="card shadow-lg border-0 card-cadastro-funcionario">
+                        <div class="card-body p-5">
 
-                        <h2 class="card-title fw-bold mb-5">
-                            Excluir Rotas
-                        </h2>
+                            <h2 class="card-title fw-bold mb-5">
+                                Excluir Rota
+                            </h2>
 
-                       
-                        <div class="dados-funcionario mb-4">                            
-                            <div class="d-flex mb-3">
-                                <span class="label-funcionario">
-                                    ID da rota
-                                </span>
+                            <div class="dados-funcionario mb-4">
 
-                                <span class="valor-funcionario">
-                                    001
-                                </span>
+                                <div class="d-flex mb-3">
+                                    <span class="label-funcionario">ID da rota</span>
+                                    <span class="valor-funcionario">
+                                        <?php echo htmlspecialchars($rota["id_rota"]); ?>
+                                    </span>
+                                </div>
+
+                                <div class="d-flex mb-3">
+                                    <span class="label-funcionario">Nome da rota</span>
+                                    <span class="valor-funcionario">
+                                        <?php echo htmlspecialchars($rota["nome_rota"]); ?>
+                                    </span>
+                                </div>
+
+                                <div class="d-flex mb-3">
+                                    <span class="label-funcionario">Localização</span>
+                                    <span class="valor-funcionario">
+                                        <?php echo htmlspecialchars($rota["localizacao_rota"]); ?>
+                                    </span>
+                                </div>
+
+                                <div class="d-flex">
+                                    <span class="label-funcionario">Status</span>
+                                    <span class="valor-funcionario">
+                                        <?php echo htmlspecialchars($rota["status_rota"]); ?>
+                                    </span>
+                                </div>
+
                             </div>
 
-                            <div class="d-flex mb-3">
-                                <span class="label-funcionario">
-                                    Localização
-                                </span>
-
-                                <span class="valor-funcionario">
-                                    Linha A - Estação Central
-                                </span>
+                            <div class="confirmacao-exclusao mb-4">
+                                <img src="../../assets/img/icone_alerta.png" alt="Alerta">
+                                <div>
+                                    <strong>Deseja mesmo excluir?</strong>
+                                    <p>Os dados da rota excluída não podem ser resgatados.</p>
+                                </div>
                             </div>
 
-                            <div class="d-flex">
-                                <span class="label-funcionario">
-                                    Status
-                                </span>
+                            <?php if (isset($erro)) { ?>
+                                <p class="text-danger"><?php echo $erro; ?></p>
+                            <?php } ?>
 
-                                <span class="valor-funcionario">
-                                    Ativo
-                                </span>
+                            <div class="d-flex justify-content-center gap-5">
+
+                                <a href="tela-lista-rotas.php"
+                                   class="btn btn-light border btn-func-custom">
+                                    Cancelar
+                                </a>
+
+                                <form method="POST">
+                                    <button type="submit"
+                                            name="excluir"
+                                            class="btn btn-danger btn-func-custom">
+                                        Excluir
+                                    </button>
+                                </form>
+
                             </div>
 
                         </div>
-
-                       
-                      <div class="confirmacao-exclusao mb-4">
-
-                        <img src="../../assets/img/icone_alerta.png" alt="Alerta">
-
-                          <div>
-                            <strong>
-                                 Deseja mesmo excluir?
-                             </strong>
-
-                             <p>
-                                  Os dados da rota excluída não podem ser resgatados.
-                            </p>
-                            </div>
-
-                        </div>
-
-                       
-                        <div class="d-flex justify-content-center gap-5">
-
-                            <button type="button"
-                                    id="btn-rota-cancelar"
-                                    class="btn btn-light border btn-func-custom">
-                                Cancelar
-                            </button>
-
-                            <button type="button"
-                                    id="btn-rota-excluir"
-                                    class="btn btn-danger btn-func-custom">
-                                Excluir
-                            </button>
-
-                        </div>
-
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
     </div>
-</div>
-    <footer>
 
-    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
-        <script src=""></script>
 </body>
-
 </html>

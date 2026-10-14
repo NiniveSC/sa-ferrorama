@@ -74,7 +74,7 @@ if (!$resultado) {
             <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="m-0">Lista de trens Cadastrados</h1>
 
-            <a href="cadastro-sensores.php"
+            <a href="cadastrar-trens.php"
                 class="btn-novo-funcionario"
                 style="background-color: #2D3250 !important;
                        color: white !important;

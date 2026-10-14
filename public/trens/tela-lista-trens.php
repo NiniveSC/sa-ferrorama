@@ -1,4 +1,6 @@
 <?php
+session_start();
+require_once __DIR__ . "/../../infra/verifica_sessao.php";
 
 include "../../infra/conexao.php";
 
@@ -34,22 +36,22 @@ if (!$resultado) {
             <div class="collapse navbar-collapse justify-content-between" id="navbar-Nav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item mx-3">
-                        <a class="nav-link" href="tela-geral-home.php">Dashboard</a>
+                        <a class="nav-link" href="../dashboard/tela-geral-home.php">Dashboard</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link" href="tela-lista-sensores.php">Sensores</a>
+                        <a class="nav-link" href="../sensores/tela-lista-sensores.php">Sensores</a>
                     </li>
                     <li class="nav-item mx-3">
                         <a class="nav-link" href="tela-lista-trens.php">Trens</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link" href="tela-lista-rotas.php">Rotas</a>
+                        <a class="nav-link" href="../rotas/tela-lista-rotas.php">Rotas</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link" href="funcionarios-cadastrados.php">Funcionário</a>
+                        <a class="nav-link" href="../funcionarios/funcionarios-cadastrados.php">Funcionário</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link" href="tela-relatorios.php">Relatórios</a>
+                        <a class="nav-link" href="../relatorios/tela-relatorios.php">Relatórios</a>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -58,7 +60,7 @@ if (!$resultado) {
                             NomeAdmin
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="tela-login.php">Sair</a></li>
+                            <li><a class="dropdown-item" href="../login/logout.php">Sair</a></li>
                         </ul>
                     </li>
                 </ul>

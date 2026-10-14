@@ -17,7 +17,7 @@ CREATE TABLE Pessoa (
     email_cadastro VARCHAR(60) NOT NULL,
     telefone_cadastro VARCHAR(20) NOT NULL,
     cpf_cadastro VARCHAR(14) NOT NULL,
-    senha_cadastro VARCHAR(20) NOT NULL,
+    senha_cadastro VARCHAR(255) NOT NULL,
     id_perfil INT NOT NULL,
 
     PRIMARY KEY (id_administrador),
@@ -39,12 +39,14 @@ CREATE TABLE Trem (
 
 
 CREATE TABLE Rota (
-    id_rota INT NOT NULL,
-    nome_rota VARCHAR(60) NOT NULL,
-    status_rota ENUM('Ativo', 'Inativo', 'Manutenção') NOT NULL,
-    localizacao_rota VARCHAR(60) NOT NULL,
-
-    PRIMARY KEY (id_rota)
+    id_rota INT AUTO_INCREMENT PRIMARY KEY,
+    nome_rota VARCHAR(100) NOT NULL,
+    descricao_rota TEXT NULL,
+    distancia_km DECIMAL(8,2) NOT NULL,
+    duracao_estimada VARCHAR(50) NOT NULL,
+    data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    id_trem INT NOT NULL,
+    CONSTRAINT fk_rota_trem FOREIGN KEY (id_trem) REFERENCES Trem(id_trem) ON DELETE RESTRICT
 );
 
 
@@ -110,4 +112,24 @@ CREATE TABLE Falha (
 
     FOREIGN KEY (Sensor_id_sensor)
     REFERENCES Sensor(id_sensor)
+);
+
+INSERT INTO Perfil (id_perfil, cargo) VALUES (1, 'Administrador');
+
+INSERT INTO Pessoa (
+    id_administrador,
+    nome_cadastro,
+    email_cadastro,
+    telefone_cadastro,
+    cpf_cadastro,
+    senha_cadastro,
+    id_perfil
+) VALUES (
+    1,
+    'admin',
+    'admin@admin.com',
+    '(11) 99999-9999',
+    '123.456.789-00',
+    'admin123',
+    1
 );

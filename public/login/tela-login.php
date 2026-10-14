@@ -1,12 +1,41 @@
 <?php
-
 session_start();
+
+if (isset($_SESSION["id_administrador"])) {
+    header("Location: ../dashboard/tela-geral-home.php");
+    exit();
+}
 
 include "../../infra/conexao.php";
 
+$erro = "";
 
+if (isset($_POST["entrar"])) {
+    $email = trim($_POST["email"] ?? "");
+    $senha = $_POST["senha"] ?? "";
 
+    $stmt = $conexao->prepare("SELECT id_administrador, nome_cadastro, senha_cadastro, id_perfil FROM Pessoa WHERE email_cadastro = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+    $usuario = $resultado->fetch_assoc();
 
+    $senhaValida = $usuario && (
+        password_verify($senha, $usuario["senha_cadastro"]) ||
+        hash_equals((string) $usuario["senha_cadastro"], $senha)
+    );
+
+    if ($senhaValida) {
+        $_SESSION["id_administrador"] = (int) $usuario["id_administrador"];
+        $_SESSION["id_perfil"] = (int) $usuario["id_perfil"];
+        $_SESSION["nome"] = $usuario["nome_cadastro"];
+
+        header("Location: ../dashboard/tela-geral-home.php");
+        exit();
+    }
+
+    $erro = "Email ou senha incorretos.";
+}
 ?>
 
 <html lang="en">
@@ -76,28 +105,3 @@ include "../../infra/conexao.php";
 
 </html>
 
-<?php
-if (isset($_POST["entrar"])) {
-
-    $email = $_POST["email"];
-    $senha = $_POST["senha"];
-
-    $resultado = mysqli_query($conexao, "SELECT * FROM Pessoa WHERE email_cadastro = '$email'");
-
-    $usuario = mysqli_fetch_assoc($resultado);
-
-    if ($usuario && password_verify($senha, $usuario["senha_cadastro"])) {
-
-        $_SESSION["id_administrador"] = $usuario["id_administrador"];
-        $_SESSION["id_perfil"] = $usuario["id_perfil"];
-        $_SESSION["nome"] = $usuario["nome_cadastro"];
-
-        header("Location: ../dashboard/tela-geral-home.php");
-        exit();
-
-    } else {
-
-        $erro = "Email ou senha incorretos.";
-
-    }
-}

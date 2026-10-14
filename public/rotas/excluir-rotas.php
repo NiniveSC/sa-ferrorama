@@ -67,19 +67,19 @@ if (isset($_POST["excluir"])) {
                         <a class="nav-link" href="../dashboard/tela-geral-home.php">Dashboard</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link" href="tela-lista-sensores.php">Sensores</a>
+                        <a class="nav-link" href="../sensores/tela-lista-sensores.php">Sensores</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link" href="tela-lista-trens.php">Trens</a>
+                        <a class="nav-link" href="../trens/tela-lista-trens.php">Trens</a>
                     </li>
                     <li class="nav-item mx-3">
                         <a class="nav-link" href="tela-lista-rotas.php">Rotas</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link" href="funcionarios-cadastrados.php">Funcionário</a>
+                        <a class="nav-link" href="../funcionarios/funcionarios-cadastrados.php">Funcionário</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link" href="tela-relatorios.php">Relatórios</a>
+                        <a class="nav-link" href="../relatorios/tela-relatorios.php">Relatórios</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">

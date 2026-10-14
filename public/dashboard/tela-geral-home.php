@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once "../../infra/permissoes.php";
+require_once __DIR__ . "/../../infra/verifica_sessao.php";
+require_once __DIR__ . "/../../infra/permissoes.php";
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +33,7 @@ require_once "../../infra/permissoes.php";
                         <a class="nav-link" href="../sensores/tela-lista-sensores.php">Sensores</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link" href="../tremd/tela-lista-trens.php">Trens</a>
+                        <a class="nav-link" href="../trens/tela-lista-trens.php">Trens</a>
                     </li>
                     <li class="nav-item mx-3">
                         <a class="nav-link" href="../rotas/tela-lista-rotas.php">Rotas</a>
@@ -50,7 +51,7 @@ require_once "../../infra/permissoes.php";
                             NomeAdmin
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../login/tela-login.php">Sair</a></li>
+                            <li><a class="dropdown-item" href="../login/logout.php">Sair</a></li>
                         </ul>
                     </li>
                 </ul>

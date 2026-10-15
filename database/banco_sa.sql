@@ -28,7 +28,7 @@ CREATE TABLE Pessoa (
 
 
 CREATE TABLE Trem (
-    id_trem INT NOT NULL,
+    id_trem INT NOT NULL AUTO_INCREMENT,
     nome_trem VARCHAR(60) NOT NULL,
     tipo_trem VARCHAR(60) NOT NULL,
     status_trem ENUM('Ativo', 'Inativo', 'Manutenção') NOT NULL,

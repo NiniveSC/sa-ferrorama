@@ -51,7 +51,7 @@ CREATE TABLE Rota (
 
 
 CREATE TABLE Sensor (
-    id_sensor INT NOT NULL,
+    id_sensor INT NOT NULL AUTO_INCREMENT,
     status_sensor ENUM('Ativo', 'Inativo', 'Manutenção') NOT NULL,
     tipo_sensor ENUM('Temperatura', 'Velocidade', 'Localizador') NOT NULL,
     localizacao_sensor VARCHAR(65) NOT NULL,

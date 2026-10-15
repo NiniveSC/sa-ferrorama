@@ -10,6 +10,9 @@ if (!ehAdministrador()) {
 
 require '../../infra/conexao.php';
 
+$sql_usuarios = "SELECT id_administrador, nome_cadastro FROM Pessoa ORDER BY nome_cadastro ASC";
+$resultado_usuarios = $conexao->query($sql_usuarios);
+
 // Busca o id_trem vindo da URL
 $id_trem = isset($_GET["id_trem"]) ? (int) $_GET["id_trem"] : 0;
 $mensagem_erro = "";
@@ -19,19 +22,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $tipo_trem = $_POST["tipo_trem"] ?? '';
     $localizacao_trem = $_POST["localizacao_trem"] ?? '';
     $status_trem = $_POST["status_trem"] ?? '';
+    $id_responsavel = !empty($_POST["id_responsavel"]) ? (int) $_POST["id_responsavel"] : null;
 
     if (!empty($tipo_trem) && !empty($localizacao_trem) && !empty($status_trem) && $id_trem > 0) {
         $sql_update = "UPDATE Trem SET 
-                        tipo_trem = '$tipo_trem', 
-                        localizacao_trem = '$localizacao_trem', 
-                        status_trem = '$status_trem' 
-                       WHERE id_trem = $id_trem";
+                        tipo_trem = ?,
+                        localizacao_trem = ?,
+                        status_trem = ?,
+                        id_responsavel = ?
+                       WHERE id_trem = ?";
 
-        if (mysqli_query($conexao, $sql_update)) {
+        $stmt = $conexao->prepare($sql_update);
+        $stmt->bind_param("sssi", $tipo_trem, $localizacao_trem, $status_trem, $id_responsavel, $id_trem);
+
+        if ($stmt->execute()) {
             header("Location: tela-lista-trens.php");
             exit();
         } else {
-            $mensagem_erro = "Erro no banco de dados: " . mysqli_error($conexao);
+            $mensagem_erro = "Erro no banco de dados: " . $stmt->error;
         }
     } else {
         $mensagem_erro = "Por favor, preencha todos os campos.";
@@ -155,7 +163,21 @@ if (!$trem) {
                                             <option value="" disabled>Selecione o status</option>
                                             <option value="Ativo" <?= ($trem['status_trem'] == 'Ativo' || $trem['status_trem'] == 'ativo') ? 'selected' : '' ?>>Ativo</option>
                                             <option value="Inativo" <?= ($trem['status_trem'] == 'Inativo' || $trem['status_trem'] == 'inativo') ? 'selected' : '' ?>>Inativo</option>
-                                            <option value="manutencao" <?= ($trem['status_trem'] == 'Manuenção' || $trem['status_trem'] == 'manutencao') ? 'selected' : '' ?>>Manuenção</option>
+                                            <option value="Manutenção" <?= ($trem['status_trem'] == 'Manutenção' || $trem['status_trem'] == 'manutencao') ? 'selected' : '' ?>>Manutenção</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-12">
+                                        <label class="form-label fw-bold">Usuário responsável</label>
+                                        <select name="id_responsavel" id="id-responsavel" class="form-select">
+                                            <option value="">Selecione o responsável</option>
+                                            <?php while ($usuario = $resultado_usuarios->fetch_assoc()): ?>
+                                                <option value="<?= (int) $usuario['id_administrador'] ?>" <?= (isset($trem['id_responsavel']) && (int)$trem['id_responsavel'] === (int)$usuario['id_administrador']) ? 'selected' : '' ?>>
+                                                    <?= htmlspecialchars($usuario['nome_cadastro']) ?>
+                                                </option>
+                                            <?php endwhile; ?>
                                         </select>
                                     </div>
                                 </div>

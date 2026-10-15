@@ -10,14 +10,18 @@ if (!ehAdministrador()) {
 
 require '../../infra/conexao.php';
 
+$sql_usuarios = "SELECT id_administrador, nome_cadastro FROM Pessoa ORDER BY nome_cadastro ASC";
+$resultado_usuarios = $conexao->query($sql_usuarios);
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome_trem        = $_POST['nome_trem'];
     $status_trem      = $_POST['status_trem'];
     $tipo_trem        = $_POST['tipo_trem'];
     $localizacao_trem = $_POST['localizacao_trem'];
+    $id_responsavel   = !empty($_POST['id_responsavel']) ? (int) $_POST['id_responsavel'] : null;
 
-    $sql = "INSERT INTO Trem (nome_trem, status_trem, tipo_trem, localizacao_trem)
-            VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO Trem (nome_trem, status_trem, tipo_trem, localizacao_trem, id_responsavel)
+            VALUES (?, ?, ?, ?, ?)";
 
     $stmt = $conexao->prepare($sql);
 
@@ -25,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Erro no SQL/Banco: " . $conexao->error);
     }
 
-    $stmt->bind_param("ssss", $nome_trem, $status_trem, $tipo_trem, $localizacao_trem);
+    $stmt->bind_param("ssssi", $nome_trem, $status_trem, $tipo_trem, $localizacao_trem, $id_responsavel);
 
     if ($stmt->execute()) {
         header("Location: tela-lista-trens.php");
@@ -136,6 +140,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             <option value="Ativo">Ativo</option>
                                             <option value="Inativo">Inativo</option>
                                             <option value="Em conserto">Em conserto</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-12">
+                                        <label class="form-label fw-bold">Usuário responsável</label>
+                                        <select name="id_responsavel" id="id-responsavel" class="form-select">
+                                            <option value="">Selecione o responsável</option>
+                                            <?php while ($usuario = $resultado_usuarios->fetch_assoc()): ?>
+                                                <option value="<?= (int) $usuario['id_administrador'] ?>">
+                                                    <?= htmlspecialchars($usuario['nome_cadastro']) ?>
+                                                </option>
+                                            <?php endwhile; ?>
                                         </select>
                                     </div>
                                 </div>

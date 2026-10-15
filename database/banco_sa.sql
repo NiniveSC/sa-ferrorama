@@ -33,8 +33,13 @@ CREATE TABLE Trem (
     tipo_trem VARCHAR(60) NOT NULL,
     status_trem ENUM('Ativo', 'Inativo', 'Manutenção') NOT NULL,
     localizacao_trem VARCHAR(60) NOT NULL,
+    id_responsavel INT NULL,
 
-    PRIMARY KEY (id_trem)
+    PRIMARY KEY (id_trem),
+
+    CONSTRAINT fk_trem_responsavel
+    FOREIGN KEY (id_responsavel)
+    REFERENCES Pessoa(id_administrador)
 );
 
 

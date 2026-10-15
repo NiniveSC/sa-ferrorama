@@ -4,7 +4,10 @@ require_once __DIR__ . "/../../infra/verifica_sessao.php";
 
 include "../../infra/conexao.php";
 
-$sql = "SELECT * FROM Trem";
+$sql = "SELECT T.*, P.nome_cadastro AS responsavel
+        FROM Trem T
+        LEFT JOIN Pessoa P ON P.id_administrador = T.id_responsavel
+        ORDER BY T.id_trem ASC";
 $resultado = $conexao->query($sql);
 
 if (!$resultado) {
@@ -98,6 +101,7 @@ if (!$resultado) {
                             <th>Localização</th>
                             <th>Status</th>
                             <th>Tipo</th>
+                            <th>Responsável</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
@@ -120,6 +124,10 @@ if (!$resultado) {
 
                     <td>
                         <?php echo htmlspecialchars($trem['tipo_trem']); ?>
+                    </td>
+
+                    <td>
+                        <?php echo htmlspecialchars($trem['responsavel'] ?? 'Não informado'); ?>
                     </td>
 
                     <td>

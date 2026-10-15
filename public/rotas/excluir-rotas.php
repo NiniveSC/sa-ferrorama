@@ -33,14 +33,24 @@ if (!$rota) {
 }
 
 if (isset($_POST["excluir"])) {
-    $sql = "DELETE FROM Rotas WHERE id_rota = ?";
-    $stmt = $conexao->prepare($sql);
-    $stmt->bind_param("i", $id);
+    mysqli_begin_transaction($conexao);
 
-    if ($stmt->execute()) {
+    try {
+        $sql_delete_sensores = "DELETE FROM Sensor WHERE id_rota = ?";
+        $stmt_sensores = $conexao->prepare($sql_delete_sensores);
+        $stmt_sensores->bind_param("i", $id);
+        $stmt_sensores->execute();
+
+        $sql = "DELETE FROM Rota WHERE id_rota = ?";
+        $stmt = $conexao->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+
+        mysqli_commit($conexao);
         header("Location: tela-lista-rotas.php");
         exit;
-    } else {
+    } catch (Exception $e) {
+        mysqli_rollback($conexao);
         $erro = "Não foi possível excluir a rota.";
     }
 }

@@ -6,13 +6,17 @@ USE SA_Ferrorama;
 CREATE TABLE Perfil (
     id_perfil INT NOT NULL,
     cargo VARCHAR(45) NOT NULL,
-
     PRIMARY KEY (id_perfil)
 );
 
+INSERT INTO Perfil (id_perfil, cargo)
+VALUES
+(1, 'Administrador'),
+(2, 'Funcionário');
+
 
 CREATE TABLE Pessoa (
-    id_administrador INT NOT NULL,
+    id_administrador INT NOT NULL AUTO_INCREMENT,
     nome_cadastro VARCHAR(60) NOT NULL,
     email_cadastro VARCHAR(60) NOT NULL,
     telefone_cadastro VARCHAR(20) NOT NULL,

@@ -11,13 +11,12 @@ if (!ehAdministrador()) {
 require '../../infra/conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
-    $id_trem          = $_POST['id_trem'];
+    $nome_trem        = $_POST['nome_trem'];
     $status_trem      = $_POST['status_trem'];
     $tipo_trem        = $_POST['tipo_trem'];
     $localizacao_trem = $_POST['localizacao_trem'];
 
-    $sql = "INSERT INTO Trem (id_trem, status_trem, tipo_trem, localizacao_trem)
+    $sql = "INSERT INTO Trem (nome_trem, status_trem, tipo_trem, localizacao_trem)
             VALUES (?, ?, ?, ?)";
 
     $stmt = $conexao->prepare($sql);
@@ -26,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Erro no SQL/Banco: " . $conexao->error);
     }
 
-    $stmt->bind_param("isss", $id_trem, $status_trem, $tipo_trem, $localizacao_trem);
+    $stmt->bind_param("ssss", $nome_trem, $status_trem, $tipo_trem, $localizacao_trem);
 
     if ($stmt->execute()) {
         header("Location: tela-lista-trens.php");
@@ -107,8 +106,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <form action="" method="POST" id="form-cadastro-trens">
                                 <div class="row mb-3">
                                     <div class="col-md-6">
-                                        <label class="form-label fw-bold">ID do trem</label>
-                                        <input type="number" id="nome-cadastro" name="id_trem" class="form-control" placeholder="Digite o ID do trem" required>
+                                        <label class="form-label fw-bold">Nome do trem</label>
+                                        <input type="text" id="nome-cadastro" name="nome_trem" class="form-control" placeholder="Digite o nome do trem" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Tipo</label>

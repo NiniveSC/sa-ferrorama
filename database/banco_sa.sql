@@ -32,7 +32,7 @@ CREATE TABLE Pessoa (
 
 
 CREATE TABLE Trem (
-    id_trem INT NOT NULL,
+    id_trem INT NOT NULL AUTO_INCREMENT,
     nome_trem VARCHAR(60) NOT NULL,
     tipo_trem VARCHAR(60) NOT NULL,
     status_trem ENUM('Ativo', 'Inativo', 'Manutenção') NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE Rota (
 
 
 CREATE TABLE Sensor (
-    id_sensor INT NOT NULL,
+    id_sensor INT NOT NULL AUTO_INCREMENT,
     status_sensor ENUM('Ativo', 'Inativo', 'Manutenção') NOT NULL,
     tipo_sensor ENUM('Temperatura', 'Velocidade', 'Localizador') NOT NULL,
     localizacao_sensor VARCHAR(65) NOT NULL,

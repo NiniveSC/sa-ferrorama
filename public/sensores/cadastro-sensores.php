@@ -11,8 +11,6 @@ if (!ehAdministrador()) {
 require '../../infra/conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
-    $id_sensor          = $_POST['id_sensor'];
     $status_sensor      = $_POST['status_sensor'];
     $tipo_sensor        = $_POST['tipo_sensor'];
     $localizacao_sensor = $_POST['localizacao_sensor'];
@@ -20,8 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_trem = !empty($_POST['id_trem']) ? (int)$_POST['id_trem'] : null;
     $id_rota = !empty($_POST['id_rota']) ? (int)$_POST['id_rota'] : null;
 
-    $sql = "INSERT INTO Sensor (id_sensor, status_sensor, tipo_sensor, localizacao_sensor, id_trem, id_rota)
-            VALUES (?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO Sensor (status_sensor, tipo_sensor, localizacao_sensor, id_trem, id_rota)
+            VALUES (?, ?, ?, ?, ?)";
 
     $stmt = $conexao->prepare($sql);
 
@@ -29,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Erro no SQL/Banco: " . $conexao->error);
     }
 
-    $stmt->bind_param("isssii", $id_sensor, $status_sensor, $tipo_sensor, $localizacao_sensor, $id_trem, $id_rota);
+    $stmt->bind_param("sssii", $status_sensor, $tipo_sensor, $localizacao_sensor, $id_trem, $id_rota);
 
     if ($stmt->execute()) {
         header("Location: tela-lista-sensores.php");
@@ -112,10 +110,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <form id="form-cadastro" action="" method="POST">
                                 <div class="row mb-3">
                                     <div class="col-md-6">
-                                        <label class="form-label fw-bold">ID do sensor</label>
-                                        <input type="number" name="id_sensor" id="id-sensor" class="form-control" placeholder="Digite o ID do sensor">
-                                    </div>
-                                <div class="col-md-6">
                                         <label class="form-label fw-bold">Tipo de Sensor</label>
                                         <select name="tipo_sensor" id="tipo-sensor" class="form-select">
                                             <option value="" selected>Selecione o tipo de sensor</option>
@@ -123,13 +117,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             <option value="Velocidade">Velocidade</option>
                                             <option value="Localizador">Localizador</option>
                                         </select>
-                                    </div>  
-                                </div>
-
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold">Localização</label>
-                                        <input type="text" name="localizacao_sensor" id="localizacao-cadastro" class="form-control" placeholder="Digite a localização">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Status</label>
@@ -139,6 +126,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             <option value="Inativo">Inativo</option>
                                             <option value="Manutenção">Manutenção</option>
                                         </select>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-12">
+                                        <label class="form-label fw-bold">Localização</label>
+                                        <input type="text" name="localizacao_sensor" id="localizacao-cadastro" class="form-control" placeholder="Digite a localização">
                                     </div>
                                 </div>
 

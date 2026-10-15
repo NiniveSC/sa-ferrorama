@@ -577,18 +577,21 @@ td {
 }
 
 .pagina-funcionarios-cadastrados main {
-    min-height: calc(100vh - 85px);
+    min-height: calc(100vh - 110px);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 0 !important;
+    margin-top: 28px !important;
+    margin-bottom: 28px !important;
+    padding: 0 20px;
 }
 
 .pagina-funcionarios-cadastrados .container-branco {
     width: 100%;
     max-width: 1230px;
     margin: 0 auto;
-    padding: 60px;
+    padding: 32px 60px 42px;
+    box-sizing: border-box;
 }
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /*excluir funcionarios*/

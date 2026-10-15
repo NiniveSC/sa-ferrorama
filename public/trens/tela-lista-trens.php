@@ -132,22 +132,22 @@ if (!$resultado) {
                     </td>
 
                     <td>
-                        <div class="d-flex flex-wrap gap-2 justify-content-center">
+                        <div class="acao-tabela">
                             <a href="visualizar-trens.php?id_trem=<?php echo $trem['id_trem']; ?>"
-                                class="btn btn-sm px-3 text-white fw-semibold"
-                                style="background: #2f6fe5; border: none; border-radius: 8px; min-width: 94px; box-shadow: 0 3px 8px rgba(47, 111, 229, 0.18);">
+                                class="btn btn-sm px-3 text-white fw-semibold btn-acao"
+                                style="background: #2f6fe5; border: none; border-radius: 8px; box-shadow: 0 3px 8px rgba(47, 111, 229, 0.18);">
                                 Visualizar
                             </a>
 
                             <a href="editar-trens.php?id_trem=<?php echo $trem['id_trem']; ?>"
-                                class="btn btn-sm px-3 text-white fw-semibold"
-                                style="background: #2D3250; border: none; border-radius: 8px; min-width: 78px; box-shadow: 0 3px 8px rgba(45, 50, 80, 0.18);">
+                                class="btn btn-sm px-3 text-white fw-semibold btn-acao"
+                                style="background: #2D3250; border: none; border-radius: 8px; box-shadow: 0 3px 8px rgba(45, 50, 80, 0.18);">
                                 Editar
                             </a>
 
                             <a href="excluir-trens.php?id_trem=<?php echo $trem['id_trem']; ?>"
-                                class="btn btn-sm px-3 text-white fw-semibold"
-                                style="background: #d93a3a; border: none; border-radius: 8px; min-width: 78px; box-shadow: 0 3px 8px rgba(217, 58, 58, 0.18);">
+                                class="btn btn-sm px-3 text-white fw-semibold btn-acao"
+                                style="background: #d93a3a; border: none; border-radius: 8px; box-shadow: 0 3px 8px rgba(217, 58, 58, 0.18);">
                                 Excluir
                             </a>
                         </div>

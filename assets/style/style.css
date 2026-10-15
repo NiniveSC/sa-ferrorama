@@ -394,12 +394,56 @@ td {
     /* A mesma cor de linha que você está usando */
     padding: 14px 16px;
     text-align: left;
+    white-space: nowrap;
+}
+
+.btn-acao {
+    white-space: nowrap;
+    min-width: 72px;
+    padding: 6px 10px;
+    font-size: 0.78rem;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.acao-tabela {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 182px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2px 0;
+}
+
+.acao-tabela .btn-acao {
+    width: calc(50% - 3px);
+    min-width: 0;
+    margin: 0;
+    padding: 6px 8px;
+    font-size: 0.8rem;
+}
+
+.acao-tabela .btn-acao:last-child {
+    width: 100%;
+    display: block;
 }
 
 /* IMPORTANTE: Remove a linha vertical da última coluna (Ações) */
 th:last-child,
 td:last-child {
     border-right: none;
+}
+
+.borda-tabela th:last-child,
+.borda-tabela td:last-child {
+    width: 280px;
+    min-width: 280px;
+    max-width: 280px;
+    white-space: nowrap;
 }
 
 th {

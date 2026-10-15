@@ -77,21 +77,22 @@ if (!$resultado) {
         <div class="container-branco">
 
             <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="m-0">Lista de trens Cadastrados</h1>
+                <h1 class="m-0 fw-bold" style="color: #2d3250;">Trens cadastrados</h1>
 
-            <a href="cadastrar-trens.php"
-                class="btn-novo-funcionario"
-                style="background-color: #2D3250 !important;
-                       color: white !important;
-                       font-weight: bold !important;
-                       text-decoration: none !important;
-                       padding: 10px 20px;
-                       border-radius: 8px;
-                       border: 1px solid #2D3250;
-                       display: inline-block;">
-                + Novo Trem
-            </a>
-        </div>
+                <a href="cadastrar-trens.php"
+                    class="btn-novo-funcionario"
+                    style="background: linear-gradient(135deg, #2D3250, #404a79) !important;
+                           color: white !important;
+                           font-weight: 600 !important;
+                           text-decoration: none !important;
+                           padding: 11px 20px;
+                           border-radius: 10px;
+                           border: none;
+                           display: inline-block;
+                           box-shadow: 0 4px 10px rgba(45, 50, 80, 0.18);">
+                    + Novo trem
+                </a>
+            </div>
 
             <div class="borda-tabela">
                 <table class="table table-bordered">
@@ -131,19 +132,25 @@ if (!$resultado) {
                     </td>
 
                     <td>
-                        <a href="editar-trens.php?id_trem=<?php echo $trem['id_trem']; ?>"
-                            class="btn btn-primary"
-                            style="background-color: #2D3250 !important;">
-                            Editar
-                        </a>
+                        <div class="d-flex flex-wrap gap-2 justify-content-center">
+                            <a href="visualizar-trens.php?id_trem=<?php echo $trem['id_trem']; ?>"
+                                class="btn btn-sm px-3 text-white fw-semibold"
+                                style="background: #2f6fe5; border: none; border-radius: 8px; min-width: 94px; box-shadow: 0 3px 8px rgba(47, 111, 229, 0.18);">
+                                Visualizar
+                            </a>
 
+                            <a href="editar-trens.php?id_trem=<?php echo $trem['id_trem']; ?>"
+                                class="btn btn-sm px-3 text-white fw-semibold"
+                                style="background: #2D3250; border: none; border-radius: 8px; min-width: 78px; box-shadow: 0 3px 8px rgba(45, 50, 80, 0.18);">
+                                Editar
+                            </a>
 
-                        <a href="excluir-trens.php?id_trem=<?php echo $trem['id_trem']; ?>"
-                            class="btn btn-danger"
-                            style="background-color: #df3535 !important;">
-
-                            Excluir
-                        </a>
+                            <a href="excluir-trens.php?id_trem=<?php echo $trem['id_trem']; ?>"
+                                class="btn btn-sm px-3 text-white fw-semibold"
+                                style="background: #d93a3a; border: none; border-radius: 8px; min-width: 78px; box-shadow: 0 3px 8px rgba(217, 58, 58, 0.18);">
+                                Excluir
+                            </a>
+                        </div>
                     </td>
             </tr>
             <?php } ?>

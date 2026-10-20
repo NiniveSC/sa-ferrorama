@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . "/../../infra/verifica_sessao.php";
+require_once __DIR__ . "/../../infra/permissoes.php";
 
 include "../../infra/conexao.php";
 
@@ -79,6 +80,7 @@ if (!$resultado) {
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h1 class="m-0 fw-bold" style="color: #2d3250;">Trens cadastrados</h1>
 
+                <?php if (ehAdministrador()) { ?>
                 <a href="cadastrar-trens.php"
                     class="btn-novo-funcionario"
                     style="background: linear-gradient(135deg, #2D3250, #404a79) !important;
@@ -92,6 +94,7 @@ if (!$resultado) {
                            box-shadow: 0 4px 10px rgba(45, 50, 80, 0.18);">
                     + Novo trem
                 </a>
+                <?php } ?>
             </div>
 
             <div class="borda-tabela">
@@ -103,7 +106,9 @@ if (!$resultado) {
                             <th>Status</th>
                             <th>Tipo</th>
                             <th>Responsável</th>
+                            <?php if (ehAdministrador()) { ?>
                             <th>Ações</th>
+                            <?php } ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -131,6 +136,7 @@ if (!$resultado) {
                         <?php echo htmlspecialchars($trem['responsavel'] ?? 'Não informado'); ?>
                     </td>
 
+                    <?php if (ehAdministrador()) { ?>
                     <td class="text-center align-middle">
                         <div class="acao-tabela d-flex flex-wrap justify-content-center align-items-center gap-2 mx-auto" style="max-width: 200px;">
                             <a href="visualizar-trens.php?id_trem=<?php echo $trem['id_trem']; ?>"
@@ -152,6 +158,7 @@ if (!$resultado) {
                             </a>
                         </div>
                     </td>
+                    <?php } ?>
             </tr>
             <?php } ?>
         </tbody>

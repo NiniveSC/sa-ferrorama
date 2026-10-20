@@ -14,16 +14,28 @@ include "../../infra/conexao.php";
 if (isset($_POST['cadastrar'])) {
 
     $nome = $_POST["nome_cadastro"];
-    $cargo = $_POST["cargo"];
+    $cargo = trim($_POST["cargo"] ?? "");
     $cpf = $_POST["cpf_cadastro"];
     $telefone = $_POST["telefone_cadastro"];
     $email = $_POST["email_cadastro"];
     $senha = $_POST["senha_cadastro"];
 
-    if ($cargo == "Administrador") {
+    if (strcasecmp($cargo, "Administrador") === 0) {
         $id_perfil = 1;
     } else {
         $id_perfil = 2;
+    }
+
+    $perfilExiste = $conexao->prepare("SELECT id_perfil FROM Perfil WHERE id_perfil = ?");
+    $perfilExiste->bind_param("i", $id_perfil);
+    $perfilExiste->execute();
+    $perfilExiste->store_result();
+
+    if ($perfilExiste->num_rows === 0) {
+        $cargoPerfil = $id_perfil === 1 ? "Administrador" : "Funcionário";
+        $perfilInsert = $conexao->prepare("INSERT INTO Perfil (id_perfil, cargo) VALUES (?, ?)");
+        $perfilInsert->bind_param("is", $id_perfil, $cargoPerfil);
+        $perfilInsert->execute();
     }
 
     $senha = password_hash($senha, PASSWORD_DEFAULT);
@@ -34,7 +46,10 @@ if (isset($_POST['cadastrar'])) {
 
     $stmt = $conexao->prepare($sql);
     $stmt->bind_param("sssssi", $nome, $email, $telefone, $cpf, $senha, $id_perfil);
-    $stmt->execute();
+
+    if (!$stmt->execute()) {
+        die("Erro ao cadastrar funcionário: " . $stmt->error);
+    }
 
     header("Location: funcionarios-cadastrados.php");
     exit();

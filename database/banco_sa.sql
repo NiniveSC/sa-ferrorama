@@ -12,7 +12,8 @@ CREATE TABLE Perfil (
 INSERT INTO Perfil (id_perfil, cargo)
 VALUES
 (1, 'Administrador'),
-(2, 'Funcionário');
+(2, 'Funcionário')
+ON DUPLICATE KEY UPDATE cargo = VALUES(cargo);
 
 
 CREATE TABLE Pessoa (

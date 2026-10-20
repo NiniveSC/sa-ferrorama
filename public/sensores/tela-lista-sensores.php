@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . "/../../infra/verifica_sessao.php";
+require_once __DIR__ . "/../../infra/permissoes.php";
 
 include "../../infra/conexao.php";
 
@@ -76,6 +77,7 @@ if (!$resultado) {
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h1 class="m-0 fw-bold" style="color: #2d3250;">Sensores cadastrados</h1>
 
+                <?php if (ehAdministrador()) { ?>
                 <a href="cadastro-sensores.php"
                     class="btn-novo-funcionario"
                     style="background: linear-gradient(135deg, #2D3250, #404a79) !important;
@@ -89,6 +91,7 @@ if (!$resultado) {
                            box-shadow: 0 4px 10px rgba(45, 50, 80, 0.18);">
                     + Novo sensor
                 </a>
+                <?php } ?>
             </div>
 
             <div class="borda-tabela">
@@ -99,7 +102,9 @@ if (!$resultado) {
                             <th>Localização</th>
                             <th>Status</th>
                             <th>Tipo</th>
+                            <?php if (ehAdministrador()) { ?>
                             <th>Ações</th>
+                            <?php } ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -123,6 +128,7 @@ if (!$resultado) {
                         <?php echo htmlspecialchars($sensor['tipo_sensor']); ?>
                     </td>
 
+                    <?php if (ehAdministrador()) { ?>
                     <td>
                         <div class="d-flex flex-wrap gap-2 justify-content-center">
                             <a href="editar-sensores.php?id_sensor=<?php echo $sensor['id_sensor']; ?>"
@@ -138,6 +144,7 @@ if (!$resultado) {
                             </a>
                         </div>
                     </td>
+                    <?php } ?>
             </tr>
             <?php } ?>
         </tbody>

@@ -79,8 +79,6 @@ $resultado = mysqli_query($conexao, $sql);
         <div class="titulo-funcionarios">
             <h1>Lista de Funcionários Cadastrados</h1>
 
- <?php if (ehAdministrador()) { ?>
-
     <a href="tela-cadastro-user.php"
        class="btn-novo-funcionario"
        style="background-color: #2D3250 !important;
@@ -93,8 +91,6 @@ $resultado = mysqli_query($conexao, $sql);
               display: inline-block;">
         + Novo funcionário
     </a>
-
-<?php } ?>
         </div>
 
             <div class="borda-tabela">
@@ -105,7 +101,9 @@ $resultado = mysqli_query($conexao, $sql);
                             <th>Email</th>
                             <th>Telefone</th>
                             <th>Cargo</th>
+                            <?php if (ehAdministrador()) { ?>
                             <th>Ações</th>
+                            <?php } ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -129,23 +127,19 @@ $resultado = mysqli_query($conexao, $sql);
                 <?php echo htmlspecialchars($funcionario["cargo"]); ?>
             </td>
 
+            <?php if (ehAdministrador()) { ?>
            <td>
+                <a href="editar-funcionarios.php?id=<?php echo $funcionario["id_administrador"]; ?>"
+                    class="btn btn-primary">
+                    Editar
+                </a>
 
-    <?php if (ehAdministrador()) { ?>
-
-        <a href="editar-funcionarios.php?id=<?php echo $funcionario["id_administrador"]; ?>"
-            class="btn btn-primary">
-            Editar
-        </a>
-
-        <a href="excluir-funcionarios.php?id=<?php echo $funcionario["id_administrador"]; ?>"
-            class="btn btn-danger">
-            Excluir
-        </a>
-
-    <?php } ?>
-
-</td>
+                <a href="excluir-funcionarios.php?id=<?php echo $funcionario["id_administrador"]; ?>"
+                    class="btn btn-danger">
+                    Excluir
+                </a>
+            </td>
+            <?php } ?>
         </tr>
 
     <?php } ?>

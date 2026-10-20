@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . "/../../infra/verifica_sessao.php";
+require_once __DIR__ . "/../../infra/permissoes.php";
 
 include "../../infra/conexao.php";
 
@@ -76,6 +77,7 @@ if (!$resultado) {
             <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="m-0">Lista de Rotas Cadastradas</h1>
 
+            <?php if (ehAdministrador()) { ?>
             <a href="cadastrar-rotas.php"
                 class="btn-novo-funcionario"
                 style="background-color: #2D3250 !important;
@@ -88,6 +90,7 @@ if (!$resultado) {
                        display: inline-block;">
                 + Nova rota
             </a>
+            <?php } ?>
         </div>
 
             <div class="borda-tabela">
@@ -98,7 +101,9 @@ if (!$resultado) {
                             <th>Nome da Rota</th>
                             <th>Distância (km)</th>
                             <th>Duração</th>
+                            <?php if (ehAdministrador()) { ?>
                             <th>Ações</th>
+                            <?php } ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -122,6 +127,7 @@ if (!$resultado) {
                         <?php echo htmlspecialchars($rota['duracao_estimada']); ?>
                     </td>
 
+                    <?php if (ehAdministrador()) { ?>
                     <td>
                         <a href="editar-rotas.php?id_rota=<?php echo $rota['id_rota']; ?>"
                             class="btn btn-primary"
@@ -137,6 +143,7 @@ if (!$resultado) {
                             Excluir
                         </a>
                     </td>
+                    <?php } ?>
             </tr>
             <?php } ?>
         </tbody>

@@ -87,19 +87,19 @@ require_once __DIR__ . "/../../infra/permissoes.php";
                     </button>
                 </div>
             </div> </div> <div class="botoes-home d-flex justify-content-center flex-wrap">
-            <button type="button" id="buttonFuncionarios" class="btn card-botao funcionarios">
+            <button type="button" id="buttonFuncionarios" class="btn card-botao funcionarios" data-target="../funcionarios/funcionarios-cadastrados.php">
                 <img src="../../assets/img/tela-home/funcionarios.png" alt="Funcionários">
             </button>
-            <button type="button" class="btn card-botao btn-outline-sensores">
+            <button type="button" id="buttonSensores" class="btn card-botao btn-outline-sensores" data-target="../sensores/tela-lista-sensores.php">
                 <img src="../../assets/img/tela-home/sensores.png" alt="Sensores">
             </button>
-            <button type="button" class="btn card-botao btn-outline-rotas">
+            <button type="button" id="buttonRotas" class="btn card-botao btn-outline-rotas" data-target="../rotas/tela-lista-rotas.php">
                 <img src="../../assets/img/tela-home/rotas.png" alt="Rotas">
             </button>
-            <button type="button" class="btn card-botao btn-outline-trens">
+            <button type="button" id="buttonTrens" class="btn card-botao btn-outline-trens" data-target="../trens/tela-lista-trens.php">
                 <img src="../../assets/img/tela-home/trens.png" alt="Trens">
             </button>
-            <button type="button" class="btn card-botao btn-outline-relatorios">
+            <button type="button" id="buttonRelatorios" class="btn card-botao btn-outline-relatorios" data-target="../relatorios/tela-relatorios.php">
                 <img src="../../assets/img/tela-home/relatorios.png" alt="Relatórios">
             </button>
         </div>
@@ -109,6 +109,7 @@ require_once __DIR__ . "/../../infra/permissoes.php";
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
                 crossorigin="anonymous"></script>
+            <script src="../../script/tela-geral-home.js"></script>
 
 </body>
 

@@ -172,17 +172,6 @@ $resultado_trens = mysqli_query($conexao, $sql_trens);
         </div>
     </div>
 
-    <div class="botoes-container">
-        <button type="button" id="btn-rota-voltar" class="btn"
-            onclick="window.location.href='tela-lista-rotas.php'">
-            Voltar
-        </button>
-
-       <a href="editar-rotas.php?id_rota=<?= $rota['id_rota'] ?>"
-    class="btn btn-primary">Editar</a>
-    </div>
-
-</form>
 
                                             <div class="botoes-container">
                                                 <button type="button" id="btn-rota-voltar" class="btn d-flex align-items-center justify-content-center gap-2" onclick="window.location.href='tela-lista-rotas.php'">
@@ -191,7 +180,7 @@ $resultado_trens = mysqli_query($conexao, $sql_trens);
                                                     </svg>
                                                     Voltar
                                                 </button>
-                                                <button type="submit" id="btn-rota-editar" class="btn">
+                                                <button type="submit" name="editar" id="btn-rota-editar" class="btn">
                                                     Editar
                                                 </button>
                                             </div>
@@ -216,7 +205,7 @@ $resultado_trens = mysqli_query($conexao, $sql_trens);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
-    <script src="../script/tela-editar-rotas.js"></script>
+
 </body>
 
 </html>

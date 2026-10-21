@@ -9,6 +9,42 @@ if (!ehAdministrador()) {
 }
 
 require '../../infra/conexao.php';
+
+$id = isset($_GET["id_rota"]) ? (int) $_GET["id_rota"] : 0;
+
+$sql = "SELECT * FROM Rota WHERE id_rota = $id";
+$resultado = mysqli_query($conexao, $sql);
+$rota = mysqli_fetch_assoc($resultado);
+
+if (!$rota) {
+    header("Location: tela-lista-rotas.php");
+    exit;
+}
+
+if (isset($_POST["editar"])) {
+    $nome = $_POST["nome_rota"];
+    $descricao = $_POST["descricao_rota"];
+    $distancia = (float) $_POST["distancia_km"];
+    $duracao = $_POST["duracao_estimada"];
+    $id_trem = (int) $_POST["id_trem"];
+
+    $sql = "UPDATE Rota SET nome_rota = ?, descricao_rota = ?, distancia_km = ?, duracao_estimada = ?, id_trem = ? WHERE id_rota = ?";
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param("ssdsii", $nome, $descricao, $distancia, $duracao, $id_trem, $id);
+
+    if ($stmt->execute()) {
+        $stmt->close();
+        header("Location: tela-lista-rotas.php");
+        exit;
+    } else {
+        $mensagem_erro = "Erro ao editar a rota.";
+    }
+
+    $stmt->close();
+}
+
+$sql_trens = "SELECT id_trem, tipo_trem FROM Trem";
+$resultado_trens = mysqli_query($conexao, $sql_trens);
 ?>
 
 <!DOCTYPE html>
@@ -76,32 +112,66 @@ require '../../infra/conexao.php';
                             <h2 class="card-title fw-bold mb-4 text-start">Editar Rota</h2>
 
                             <div class="box-campos-rotas p-4 mx-auto">
-                                <form id="form-editar-rotas">
-                                    
-                                    <div class="row justify-content-center">
-                                        <div class="col-12 col-md-10">
-                                            <div class="row mb-3">
-                                                <div class="col-12 text-start">
-                                                    <label class="form-label fw-bold">ID da rota</label>
-                                                    <input type="text" id="id-rota" class="form-control" placeholder="ID da rota">
-                                                </div>
-                                            </div>
+                                <form id="form-editar-rotas" method="POST">
 
-                                            <div class="row mb-4">
-                                                <div class="col-12 col-md-6 text-start mb-3 mb-md-0">
-                                                    <label class="form-label fw-bold">Localização</label>
-                                                    <input type="text" id="localizacao-rota" class="form-control" placeholder="Localização">
-                                                </div>
-                                                <div class="col-12 col-md-6 text-start">
-                                                    <label class="form-label fw-bold">Status</label>
-                                                    <select id="status-rota" class="form-select">
-                                                        <option value="" selected disabled>Status</option>
-                                                        <option value="ativa">Ativa</option>
-                                                        <option value="inativa">Inativa</option>
-                                                        <option value="em_concerto">Em concerto</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+    <?php if (isset($mensagem_erro)) { ?>
+        <p class="text-danger"><?= $mensagem_erro ?></p>
+    <?php } ?>
+
+    <div class="row mb-3">
+        <div class="col-12 text-start">
+            <label class="form-label fw-bold">ID da rota</label>
+            <input type="text" class="form-control"
+                value="<?= $rota['id_rota'] ?>" readonly>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12 text-start">
+            <label class="form-label fw-bold">Nome da rota</label>
+            <input type="text" name="nome_rota" class="form-control"
+                value="<?= htmlspecialchars($rota['nome_rota']) ?>" required>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12 text-start">
+            <label class="form-label fw-bold">Descrição</label>
+            <textarea name="descricao_rota" class="form-control"><?= htmlspecialchars($rota['descricao_rota'] ?? '') ?></textarea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12 col-md-6 text-start">
+            <label class="form-label fw-bold">Distância (km)</label>
+            <input type="number" step="0.01" name="distancia_km"
+                class="form-control"
+                value="<?= $rota['distancia_km'] ?>" required>
+        </div>
+
+        <div class="col-12 col-md-6 text-start">
+            <label class="form-label fw-bold">Duração estimada</label>
+            <input type="text" name="duracao_estimada" class="form-control"
+                value="<?= htmlspecialchars($rota['duracao_estimada']) ?>" required>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12 text-start">
+            <label class="form-label fw-bold">Trem</label>
+            <select name="id_trem" class="form-select" required>
+                <option value="">Selecione um trem</option>
+
+                <?php while ($trem = mysqli_fetch_assoc($resultado_trens)) { ?>
+                    <option value="<?= $trem['id_trem'] ?>"
+                        <?= $trem['id_trem'] == $rota['id_trem'] ? 'selected' : '' ?>>
+                        <?= htmlspecialchars($trem['tipo_trem']) ?>
+                    </option>
+                <?php } ?>
+            </select>
+        </div>
+    </div>
+
 
                                             <div class="botoes-container">
                                                 <button type="button" id="btn-rota-voltar" class="btn d-flex align-items-center justify-content-center gap-2" onclick="window.location.href='tela-lista-rotas.php'">
@@ -110,7 +180,7 @@ require '../../infra/conexao.php';
                                                     </svg>
                                                     Voltar
                                                 </button>
-                                                <button type="submit" id="btn-rota-editar" class="btn">
+                                                <button type="submit" name="editar" id="btn-rota-editar" class="btn">
                                                     Editar
                                                 </button>
                                             </div>
@@ -135,7 +205,7 @@ require '../../infra/conexao.php';
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
-    <script src="../script/tela-editar-rotas.js"></script>
+
 </body>
 
 </html>

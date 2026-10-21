@@ -1,13 +1,16 @@
-CREATE DATABASE IF NOT EXISTS SA_Ferrorama;
+CREATE DATABASE IF NOT EXISTS SA_Ferrorama
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_general_ci;
 
 USE SA_Ferrorama;
 
+ALTER DATABASE SA_Ferrorama CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 CREATE TABLE Perfil (
     id_perfil INT NOT NULL,
-    cargo VARCHAR(45) NOT NULL,
+    cargo VARCHAR(45) CHARACTER SET utf8mb4 NOT NULL,
     PRIMARY KEY (id_perfil)
-);
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 INSERT INTO Perfil (id_perfil, cargo)
 VALUES
@@ -138,10 +141,16 @@ INSERT INTO Pessoa (
     id_perfil
 ) VALUES (
     1,
-    'admin',
+    'Admin Master',
     'admin@admin.com',
-    '(11) 99999-9999',
-    '123.456.789-00',
-    'admin123',
+    '11999999999',
+    '11144477735',
+    '$2y$10$CiPVNSPe36qckZruGmaNWeGwGwdHAm13AFynFMrwJEsDXjgqqj.FS',
     1
-);
+) ON DUPLICATE KEY UPDATE
+    nome_cadastro = VALUES(nome_cadastro),
+    email_cadastro = VALUES(email_cadastro),
+    telefone_cadastro = VALUES(telefone_cadastro),
+    cpf_cadastro = VALUES(cpf_cadastro),
+    senha_cadastro = VALUES(senha_cadastro),
+    id_perfil = VALUES(id_perfil);

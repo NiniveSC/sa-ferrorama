@@ -124,8 +124,6 @@ CREATE TABLE Falha (
     REFERENCES Sensor(id_sensor)
 );
 
-INSERT INTO Perfil (id_perfil, cargo) VALUES (1, 'Administrador');
-
 INSERT INTO Pessoa (
     id_administrador,
     nome_cadastro,

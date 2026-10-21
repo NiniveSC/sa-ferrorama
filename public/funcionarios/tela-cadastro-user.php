@@ -11,48 +11,94 @@ if (!ehAdministrador()) {
 
 include "../../infra/conexao.php";
 
+function cpfValido($cpf)
+{
+    $cpf = preg_replace('/\D/', '', (string) $cpf);
+
+    if (strlen($cpf) !== 11 || preg_match('/^(\d)\1+$/', $cpf)) {
+        return false;
+    }
+
+    $soma = 0;
+    for ($i = 0; $i < 9; $i++) {
+        $soma += (int) $cpf[$i] * (10 - $i);
+    }
+
+    $digito1 = $soma % 11;
+    $digito1 = $digito1 < 2 ? 0 : 11 - $digito1;
+
+    $soma = 0;
+    for ($i = 0; $i < 10; $i++) {
+        $soma += (int) $cpf[$i] * (11 - $i);
+    }
+
+    $digito2 = $soma % 11;
+    $digito2 = $digito2 < 2 ? 0 : 11 - $digito2;
+
+    return (int) $cpf[9] === $digito1 && (int) $cpf[10] === $digito2;
+}
+
+$erro = "";
+
 if (isset($_POST['cadastrar'])) {
 
-    $nome = $_POST["nome_cadastro"];
+    $nome = trim($_POST["nome_cadastro"] ?? "");
     $cargo = trim($_POST["cargo"] ?? "");
-    $cpf = $_POST["cpf_cadastro"];
-    $telefone = $_POST["telefone_cadastro"];
-    $email = $_POST["email_cadastro"];
-    $senha = $_POST["senha_cadastro"];
+    $cpf = preg_replace('/\D/', '', (string) ($_POST["cpf_cadastro"] ?? ""));
+    $telefone = preg_replace('/\D/', '', (string) ($_POST["telefone_cadastro"] ?? ""));
+    $email = strtolower(trim($_POST["email_cadastro"] ?? ""));
+    $senha = $_POST["senha_cadastro"] ?? "";
 
-    if (strcasecmp($cargo, "Administrador") === 0) {
-        $id_perfil = 1;
+    if ($email === "" || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $erro = "E-mail inválido.";
+    } elseif (!cpfValido($cpf)) {
+        $erro = "CPF inválido.";
+    } elseif (strlen($telefone) < 10 || strlen($telefone) > 11) {
+        $erro = "Telefone inválido.";
     } else {
-        $id_perfil = 2;
+        $stmtDuplicidade = $conexao->prepare("SELECT id_administrador FROM Pessoa WHERE email_cadastro = ? OR cpf_cadastro = ? OR telefone_cadastro = ?");
+        $stmtDuplicidade->bind_param("sss", $email, $cpf, $telefone);
+        $stmtDuplicidade->execute();
+        $resultadoDuplicidade = $stmtDuplicidade->get_result();
+
+        if ($resultadoDuplicidade->num_rows > 0) {
+            $erro = "Já existe um usuário com este e-mail, CPF ou telefone.";
+        } else {
+            if (strcasecmp($cargo, "Administrador") === 0) {
+                $id_perfil = 1;
+            } else {
+                $id_perfil = 2;
+            }
+
+            $perfilExiste = $conexao->prepare("SELECT id_perfil FROM Perfil WHERE id_perfil = ?");
+            $perfilExiste->bind_param("i", $id_perfil);
+            $perfilExiste->execute();
+            $perfilExiste->store_result();
+
+            if ($perfilExiste->num_rows === 0) {
+                $cargoPerfil = $id_perfil === 1 ? "Administrador" : "Funcionário";
+                $perfilInsert = $conexao->prepare("INSERT INTO Perfil (id_perfil, cargo) VALUES (?, ?)");
+                $perfilInsert->bind_param("is", $id_perfil, $cargoPerfil);
+                $perfilInsert->execute();
+            }
+
+            $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+
+            $sql = "INSERT INTO Pessoa
+            (nome_cadastro, email_cadastro, telefone_cadastro, cpf_cadastro, senha_cadastro, id_perfil)
+            VALUES (?, ?, ?, ?, ?, ?)";
+
+            $stmt = $conexao->prepare($sql);
+            $stmt->bind_param("sssssi", $nome, $email, $telefone, $cpf, $senhaHash, $id_perfil);
+
+            if (!$stmt->execute()) {
+                die("Erro ao cadastrar funcionário: " . $stmt->error);
+            }
+
+            header("Location: funcionarios-cadastrados.php");
+            exit();
+        }
     }
-
-    $perfilExiste = $conexao->prepare("SELECT id_perfil FROM Perfil WHERE id_perfil = ?");
-    $perfilExiste->bind_param("i", $id_perfil);
-    $perfilExiste->execute();
-    $perfilExiste->store_result();
-
-    if ($perfilExiste->num_rows === 0) {
-        $cargoPerfil = $id_perfil === 1 ? "Administrador" : "Funcionário";
-        $perfilInsert = $conexao->prepare("INSERT INTO Perfil (id_perfil, cargo) VALUES (?, ?)");
-        $perfilInsert->bind_param("is", $id_perfil, $cargoPerfil);
-        $perfilInsert->execute();
-    }
-
-    $senha = password_hash($senha, PASSWORD_DEFAULT);
-
-    $sql = "INSERT INTO Pessoa
-    (nome_cadastro, email_cadastro, telefone_cadastro, cpf_cadastro, senha_cadastro, id_perfil)
-    VALUES (?, ?, ?, ?, ?, ?)";
-
-    $stmt = $conexao->prepare($sql);
-    $stmt->bind_param("sssssi", $nome, $email, $telefone, $cpf, $senha, $id_perfil);
-
-    if (!$stmt->execute()) {
-        die("Erro ao cadastrar funcionário: " . $stmt->error);
-    }
-
-    header("Location: funcionarios-cadastrados.php");
-    exit();
 }
 ?>
 
@@ -121,6 +167,12 @@ if (isset($_POST['cadastrar'])) {
 
                         <h2 class="card-title text-center fw-bold mb-2">Cadastrar novo funcionário</h2>
                         <p class="text-center text-muted mb-5">Preencha os dados abaixo para cadastrar um novo funcionário.</p>
+
+                        <?php if (!empty($erro)): ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?= htmlspecialchars($erro) ?>
+                            </div>
+                        <?php endif; ?>
 
                         <form id="form-cadastro-funcionario" method="POST">
                             <div class="row mb-3">

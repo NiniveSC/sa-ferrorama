@@ -28,7 +28,11 @@ CREATE TABLE Pessoa (
     PRIMARY KEY (id_administrador),
 
     FOREIGN KEY (id_perfil)
-    REFERENCES Perfil(id_perfil)
+    REFERENCES Perfil(id_perfil),
+
+    UNIQUE (email_cadastro),
+    UNIQUE (cpf_cadastro),
+    UNIQUE (telefone_cadastro)
 );
 
 

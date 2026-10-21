@@ -60,7 +60,7 @@ $resultado = mysqli_query($conexao, $sql);
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            NomeAdmin
+                            <?= htmlspecialchars($_SESSION["nome"] ?? "Usuário") ?>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="../login/logout.php">Sair</a></li>

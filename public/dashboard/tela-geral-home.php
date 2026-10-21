@@ -48,7 +48,7 @@ require_once __DIR__ . "/../../infra/permissoes.php";
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            NomeAdmin
+                            <?= htmlspecialchars($_SESSION["nome"] ?? "Usuário") ?>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="../login/logout.php">Sair</a></li>
@@ -64,7 +64,7 @@ require_once __DIR__ . "/../../infra/permissoes.php";
         <div class="row align-items-center seção-topo">
 
             <div class="col-md-5 bloco-boas-vindas">
-                <h1 class="boas-vindas">Olá, NomeAdmin!</h1>
+                <h1 class="boas-vindas">Olá, <?= htmlspecialchars($_SESSION["nome"] ?? "Usuário") ?>!</h1>
                 <p class="texto-home">O que deseja fazer hoje?</p>
                 <div class="linha-decorativa"></div>
             </div> <div class="col-md-7">

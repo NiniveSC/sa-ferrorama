@@ -1,16 +1,17 @@
 <?php
 session_start();
-require_once __DIR__ . "/../../infra/verifica_sessao.php";
-require_once __DIR__ . "/../../infra/permissoes.php";
+require_once __DIR__ . "/../../infra/verifica_sessao.php"; 
+require_once __DIR__ . "/../../infra/permissoes.php"; 
+// -> Parte que fica responsavel por verificar se o usuário é um administrador ou nao e caso ele não seja, será redirecionado para o dashboard.
 
 if (!ehAdministrador()) {
     header("Location: ../dashboard/tela-geral-home.php");
     exit;
-}
+}// -> Caso seja um administrador, ele pode acessar a página de cadastro de rotas e se nao for ele é jogado para o dashboard
 
-require '../../infra/conexao.php';
+require '../../infra/conexao.php'; // -> conecta com o banco de dados
 
-$mensagem_erro = "";
+$mensagem_erro = ""; //->
 
 
 $sql_trens = "SELECT id_trem, tipo_trem FROM Trem ORDER BY id_trem ASC";

@@ -19,5 +19,5 @@ if (ini_get("session.use_cookies")) {
 session_unset();
 session_destroy();
 
-header("Location: /maria_2026/sa-ferrorama/public/login/tela-login.php");
+header("Location: tela-login.php");
 exit;

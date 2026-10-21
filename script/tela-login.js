@@ -1,124 +1,103 @@
-let esqueceuASenha = false;
 
-localStorage.setItem("admin@teste.com", "Admin12$");
+let esqueceuASenha = modoInicial;
 
-document.getElementById("toggle").onclick = () => {
+const form = document.getElementById("form-login");
+const titulo = document.getElementById("titulo");
+const botao = document.getElementById("botao-envio");
+const toggle = document.getElementById("toggle");
+const campoSenha = document.getElementById("c-senha");
+const mensagem = document.getElementById("mensagem");
 
-    esqueceuASenha = !esqueceuASenha;
-
-    let titulo = document.getElementById("titulo");
-    let botao = document.getElementById("botao-envio");
-    let toggle = document.getElementById("toggle");
-    let campoSenha = document.getElementById("c-senha");
-
-    // LIMPA mensagens
-    document.getElementById("mensagem").innerHTML = "";
+function mostrarModo(limparMensagem = true) {
+    if (limparMensagem) {
+        mensagem.innerHTML = "";
+    }
 
     if (esqueceuASenha) {
-
         titulo.innerText = "Altere sua senha";
         botao.innerText = "Alterar senha";
-        toggle.innerHTML = "<p>Voltar ao login</p>";
+        botao.name = "alterar_senha";
+        toggle.innerText = "Voltar ao login";
 
-        // cria campo confirmar senha
+        campoSenha.querySelector("label").innerText = "Nova senha:";
+        document.getElementById("senha").placeholder = "Nova senha";
+
         if (!document.getElementById("confirmar-container")) {
-
             let novaDiv = document.createElement("div");
 
-            novaDiv.classList.add("conjunto");
+            novaDiv.className = "conjunto";
             novaDiv.id = "confirmar-container";
 
             novaDiv.innerHTML = `
-                <label for="confirmar-senha">Confirmar senha:</label>
-                <input 
-                    type="password" 
-                    id="confirmar-senha" 
+                <label for="confirmar_senha">Confirmar senha:</label>
+                <input type="password"
+                    id="confirmar_senha"
+                    name="confirmar_senha"
                     placeholder="Confirme a nova senha"
-                    required
-                >
+                    required>
             `;
 
             campoSenha.after(novaDiv);
         }
-
     } else {
-
-        titulo.innerText = "Seja Bem vindo!";
+        titulo.innerText = "Seja Bem-vindo!";
         botao.innerText = "Entrar";
-        toggle.innerHTML = "<p>Esqueceu a senha?</p>";
+        botao.name = "entrar";
+        toggle.innerText = "Esqueceu a senha?";
 
-        // remove campo confirmar senha
+        campoSenha.querySelector("label").innerText = "Senha:";
+        document.getElementById("senha").placeholder = "Senha";
+
         let confirmar = document.getElementById("confirmar-container");
 
         if (confirmar) {
             confirmar.remove();
         }
     }
-};
 
-document.getElementById("form-login").onsubmit = (e) => {
+    document.getElementById("senha").value = "";
+}
 
-    e.preventDefault();
+toggle.addEventListener("click", function () {
+    esqueceuASenha = !esqueceuASenha;
+    mostrarModo();
+});
 
-    let email = document.getElementById("email").value;
-    let senha = document.getElementById("senha").value;
-    let mensagem = document.getElementById("mensagem");
-
+form.addEventListener("submit", function (e) {
     mensagem.innerHTML = "";
 
-    // valida email
-    if (!email.includes("@") || !email.includes(".")) {
+    let email = document.getElementById("email").value.trim();
+    let senha = document.getElementById("senha").value;
 
-        mensagem.innerHTML = `
-            <div class='erro'>
-                <p>Dados inválidos!</p>
-            </div>
-        `;
-
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        e.preventDefault();
+        mensagem.innerHTML =
+            "<p class='erro'>Digite um email válido.</p>";
         return;
     }
 
-    // valida senha
-    if (
-        senha.length < 8 || !/[A-Z]/.test(senha) || !/[0-9]/.test(senha) || !/[!@#$%^&*(),.?":{}|<>]/.test(senha)
-    ) {
-        mensagem.innerHTML = `
-            <div class='erro'>
-                <p>Dados inválidos!</p>
-            </div>
-        `;
-
-        return;
-    }
-
-    // valida confirmação
     if (esqueceuASenha) {
-        let confirmarSenha =
-            document.getElementById("confirmar-senha").value;
+        let confirmar = document.getElementById("confirmar_senha").value;
 
-        if (senha !== confirmarSenha) {
-            mensagem.innerHTML = `
-                <div class='erro'>
-                    <p>As senhas não coincidem!</p>
-                </div>
-            `;
+        if (
+            senha.length < 8 ||
+            !/[A-Z]/.test(senha) ||
+            !/[0-9]/.test(senha) ||
+            !/[!@#$%^&*(),.?":{}|<>]/.test(senha)
+        ) {
+            e.preventDefault();
+            mensagem.innerHTML =
+                "<p class='erro'>Use 8 caracteres, letra maiúscula, número e símbolo.</p>";
+            return;
+        }
 
+        if (senha !== confirmar) {
+            e.preventDefault();
+            mensagem.innerHTML =
+                "<p class='erro'>As senhas não coincidem!</p>";
             return;
         }
     }
+});
 
-    mensagem.innerHTML = `
-        <div class='sucesso'>
-            <p>Operação realizada com sucesso!</p>
-        </div>
-    `;
-
-    if (!esqueceuASenha) {
-
-    setTimeout(() => {
-        window.location.href = "../public/dashboard/tela-geral-home.php";
-    }, 1000);
-
-}
-    document.getElementById("form-login").reset();
-};
+mostrarModo(false);

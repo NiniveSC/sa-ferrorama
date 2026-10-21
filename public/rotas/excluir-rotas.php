@@ -12,14 +12,14 @@ if (!ehAdministrador()) {
 
 include "../../infra/conexao.php";
 
-if (!isset($_GET["id"]) || !is_numeric($_GET["id"])) {
+if (!isset($_GET["id_rota"]) || !is_numeric($_GET["id_rota"])) {
     header("Location: tela-lista-rotas.php");
     exit;
 }
 
-$id = (int) $_GET["id"];
+$id = (int) $_GET["id_rota"];
 
-$sql = "SELECT * FROM Rotas WHERE id_rota = ?";
+$sql = "SELECT * FROM Rota WHERE id_rota = ?";
 $stmt = $conexao->prepare($sql);
 $stmt->bind_param("i", $id);
 $stmt->execute();
@@ -133,18 +133,18 @@ if (isset($_POST["excluir"])) {
                                 </div>
 
                                 <div class="d-flex mb-3">
-                                    <span class="label-funcionario">Localização</span>
-                                    <span class="valor-funcionario">
-                                        <?php echo htmlspecialchars($rota["localizacao_rota"]); ?>
-                                    </span>
-                                </div>
+    <span class="label-funcionario">Distância</span>
+    <span class="valor-funcionario">
+        <?php echo htmlspecialchars($rota["distancia_km"]); ?> km
+    </span>
+</div>
 
-                                <div class="d-flex">
-                                    <span class="label-funcionario">Status</span>
-                                    <span class="valor-funcionario">
-                                        <?php echo htmlspecialchars($rota["status_rota"]); ?>
-                                    </span>
-                                </div>
+<div class="d-flex">
+    <span class="label-funcionario">Duração</span>
+    <span class="valor-funcionario">
+        <?php echo htmlspecialchars($rota["duracao_estimada"]); ?>
+    </span>
+</div>
 
                             </div>
 

@@ -102,9 +102,7 @@ if (!$resultado) {
                             <th>Localização</th>
                             <th>Status</th>
                             <th>Tipo</th>
-                            <?php if (ehAdministrador()) { ?>
                             <th>Ações</th>
-                            <?php } ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -128,9 +126,15 @@ if (!$resultado) {
                         <?php echo htmlspecialchars($sensor['tipo_sensor']); ?>
                     </td>
 
-                    <?php if (ehAdministrador()) { ?>
                     <td>
                         <div class="d-flex flex-wrap gap-2 justify-content-center">
+                            <a href="visualizar-sensores.php?id_sensor=<?php echo $sensor['id_sensor']; ?>"
+                                class="btn btn-sm px-3 text-white fw-semibold"
+                                style="background: #2D3250; border: none; border-radius: 8px; min-width: 90px; box-shadow: 0 3px 8px rgba(45, 50, 80, 0.18);">
+                                Visualizar
+                            </a>
+
+                            <?php if (ehAdministrador()) { ?>
                             <a href="editar-sensores.php?id_sensor=<?php echo $sensor['id_sensor']; ?>"
                                 class="btn btn-sm px-3 text-white fw-semibold"
                                 style="background: #2D3250; border: none; border-radius: 8px; min-width: 78px; box-shadow: 0 3px 8px rgba(45, 50, 80, 0.18);">
@@ -142,9 +146,9 @@ if (!$resultado) {
                                 style="background: #d93a3a; border: none; border-radius: 8px; min-width: 78px; box-shadow: 0 3px 8px rgba(217, 58, 58, 0.18);">
                                 Excluir
                             </a>
+                            <?php } ?>
                         </div>
                     </td>
-                    <?php } ?>
             </tr>
             <?php } ?>
         </tbody>

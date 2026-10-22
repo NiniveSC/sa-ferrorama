@@ -106,9 +106,7 @@ if (!$resultado) {
                             <th>Status</th>
                             <th>Tipo</th>
                             <th>Responsável</th>
-                            <?php if (ehAdministrador()) { ?>
                             <th>Ações</th>
-                            <?php } ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -136,15 +134,15 @@ if (!$resultado) {
                         <?php echo htmlspecialchars($trem['responsavel'] ?? 'Não informado'); ?>
                     </td>
 
-                    <?php if (ehAdministrador()) { ?>
                     <td class="text-center align-middle">
-                        <div class="acao-tabela d-flex flex-wrap justify-content-center align-items-center gap-2 mx-auto" style="max-width: 200px;">
+                        <div class="acao-tabela d-flex flex-wrap justify-content-center align-items-center gap-2 mx-auto" style="max-width: 220px;">
                             <a href="visualizar-trens.php?id_trem=<?php echo $trem['id_trem']; ?>"
-                                class="btn btn-sm px-1 text-white fw-semibold btn-acao"
-                                style="background: #2f6fe5; border: none; border-radius: 8px; box-shadow: 0 3px 8px rgba(47, 111, 229, 0.18);">
+                                class="btn btn-sm px-2 py-1 text-white fw-semibold btn-acao"
+                                style="background: #2D3250; border: none; border-radius: 8px; width: 72px; min-width: 72px; box-shadow: 0 3px 8px rgba(45, 50, 80, 0.18);">
                                 Visualizar
                             </a>
 
+                            <?php if (ehAdministrador()) { ?>
                             <a href="editar-trens.php?id_trem=<?php echo $trem['id_trem']; ?>"
                                 class="btn btn-sm px-1 text-white fw-semibold btn-acao"
                                 style="background: #2D3250; border: none; border-radius: 8px; box-shadow: 0 3px 8px rgba(45, 50, 80, 0.18);">
@@ -156,9 +154,9 @@ if (!$resultado) {
                                 style="background: #d93a3a; border: none; border-radius: 8px; box-shadow: 0 3px 8px rgba(217, 58, 58, 0.18); max-width: 160px;">
                                 Excluir
                             </a>
+                            <?php } ?>
                         </div>
                     </td>
-                    <?php } ?>
             </tr>
             <?php } ?>
         </tbody>

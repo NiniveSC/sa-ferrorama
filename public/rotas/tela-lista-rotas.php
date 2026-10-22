@@ -101,9 +101,7 @@ if (!$resultado) {
                             <th>Nome da Rota</th>
                             <th>Distância (km)</th>
                             <th>Duração</th>
-                            <?php if (ehAdministrador()) { ?>
                             <th>Ações</th>
-                            <?php } ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -127,23 +125,29 @@ if (!$resultado) {
                         <?php echo htmlspecialchars($rota['duracao_estimada']); ?>
                     </td>
 
-                    <?php if (ehAdministrador()) { ?>
                     <td>
-                        <a href="editar-rotas.php?id_rota=<?php echo $rota['id_rota']; ?>"
-                            class="btn btn-primary"
-                            style="background-color: #2D3250 !important;">
-                            Editar
-                        </a>
+                        <div class="d-flex flex-wrap gap-2 justify-content-center">
+                            <a href="visualizar-rotas.php?id_rota=<?php echo $rota['id_rota']; ?>"
+                                class="btn btn-sm px-3 text-white fw-semibold"
+                                style="background: #2D3250; border: none; border-radius: 8px; min-width: 90px; box-shadow: 0 3px 8px rgba(45, 50, 80, 0.18);">
+                                Visualizar
+                            </a>
 
+                            <?php if (ehAdministrador()) { ?>
+                            <a href="editar-rotas.php?id_rota=<?php echo $rota['id_rota']; ?>"
+                                class="btn btn-sm px-3 text-white fw-semibold"
+                                style="background: #2D3250; border: none; border-radius: 8px; min-width: 78px; box-shadow: 0 3px 8px rgba(45, 50, 80, 0.18);">
+                                Editar
+                            </a>
 
-                        <a href="excluir-rotas.php?id_rota=<?php echo $rota['id_rota']; ?>"
-                            class="btn btn-danger"
-                            style="background-color: #df3535 !important;">
-
-                            Excluir
-                        </a>
+                            <a href="excluir-rotas.php?id_rota=<?php echo $rota['id_rota']; ?>"
+                                class="btn btn-sm px-3 text-white fw-semibold"
+                                style="background: #d93a3a; border: none; border-radius: 8px; min-width: 78px; box-shadow: 0 3px 8px rgba(217, 58, 58, 0.18);">
+                                Excluir
+                            </a>
+                            <?php } ?>
+                        </div>
                     </td>
-                    <?php } ?>
             </tr>
             <?php } ?>
         </tbody>

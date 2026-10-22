@@ -79,18 +79,20 @@ $resultado = mysqli_query($conexao, $sql);
         <div class="titulo-funcionarios">
             <h1>Lista de Funcionários Cadastrados</h1>
 
-    <a href="tela-cadastro-user.php"
-       class="btn-novo-funcionario"
-       style="background-color: #2D3250 !important;
-              color: white !important;
-              font-weight: bold !important;
-              text-decoration: none !important;
-              padding: 10px 20px;
-              border-radius: 8px;
-              border: 1px solid #2D3250;
-              display: inline-block;">
-        + Novo funcionário
-    </a>
+            <?php if (ehAdministrador()) { ?>
+            <a href="tela-cadastro-user.php"
+               class="btn-novo-funcionario"
+               style="background-color: #2D3250 !important;
+                      color: white !important;
+                      font-weight: bold !important;
+                      text-decoration: none !important;
+                      padding: 10px 20px;
+                      border-radius: 8px;
+                      border: 1px solid #2D3250;
+                      display: inline-block;">
+                + Novo funcionário
+            </a>
+            <?php } ?>
         </div>
 
             <div class="borda-tabela">

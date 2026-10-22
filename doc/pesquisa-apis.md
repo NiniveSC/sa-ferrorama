@@ -65,3 +65,45 @@ Exemplo de dados de um trem:
 }
 ```
 Nesse exemplo, cada informação possui uma chave e um valor. O sistema que recebe o JSON pode interpretar esses dados e utilizá-los.
+
+## 8. Diferença entre API e sistema web tradicional
+Um sistema web tradicional geralmente apresenta páginas prontas para o usuário, com textos, formulários e botões. Já uma API normalmente disponibiliza dados ou funcionalidades para que outros sistemas utilizem.
+
+Por exemplo, uma página pode mostrar a lista de trens em uma tabela, enquanto uma API pode retornar os mesmos trens em JSON para outro sistema apresentar essas informações.
+
+## 9. Como uma aplicação PHP pode consumir uma API?
+O PHP pode enviar requisições HTTP para uma API e interpretar a resposta. Isso pode ser feito usando recursos como cURL ou file_get_contents(). Quando a resposta está em JSON, a função json_decode() pode transformar os dados em uma estrutura que o PHP consegue utilizar.
+
+Exemplo simples:
+```php
+<?php
+$url = "https://exemplo.com/api/trens";
+
+$resposta = file_get_contents($url);
+$trens = json_decode($resposta, true);
+
+if ($trens !== null) {
+    print_r($trens);
+}
+?>
+```
+Esse código demonstra a ideia de consultar uma API e interpretar o JSON. O endereço é fictício e o exemplo depende de a API existir e permitir a consulta.
+
+## 10. Como uma API disponibiliza informações?
+Uma API pode receber uma requisição, consultar o banco de dados, processar as informações e devolver uma resposta ao sistema cliente. Dessa forma, diferentes aplicações podem acessar os mesmos dados sem precisar utilizar diretamente o banco de dados umas das outras.
+
+## 11. Autenticação, autorização e segurança
+A autenticação verifica a identidade de quem está fazendo a requisição. A autorização verifica quais informações ou ações essa pessoa ou sistema pode acessar.
+
+Para proteger uma API, é importante usar HTTPS, controlar as permissões, proteger senhas e tokens e validar os dados recebidos. Essas medidas ajudam a evitar acessos indevidos e a exposição de informações.
+
+## 12. Exemplos de APIs em empresas
+As APIs são utilizadas em diferentes situações, como:
+
+- Financeiro: consultar pagamentos e transações.
+- Comércio eletrônico: integrar pedidos, estoque e entregas.
+- Recursos humanos: compartilhar informações entre sistemas de funcionários e folha de pagamento.
+- Logística: consultar entregas e acompanhar transportes.
+- Sistemas ferroviários: compartilhar dados de trens, rotas e sensores com outros sistemas.
+
+Assim, as APIs ajudam a automatizar tarefas, integrar serviços e evitar o cadastro repetido de informações.

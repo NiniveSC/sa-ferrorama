@@ -10,6 +10,7 @@ if (!ehAdministrador()) {
 }// -> Caso seja um administrador, ele pode acessar a página de cadastro de rotas e se nao for ele é jogado para o dashboard
 
 require '../../infra/conexao.php'; // -> conecta com o banco de dados
+require_once __DIR__ . "/../../infra/seguranca.php";
 
 $mensagem_erro = ""; //-> variavel vazia que é resposavel por guardar os erros q podem ocorrer durante o cadastro da rota
 
@@ -20,15 +21,15 @@ $resultado_trens = mysqli_query($conexao, $sql_trens);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') { // -> verificar se o formulário foi enviado via POST
     
-    $nome_rota      = $_POST['nome_rota'] ?? '';
-    $descricao_rota = $_POST['descricao_rota'] ?? '';
-    $distancia_km   = !empty($_POST['distancia_km']) ? (float)$_POST['distancia_km'] : 0;
-    $duracao_estimada = $_POST['duracao_estimada'] ?? '';
-    $id_trem        = !empty($_POST['id_trem']) ? (int)$_POST['id_trem'] : null;
+    $nome_rota      = limparTexto($_POST['nome_rota'] ?? '');
+    $descricao_rota = limparTexto($_POST['descricao_rota'] ?? '');
+    $distancia_km   = valorFloatSegura($_POST['distancia_km'] ?? null);
+    $duracao_estimada = limparTexto($_POST['duracao_estimada'] ?? '');
+    $id_trem        = valorIntSegura($_POST['id_trem'] ?? null);
     $data_criacao   = date('Y-m-d H:i:s'); // Data e hora atual da criação
     //-> recebe os dados do formulário e faz a validação dos campos obrigatórios
     
-    if (!empty($nome_rota) && !empty($duracao_estimada) && $distancia_km > 0 && !empty($id_trem)) {
+    if (textoValido($nome_rota, 3, 100) && textoValido($duracao_estimada, 3, 50) && $distancia_km !== null && $distancia_km > 0 && $id_trem !== null && descricaoValida($descricao_rota, 500)) {
         
         $sql = "INSERT INTO Rota (nome_rota, descricao_rota, distancia_km, duracao_estimada, data_criacao, id_trem)
                 VALUES (?, ?, ?, ?, ?, ?)";

@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                        WHERE id_trem = ?";
 
         $stmt = $conexao->prepare($sql_update);
-        $stmt->bind_param("sssi", $tipo_trem, $localizacao_trem, $status_trem, $id_responsavel, $id_trem);
+        $stmt->bind_param("sssii", $tipo_trem, $localizacao_trem, $status_trem, $id_responsavel, $id_trem);
 
         if ($stmt->execute()) {
             header("Location: tela-lista-trens.php");

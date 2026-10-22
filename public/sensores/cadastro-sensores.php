@@ -9,14 +9,22 @@ if (!ehAdministrador()) {
 }
 
 require '../../infra/conexao.php';
+require_once __DIR__ . "/../../infra/seguranca.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $status_sensor      = $_POST['status_sensor'];
-    $tipo_sensor        = $_POST['tipo_sensor'];
-    $localizacao_sensor = $_POST['localizacao_sensor'];
+    $status_sensor      = limparTexto($_POST['status_sensor'] ?? '');
+    $tipo_sensor        = limparTexto($_POST['tipo_sensor'] ?? '');
+    $localizacao_sensor = limparTexto($_POST['localizacao_sensor'] ?? '');
 
-    $id_trem = !empty($_POST['id_trem']) ? (int)$_POST['id_trem'] : null;
-    $id_rota = !empty($_POST['id_rota']) ? (int)$_POST['id_rota'] : null;
+    $id_trem = valorIntSegura($_POST['id_trem'] ?? null);
+    $id_rota = valorIntSegura($_POST['id_rota'] ?? null);
+
+    $statusPermitido = ['Ativo', 'Inativo', 'Manutenção'];
+    $tipoPermitido = ['Temperatura', 'Velocidade', 'Localizador'];
+
+    if (!in_array($status_sensor, $statusPermitido, true) || !in_array($tipo_sensor, $tipoPermitido, true) || !textoValido($localizacao_sensor, 3, 65)) {
+        die('Dados inválidos para cadastro de sensor.');
+    }
 
     $sql = "INSERT INTO Sensor (status_sensor, tipo_sensor, localizacao_sensor, id_trem, id_rota)
             VALUES (?, ?, ?, ?, ?)";

@@ -10,6 +10,7 @@ if (!ehAdministrador()) {
 }
 
 include "../../infra/conexao.php";
+require_once __DIR__ . "/../../infra/seguranca.php";
 
 function cpfValido($cpf)
 {
@@ -42,19 +43,25 @@ $erro = "";
 
 if (isset($_POST['cadastrar'])) {
 
-    $nome = trim($_POST["nome_cadastro"] ?? "");
-    $cargo = trim($_POST["cargo"] ?? "");
+    $nome = limparTexto($_POST["nome_cadastro"] ?? "");
+    $cargo = limparTexto($_POST["cargo"] ?? "");
     $cpf = preg_replace('/\D/', '', (string) ($_POST["cpf_cadastro"] ?? ""));
     $telefone = preg_replace('/\D/', '', (string) ($_POST["telefone_cadastro"] ?? ""));
-    $email = strtolower(trim($_POST["email_cadastro"] ?? ""));
+    $email = limparEmail($_POST["email_cadastro"] ?? "");
     $senha = $_POST["senha_cadastro"] ?? "";
 
-    if ($email === "" || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    if (!textoValido($nome, 3, 60)) {
+        $erro = "Nome inválido.";
+    } elseif (!in_array($cargo, ['Administrador', 'Funcionário'], true)) {
+        $erro = "Cargo inválido.";
+    } elseif ($email === "" || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $erro = "E-mail inválido.";
     } elseif (!cpfValido($cpf)) {
         $erro = "CPF inválido.";
     } elseif (strlen($telefone) < 10 || strlen($telefone) > 11) {
         $erro = "Telefone inválido.";
+    } elseif (strlen((string) $senha) < 6) {
+        $erro = "Senha muito curta.";
     } else {
         $stmtDuplicidade = $conexao->prepare("SELECT id_administrador FROM Pessoa WHERE email_cadastro = ? OR cpf_cadastro = ? OR telefone_cadastro = ?");
         $stmtDuplicidade->bind_param("sss", $email, $cpf, $telefone);

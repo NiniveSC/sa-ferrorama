@@ -9,16 +9,24 @@ if (!ehAdministrador()) {
 }
 
 require '../../infra/conexao.php';
+require_once __DIR__ . "/../../infra/seguranca.php";
 
 $sql_usuarios = "SELECT id_administrador, nome_cadastro FROM Pessoa ORDER BY nome_cadastro ASC";
 $resultado_usuarios = $conexao->query($sql_usuarios);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nome_trem        = $_POST['nome_trem'];
-    $status_trem      = $_POST['status_trem'];
-    $tipo_trem        = $_POST['tipo_trem'];
-    $localizacao_trem = $_POST['localizacao_trem'];
-    $id_responsavel   = !empty($_POST['id_responsavel']) ? (int) $_POST['id_responsavel'] : null;
+    $nome_trem        = limparTexto($_POST['nome_trem'] ?? '');
+    $status_trem      = limparTexto($_POST['status_trem'] ?? '');
+    $tipo_trem        = limparTexto($_POST['tipo_trem'] ?? '');
+    $localizacao_trem = limparTexto($_POST['localizacao_trem'] ?? '');
+    $id_responsavel   = valorIntSegura($_POST['id_responsavel'] ?? null);
+
+    $statusPermitido = ['Ativo', 'Inativo', 'Manutenção', 'Em conserto'];
+    $tipoPermitido = ['Carga viva', 'Transporte de pessoas', 'Carga a granel', 'Carga a granel em seco', 'Carga a granel líquida', 'Carga Geral'];
+
+    if (!textoValido($nome_trem, 3, 60) || !in_array($status_trem, $statusPermitido, true) || !in_array($tipo_trem, $tipoPermitido, true) || !textoValido($localizacao_trem, 3, 60)) {
+        die('Dados inválidos para cadastro de trem.');
+    }
 
     $sql = "INSERT INTO Trem (nome_trem, status_trem, tipo_trem, localizacao_trem, id_responsavel)
             VALUES (?, ?, ?, ?, ?)";

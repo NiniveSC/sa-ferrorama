@@ -3,8 +3,10 @@
 session_start();
 
 require_once __DIR__ . "/../../infra/verifica_sessao.php";
+require_once __DIR__ . "/../../infra/permissoes.php";
 include "../../infra/conexao.php";
-include "../../infra/permissoes.php";
+
+$adminLogado = ehAdministrador();
 
 $sql = "SELECT Pessoa.id_administrador, Pessoa.nome_cadastro,
         Pessoa.email_cadastro, Pessoa.telefone_cadastro, Perfil.cargo
@@ -36,7 +38,7 @@ $resultado = mysqli_query($conexao, $sql);
                 <span class="navbar-toggler-icon"></span>
             </button>
             
-            <div class="collapse navbar-collapse justify-content-between" id="navbar-Nav">
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item mx-3">
                         <a class="nav-link" href="../dashboard/tela-geral-home.php">Dashboard</a>
@@ -79,7 +81,7 @@ $resultado = mysqli_query($conexao, $sql);
         <div class="titulo-funcionarios">
             <h1>Lista de Funcionários Cadastrados</h1>
 
-            <?php if (ehAdministrador()) { ?>
+            <?php if ($adminLogado) { ?>
             <a href="tela-cadastro-user.php"
                class="btn-novo-funcionario"
                style="background-color: #2D3250 !important;
@@ -103,7 +105,7 @@ $resultado = mysqli_query($conexao, $sql);
                             <th>Email</th>
                             <th>Telefone</th>
                             <th>Cargo</th>
-                            <?php if (ehAdministrador()) { ?>
+                            <?php if ($adminLogado) { ?>
                             <th>Ações</th>
                             <?php } ?>
                         </tr>
@@ -129,17 +131,21 @@ $resultado = mysqli_query($conexao, $sql);
                 <?php echo htmlspecialchars($funcionario["cargo"]); ?>
             </td>
 
-            <?php if (ehAdministrador()) { ?>
-           <td>
-                <a href="editar-funcionarios.php?id=<?php echo $funcionario["id_administrador"]; ?>"
-                    class="btn btn-primary">
-                    Editar
-                </a>
+            <?php if ($adminLogado) { ?>
+            <td class="text-center align-middle">
+                <div class="acao-tabela d-flex flex-column justify-content-center align-items-center gap-2 mx-auto" style="max-width: 120px;">
+                    <a href="editar-funcionarios.php?id=<?php echo $funcionario["id_administrador"]; ?>"
+                        class="btn btn-sm btn-acao text-white fw-semibold"
+                        style="background: #2D3250; border: none; border-radius: 8px; box-shadow: 0 3px 8px rgba(45, 50, 80, 0.18); width: 100%; min-width: 0; padding: 6px 10px; font-size: 0.75rem;">
+                        Editar
+                    </a>
 
-                <a href="excluir-funcionarios.php?id=<?php echo $funcionario["id_administrador"]; ?>"
-                    class="btn btn-danger">
-                    Excluir
-                </a>
+                    <a href="excluir-funcionarios.php?id=<?php echo $funcionario["id_administrador"]; ?>"
+                        class="btn btn-sm btn-acao text-white fw-semibold"
+                        style="background: #d93a3a; border: none; border-radius: 8px; box-shadow: 0 3px 8px rgba(217, 58, 58, 0.18); width: 100%; min-width: 0; padding: 6px 10px; font-size: 0.75rem;">
+                        Excluir
+                    </a>
+                </div>
             </td>
             <?php } ?>
         </tr>

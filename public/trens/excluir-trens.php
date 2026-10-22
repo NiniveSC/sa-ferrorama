@@ -15,35 +15,40 @@ $mensagem_erro = "";
 
 // Processa a exclusão
 if (isset($_POST["excluir"]) && $id > 0) {
-    mysqli_begin_transaction($conexao);
+    $sql_verifica_rota = "SELECT COUNT(*) AS total FROM Rota WHERE id_trem = ?";
+    $stmt_verifica_rota = $conexao->prepare($sql_verifica_rota);
+    $stmt_verifica_rota->bind_param("i", $id);
+    $stmt_verifica_rota->execute();
+    $resultado_rota = $stmt_verifica_rota->get_result()->fetch_assoc();
 
-    try {
-        $sql_delete_sensores = "DELETE FROM Sensor WHERE id_trem = ? OR id_rota IN (SELECT id_rota FROM Rota WHERE id_trem = ?)";
-        $stmt_sensores = $conexao->prepare($sql_delete_sensores);
-        $stmt_sensores->bind_param("ii", $id, $id);
-        $stmt_sensores->execute();
+    if ((int) $resultado_rota["total"] > 0) {
+        $mensagem_erro = "Não é possível excluir este trem porque ele está vinculado a uma ou mais rotas. Remova ou reatribua a rota antes de excluir o trem.";
+    } else {
+        mysqli_begin_transaction($conexao);
 
-        $sql_delete_trem_rota = "DELETE FROM Trem_rota WHERE Trem_id_trem = ?";
-        $stmt_trem_rota = $conexao->prepare($sql_delete_trem_rota);
-        $stmt_trem_rota->bind_param("i", $id);
-        $stmt_trem_rota->execute();
+        try {
+            $sql_update_sensor = "UPDATE Sensor SET id_trem = NULL WHERE id_trem = ?";
+            $stmt_update_sensor = $conexao->prepare($sql_update_sensor);
+            $stmt_update_sensor->bind_param("i", $id);
+            $stmt_update_sensor->execute();
 
-        $sql_delete_rotas = "DELETE FROM Rota WHERE id_trem = ?";
-        $stmt_rotas = $conexao->prepare($sql_delete_rotas);
-        $stmt_rotas->bind_param("i", $id);
-        $stmt_rotas->execute();
+            $sql_delete_trem_rota = "DELETE FROM Trem_rota WHERE Trem_id_trem = ?";
+            $stmt_trem_rota = $conexao->prepare($sql_delete_trem_rota);
+            $stmt_trem_rota->bind_param("i", $id);
+            $stmt_trem_rota->execute();
 
-        $sql_delete_trem = "DELETE FROM Trem WHERE id_trem = ?";
-        $stmt_trem = $conexao->prepare($sql_delete_trem);
-        $stmt_trem->bind_param("i", $id);
-        $stmt_trem->execute();
+            $sql_delete_trem = "DELETE FROM Trem WHERE id_trem = ?";
+            $stmt_trem = $conexao->prepare($sql_delete_trem);
+            $stmt_trem->bind_param("i", $id);
+            $stmt_trem->execute();
 
-        mysqli_commit($conexao);
-        header("Location: tela-lista-trens.php");
-        exit();
-    } catch (Exception $e) {
-        mysqli_rollback($conexao);
-        $mensagem_erro = "Erro ao excluir o trem: " . $e->getMessage();
+            mysqli_commit($conexao);
+            header("Location: tela-lista-trens.php");
+            exit();
+        } catch (Exception $e) {
+            mysqli_rollback($conexao);
+            $mensagem_erro = "Erro ao excluir o trem: " . $e->getMessage();
+        }
     }
 }
 

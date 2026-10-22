@@ -18,8 +18,15 @@ $resultado = mysqli_query($conexao, $sql);
 $funcionario = mysqli_fetch_assoc($resultado);
 
 if (isset($_POST["excluir"])) {
-    $sql = "DELETE FROM Pessoa WHERE id_administrador = $id";
-    mysqli_query($conexao, $sql);
+    $stmt = $conexao->prepare("UPDATE Trem SET id_responsavel = NULL WHERE id_responsavel = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $stmt->close();
+
+    $stmtDelete = $conexao->prepare("DELETE FROM Pessoa WHERE id_administrador = ?");
+    $stmtDelete->bind_param("i", $id);
+    $stmtDelete->execute();
+    $stmtDelete->close();
 
     header("Location: funcionarios-cadastrados.php");
     exit();

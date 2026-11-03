@@ -189,9 +189,10 @@ if (isset($_POST["alterar_senha"])) {
                     <?php } ?>
                 </div>
 
-                <button type="button" class="toggle" id="toggle">
-                    Esqueceu a senha?
-                </button>
+               <button type="button" class="toggle-login" id="toggle"
+    style="display: block; margin: 15px auto 0; background: none; border: none; color: #2D3250; padding: 0; font-family: 'Trebuchet MS', sans-serif; font-size: 14px; font-weight: bold; cursor: pointer;">
+    Esqueceu a senha?
+</button>
 
             </form>
         </div>

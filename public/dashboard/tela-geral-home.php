@@ -66,66 +66,64 @@ $erroClima = $dadosClima['erro'] ?? '';
         </div>
     </nav>
 
-    <div class="container py-4">
-        <div class="weather-card">
-            <div class="weather-header">
-                <div>
-                    <p class="weather-label">Monitor meteorológico</p>
-                    <h3 class="weather-title">Clima em <?= htmlspecialchars($dadosClima['localizacao'] ?? 'São Paulo, SP') ?></h3>
+    <main class="container-principal">
+        <div class="welcome-panel">
+            <h1 class="boas-vindas">Olá, <?= htmlspecialchars($_SESSION["nome"] ?? "Usuário") ?>!</h1>
+            <p class="texto-home">O que deseja fazer hoje?</p>
+            <div class="linha-decorativa"></div>
+        </div>
+
+        <div class="dashboard-row">
+            <div class="weather-card">
+                <div class="weather-header">
+                    <div>
+                        <p class="weather-label">Monitor meteorológico</p>
+                        <h3 class="weather-title">Clima em <?= htmlspecialchars($dadosClima['localizacao'] ?? 'São Paulo, SP') ?></h3>
+                    </div>
+                    <span class="weather-badge">Tempo real</span>
                 </div>
-                <span class="weather-badge">Tempo real</span>
+
+                <?php if (!empty($erroClima)): ?>
+                    <div class="alert alert-warning mb-0 mt-3">
+                        <?= htmlspecialchars($erroClima) ?>
+                    </div>
+                <?php else: ?>
+                    <div class="row align-items-center g-3 mt-2">
+                        <div class="col-md-3 text-center">
+                            <div class="weather-temp"><?= htmlspecialchars((string) ($dadosClima['temperatura'] ?? 0)) ?>°C</div>
+                        </div>
+                        <div class="col-md-5">
+                            <p class="weather-condition mb-1"><?= htmlspecialchars($dadosClima['condicao'] ?? 'Condição variável') ?></p>
+                            <p class="weather-meta mb-0">Localização: <?= htmlspecialchars($dadosClima['localizacao'] ?? 'São Paulo, SP') ?></p>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                            <p class="weather-meta mb-1">Última atualização</p>
+                            <p class="weather-meta fw-bold mb-0"><?= htmlspecialchars($dadosClima['atualizacao'] ?? 'Não disponível') ?></p>
+                        </div>
+                    </div>
+                <?php endif; ?>
             </div>
 
-            <?php if (!empty($erroClima)): ?>
-                <div class="alert alert-warning mb-0 mt-3">
-                    <?= htmlspecialchars($erroClima) ?>
-                </div>
-            <?php else: ?>
-                <div class="row align-items-center g-3 mt-2">
-                    <div class="col-md-3 text-center">
-                        <div class="weather-temp"><?= htmlspecialchars((string) ($dadosClima['temperatura'] ?? 0)) ?>°C</div>
+            <div class="report-panel">
+                <h3>Relatórios</h3>
+                <div class="report-graphic">
+                    <div class="line-chart" aria-label="Gráfico de indicadores">
+                        <svg viewBox="0 0 260 110" preserveAspectRatio="none" role="img" aria-label="Linha de desempenho">
+                            <path d="M0,85 L30,78 L60,72 L90,62 L120,58 L150,54 L180,48 L210,42 L240,38 L260,30" fill="none" stroke="#2d3250" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M0,82 L30,71 L60,65 L90,74 L120,63 L150,56 L180,46 L210,50 L240,35 L260,26" fill="none" stroke="#d9c03d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M0,90 L30,92 L60,76 L90,70 L120,61 L150,52 L180,58 L210,42 L240,31 L260,36" fill="none" stroke="#4d9de0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </div>
-                    <div class="col-md-5">
-                        <p class="weather-condition mb-1"><?= htmlspecialchars($dadosClima['condicao'] ?? 'Condição variável') ?></p>
-                        <p class="weather-meta mb-0">Localização: <?= htmlspecialchars($dadosClima['localizacao'] ?? 'São Paulo, SP') ?></p>
-                    </div>
-                    <div class="col-md-4 text-md-end">
-                        <p class="weather-meta mb-1">Última atualização</p>
-                        <p class="weather-meta fw-bold mb-0"><?= htmlspecialchars($dadosClima['atualizacao'] ?? 'Não disponível') ?></p>
+                    <div class="chart-legend">
+                        <div class="legend-item"><span style="background:#2d3250"></span>Desempenho Sensores</div>
+                        <div class="legend-item"><span style="background:#d9c03d"></span>Problemas Trens</div>
+                        <div class="legend-item"><span style="background:#4d9de0"></span>Rotas</div>
                     </div>
                 </div>
-            <?php endif; ?>
+            </div>
         </div>
-    </div>
 
-    <main class="container-principal">
-
-        <div class="row align-items-center seção-topo">
-
-            <div class="col-md-5 bloco-boas-vindas">
-                <h1 class="boas-vindas">Olá, <?= htmlspecialchars($_SESSION["nome"] ?? "Usuário") ?>!</h1>
-                <p class="texto-home">O que deseja fazer hoje?</p>
-                <div class="linha-decorativa"></div>
-            </div> <div class="col-md-7">
-                <div id="carouselExample" class="carousel slide carrossel-card">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="../../assets/img/tela-home/grafico-1.png" class="d-block w-100" alt="Relatórios">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="../../assets/img/tela-home/grafico-2.png" class="d-block w-100" alt="Relatórios">
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div> </div> <div class="botoes-home d-flex justify-content-center flex-wrap">
+        <div class="botoes-home d-flex justify-content-center">
             <button type="button" id="buttonFuncionarios" class="btn card-botao funcionarios" data-target="../funcionarios/funcionarios-cadastrados.php">
                 <img src="../../assets/img/tela-home/funcionarios.png" alt="Funcionários">
             </button>
@@ -137,9 +135,6 @@ $erroClima = $dadosClima['erro'] ?? '';
             </button>
             <button type="button" id="buttonTrens" class="btn card-botao btn-outline-trens" data-target="../trens/tela-lista-trens.php">
                 <img src="../../assets/img/tela-home/trens.png" alt="Trens">
-            </button>
-            <button type="button" id="buttonRelatorios" class="btn card-botao btn-outline-relatorios" data-target="../relatorios/tela-relatorios.php">
-                <img src="../../assets/img/tela-home/relatorios.png" alt="Relatórios">
             </button>
         </div>
 

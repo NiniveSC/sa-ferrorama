@@ -193,6 +193,12 @@ if (isset($_POST["alterar_senha"])) {
                     Esqueceu a senha?
                 </button>
 
+                <div class="mt-3 text-center">
+                    <a href="../landing/landing-page.php" class="btn btn-outline-primary rounded-pill px-4">
+                        Conhecer a solução
+                    </a>
+                </div>
+
             </form>
         </div>
     </main>

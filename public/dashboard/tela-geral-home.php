@@ -2,10 +2,14 @@
 session_start();
 require_once __DIR__ . "/../../infra/verifica_sessao.php";
 require_once __DIR__ . "/../../infra/permissoes.php";
+require_once __DIR__ . "/../../infra/api_clima.php";
+
+$dadosClima = buscarClimaAtual();
+$erroClima = $dadosClima['erro'] ?? '';
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -17,7 +21,7 @@ require_once __DIR__ . "/../../infra/permissoes.php";
 </head>
 
 <body class="pagina-home">
-    
+
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -44,6 +48,9 @@ require_once __DIR__ . "/../../infra/permissoes.php";
                     <li class="nav-item mx-3">
                         <a class="nav-link" href="../relatorios/tela-relatorios.php">Relatórios</a>
                     </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="../cep/consulta-cep.php">CEP</a>
+                    </li>
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -58,6 +65,38 @@ require_once __DIR__ . "/../../infra/permissoes.php";
             </div>
         </div>
     </nav>
+
+    <div class="container py-4">
+        <div class="weather-card">
+            <div class="weather-header">
+                <div>
+                    <p class="weather-label">Monitor meteorológico</p>
+                    <h3 class="weather-title">Clima em <?= htmlspecialchars($dadosClima['localizacao'] ?? 'São Paulo, SP') ?></h3>
+                </div>
+                <span class="weather-badge">Tempo real</span>
+            </div>
+
+            <?php if (!empty($erroClima)): ?>
+                <div class="alert alert-warning mb-0 mt-3">
+                    <?= htmlspecialchars($erroClima) ?>
+                </div>
+            <?php else: ?>
+                <div class="row align-items-center g-3 mt-2">
+                    <div class="col-md-3 text-center">
+                        <div class="weather-temp"><?= htmlspecialchars((string) ($dadosClima['temperatura'] ?? 0)) ?>°C</div>
+                    </div>
+                    <div class="col-md-5">
+                        <p class="weather-condition mb-1"><?= htmlspecialchars($dadosClima['condicao'] ?? 'Condição variável') ?></p>
+                        <p class="weather-meta mb-0">Localização: <?= htmlspecialchars($dadosClima['localizacao'] ?? 'São Paulo, SP') ?></p>
+                    </div>
+                    <div class="col-md-4 text-md-end">
+                        <p class="weather-meta mb-1">Última atualização</p>
+                        <p class="weather-meta fw-bold mb-0"><?= htmlspecialchars($dadosClima['atualizacao'] ?? 'Não disponível') ?></p>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
 
     <main class="container-principal">
 

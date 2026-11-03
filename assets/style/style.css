@@ -699,6 +699,214 @@ td {
     font-size: 18px;
 }
 
+/* Landing page */
+.pagina-landing {
+    background: linear-gradient(135deg, #0b1020 0%, #20294b 38%, #d9c03d 100%);
+    color: #fff;
+    min-height: 100vh;
+}
+
+.hero-ferrorama {
+    padding: 90px 0 60px;
+    background: rgba(10, 13, 25, 0.18);
+}
+
+.hero-ferrorama h1 {
+    font-size: clamp(2.5rem, 4vw, 4.4rem);
+    line-height: 1.1;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.hero-ferrorama p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 620px;
+}
+
+.hero-card {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 24px;
+    padding: 18px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+}
+
+.hero-card-header {
+    display: flex;
+    gap: 10px;
+    padding-bottom: 18px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.dot.red { background: #ff5f57; }
+.dot.yellow { background: #febc2f; }
+.dot.green { background: #28c840; }
+
+.hero-card-body {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.metric-card {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 18px 14px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.metric-card small {
+    display: block;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 8px;
+}
+
+.metric-card strong {
+    font-size: 1.6rem;
+    color: #fff;
+}
+
+.section-bloco {
+    padding: 90px 0;
+}
+
+.section-alt {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.section-bloco h2 {
+    color: #fff;
+    font-weight: 800;
+    margin-bottom: 18px;
+}
+
+.section-bloco p,
+.section-bloco li {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.06rem;
+}
+
+.info-panel,
+.feature-card,
+.benefit-card {
+    background: rgba(17, 22, 40, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 28px 24px;
+    height: 100%;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.feature-card h3,
+.benefit-card h3,
+.info-panel h3 {
+    color: #fff;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.cta-final {
+    padding: 80px 0 110px;
+}
+
+.cta-final h2 {
+    color: #fff;
+    margin-bottom: 30px;
+    font-weight: 800;
+}
+
+/* CEP page */
+.pagina-cep {
+    background: #e9edf3;
+    min-height: 100vh;
+}
+
+.titulo-secao {
+    color: #2D3250;
+    font-weight: 800;
+}
+
+/* Weather card */
+.weather-card {
+    background: linear-gradient(135deg, #ffffff 0%, #edf3ff 100%);
+    border: 1px solid rgba(45, 50, 80, 0.1);
+    border-radius: 22px;
+    padding: 24px 28px;
+    box-shadow: 0 18px 45px rgba(45, 50, 80, 0.08);
+}
+
+.weather-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.weather-label {
+    margin: 0;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #5d6785;
+}
+
+.weather-title {
+    margin: 0;
+    color: #2D3250;
+    font-weight: 800;
+}
+
+.weather-badge {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    background: #d9c03d;
+    color: #2D3250;
+    padding: 8px 14px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.weather-temp {
+    font-size: clamp(2.2rem, 4vw, 4rem);
+    font-weight: 800;
+    color: #2D3250;
+    line-height: 1;
+}
+
+.weather-condition {
+    color: #2D3250;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.weather-meta {
+    color: #4a557a;
+    font-size: 0.98rem;
+}
+
+@media (max-width: 767px) {
+    .hero-card-body {
+        grid-template-columns: 1fr;
+    }
+
+    .weather-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+
 
 #btn-func-cancelar {
     background-color: #ffffff !important;

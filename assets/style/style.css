@@ -837,14 +837,25 @@ td {
 
 /* Landing page */
 .pagina-landing {
-    background: linear-gradient(135deg, #0b1020 0%, #20294b 38%, #d9c03d 100%);
-    color: #fff;
+    background: linear-gradient(180deg, #f3f1ea 0%, #e9edf4 35%, #edf3f9 100%);
+    color: #172033;
     min-height: 100vh;
+}
+
+.navbar-dark {
+    background: rgba(19, 29, 48, 0.92);
+    backdrop-filter: blur(8px);
+}
+
+.navbar-brand,
+.nav-link,
+.navbar-dark .btn-light {
+    color: #fff !important;
 }
 
 .hero-ferrorama {
     padding: 90px 0 60px;
-    background: rgba(10, 13, 25, 0.18);
+    background: linear-gradient(135deg, #101b2f 0%, #1b2d4d 42%, #2f456b 100%);
 }
 
 .hero-ferrorama h1 {
@@ -856,18 +867,17 @@ td {
 }
 
 .hero-ferrorama p {
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.08rem;
+    color: rgba(255, 255, 255, 0.85);
     max-width: 620px;
 }
 
 .hero-card {
     background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 22px;
     padding: 18px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 18px 36px rgba(10, 18, 35, 0.18);
 }
 
 .hero-card-header {
@@ -883,9 +893,9 @@ td {
     border-radius: 50%;
 }
 
-.dot.red { background: #ff5f57; }
-.dot.yellow { background: #febc2f; }
-.dot.green { background: #28c840; }
+.dot.red { background: #ef5350; }
+.dot.yellow { background: #f4b942; }
+.dot.green { background: #4caf50; }
 
 .hero-card-body {
     display: grid;
@@ -895,7 +905,7 @@ td {
 
 .metric-card {
     background: rgba(255, 255, 255, 0.08);
-    border-radius: 18px;
+    border-radius: 16px;
     padding: 18px 14px;
     text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.12);
@@ -903,12 +913,12 @@ td {
 
 .metric-card small {
     display: block;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.72);
     margin-bottom: 8px;
 }
 
 .metric-card strong {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     color: #fff;
 }
 
@@ -917,46 +927,70 @@ td {
 }
 
 .section-alt {
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(18, 28, 46, 0.03);
 }
 
 .section-bloco h2 {
-    color: #fff;
+    color: #152238;
     font-weight: 800;
     margin-bottom: 18px;
 }
 
 .section-bloco p,
 .section-bloco li {
-    color: rgba(255, 255, 255, 0.9);
+    color: #3b4a63;
     font-size: 1.06rem;
 }
 
 .info-panel,
 .feature-card,
 .benefit-card {
-    background: rgba(17, 22, 40, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #fff;
+    border: 1px solid rgba(21, 32, 52, 0.08);
     border-radius: 20px;
     padding: 28px 24px;
     height: 100%;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 12px 28px rgba(18, 29, 44, 0.06);
 }
 
 .feature-card h3,
 .benefit-card h3,
 .info-panel h3 {
-    color: #fff;
+    color: #152238;
     margin-bottom: 12px;
     font-weight: 700;
 }
 
+.btn-primary {
+    background: #1d3557;
+    border-color: #1d3557;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background: #16304d;
+    border-color: #16304d;
+}
+
+.btn-outline-light {
+    border-color: rgba(255, 255, 255, 0.7);
+    color: #fff;
+}
+
+.btn-outline-light:hover,
+.btn-outline-light:focus {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #fff;
+    color: #fff;
+}
+
 .cta-final {
     padding: 80px 0 110px;
+    background: linear-gradient(180deg, rgba(21, 34, 56, 0.04), rgba(21, 34, 56, 0.1));
 }
 
 .cta-final h2 {
-    color: #fff;
+    color: #152238;
     margin-bottom: 30px;
     font-weight: 800;
 }

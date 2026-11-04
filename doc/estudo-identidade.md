@@ -71,5 +71,11 @@
     Navegador Google Chrome: utilizado para visualizar e conferir as alterações nas telas.
 
 ## Referências visuais
-A imagem abaixo foi utilizada como referência para a identidade visual da tela de login.
+As imagens abaixo foi utilizada como referência para a identidade visual da tela de login.
 ![alt text](../assets/img/referencia-login.png)
+![alt text](../assets/img/referencia-layout.png)
+
+## Referências visuais e aprendizados
+    Utilizamos referências visuais para observar formas de organização das telas, combinação de cores, distribuição dos elementos e apresentação dos formulários.
+
+    Na referência da tela de login, observamos a utilização de formas mais arrendondadas em vez de quadrada. Essas ideias ajudaram a pensar na organização da nossa própria tela, adaptando os elementos à identidade visual do Ferrorama.

@@ -217,12 +217,17 @@ input {
     max-width: 1300px;
     margin: 0 auto;
     padding: 20px 20px 50px;
+    padding-top: 90px;
 }
 
 .welcome-panel {
     padding-left: 24px;
     margin-top: 0;
     margin-bottom: 26px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .boas-vindas {
@@ -247,13 +252,13 @@ input {
     height: 4px;
     background-color: #d9c03d;
     width: 110px;
-    margin: 26px 0 0;
+    margin: 26px auto 0;
 }
 
 .dashboard-row {
     display: flex;
     align-items: stretch;
-    justify-content: space-between;
+    justify-content: center;
     gap: 28px;
     margin-top: 14px;
 }
@@ -346,8 +351,9 @@ input {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 22px;
+    padding: 0;
     margin-top: 8px;
+    overflow: hidden;
     transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
 
@@ -358,11 +364,10 @@ input {
 }
 
 .card-botao img {
-    max-width: 100%;
-    max-height: 100%;
-    width: 155px;
-    height: auto;
-    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
     filter: drop-shadow(0 8px 12px rgba(45, 50, 80, 0.08));
 }
 
@@ -408,7 +413,7 @@ input {
 }
 
 .weather-temp {
-    font-size: clamp(1.5rem, 2vw, 2.2rem);
+    font-size: clamp(2rem, 2.6vw, 2.8rem);
     font-weight: 800;
     color: #2d3250;
     line-height: 1;
@@ -848,9 +853,23 @@ td {
 }
 
 .navbar-brand,
-.nav-link,
-.navbar-dark .btn-light {
+.nav-link {
     color: #fff !important;
+}
+
+.navbar-dark .btn-light {
+    background: #d9c03d !important;
+    border-color: #d9c03d !important;
+    color: #1d3557 !important;
+    box-shadow: none;
+    font-weight: 700;
+}
+
+.navbar-dark .btn-light:hover,
+.navbar-dark .btn-light:focus {
+    background: #c9b338 !important;
+    border-color: #c9b338 !important;
+    color: #1d3557 !important;
 }
 
 .hero-ferrorama {
@@ -1048,7 +1067,7 @@ td {
 }
 
 .weather-temp {
-    font-size: clamp(2.2rem, 4vw, 4rem);
+    font-size: clamp(2rem, 2.8vw, 3.2rem);
     font-weight: 800;
     color: #2D3250;
     line-height: 1;

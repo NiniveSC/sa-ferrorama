@@ -2,8 +2,8 @@
 
 function buscarClimaAtual(): array
 {
-    $latitude = -23.5489;
-    $longitude = -46.6388;
+    $latitude = -26.3045;
+    $longitude = -48.8456;
     $url = "https://api.open-meteo.com/v1/forecast?latitude={$latitude}&longitude={$longitude}&current=temperature_2m,weather_code&timezone=auto&forecast_days=1";
 
     $context = stream_context_create([
@@ -66,7 +66,7 @@ function buscarClimaAtual(): array
     return [
         'temperatura' => round((float) ($dados['current']['temperature_2m'] ?? 0), 1),
         'condicao' => $codigoParaDescricao[$codigoClima] ?? 'Condição variável',
-        'localizacao' => 'São Paulo, SP',
+        'localizacao' => 'Joinville, SC',
         'atualizacao' => date('d/m/Y H:i', strtotime($dataHora)),
         'codigo_clima' => $codigoClima,
     ];

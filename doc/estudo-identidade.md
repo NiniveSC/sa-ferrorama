@@ -58,6 +58,11 @@
 
     Alteração da aparência da opção de recuperação de senha: na tela de login, a opção estava com aparência de botão padrão. Ajustamos para ficar somente como um texto azul, em negrito e centralizado, combinando melhor com o restante da tela.
 
+## Usabilidade e melhorias realizadas
+    Durante a análise da interface, buscamos identificar elementos que poderiam dificultar a utilização do sistema.
+
+    Um dos problemas encontrados foi a sobreposição de informações da API de clima na tela Dashboard, o que dificultava a leitura. Como solução, reorganizamos essas informações em relação aos outros elementos da página, evitando sobreposições e facilitando a leitura.
+
 ## Contraste e legibilidade
     A escolha das cores também considera a facilidade de leitura das informações.
 
@@ -65,13 +70,22 @@
 
     Também buscamos manter tamanhos de fonte adequados e utilizar fontes sem serifa, facilitando a leitura dos textos e títulos.
 
+## Testes realizados
+    Contraste: Conferimos se as cores dos textos e dos fundos permitem uma boa leitura, principalmente nas combinações de azul escuro com branco.
+
+    Legibilidade: Observamos se os tamanhos das fontes e a organização dos textos facilitam a leitura das informações.
+
+    Responsividade: Durante a avaliação com o professor Ícaro, verificamos a organização das telas e o funcionamento do sistema no computador. Não foram realizados testes específicos em dispositivos móveis.
+
 ## Ferramentas utilizadas
     Visual Studio Code: utilizado para editar os arquivos HTML, CSS e PHP do sistema.
 
     Navegador Google Chrome: utilizado para visualizar e conferir as alterações nas telas.
 
+    ChatGPT: utilizado como apoio na organização das ideias, revisão dos textos e sugestões de melhorias visuais.
+
 ## Referências visuais
-As imagens abaixo foi utilizada como referência para a identidade visual da tela de login.
+As imagens abaixo foram utilizadas como referência para a identidade visual da telas do sistema.
 ![alt text](../assets/img/referencia-login.png)
 ![alt text](../assets/img/referencia-layout.png)
 
@@ -79,3 +93,7 @@ As imagens abaixo foi utilizada como referência para a identidade visual da tel
     Utilizamos referências visuais para observar formas de organização das telas, combinação de cores, distribuição dos elementos e apresentação dos formulários.
 
     Na referência da tela de login, observamos a utilização de formas mais arrendondadas em vez de quadrada. Essas ideias ajudaram a pensar na organização da nossa própria tela, adaptando os elementos à identidade visual do Ferrorama.
+
+## Referências de pesquisa
+- <https://www.miricanvas.com/page/blog/minimalismo-design/>
+- <https://www.significados.com.br/teoria-das-cores/>

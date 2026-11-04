@@ -36,15 +36,15 @@ session_start();
             <div class="container py-5">
                 <div class="row align-items-center g-5">
                     <div class="col-lg-6">
-                        <span class="badge text-bg-warning rounded-pill px-3 py-2 mb-3">Monitoramento ferroviário</span>
-                        <h1>Operações mais seguras, inteligentes e eficientes.</h1>
+                        <span class="badge text-bg-warning rounded-pill px-3 py-2 mb-3">Operação ferroviária</span>
+                        <h1>Acompanhar a operação com mais clareza.</h1>
                         <p>
-                            O Ferrorama centraliza dados operacionais de trens, sensores e rotas para permitir a
-                            tomada de decisão em tempo real e reduzir riscos em corredores ferroviários.
+                            O Ferrorama reúne trens, sensores e rotas em um painel simples e objetivo, ajudando a equipe
+                            a entender o que está acontecendo em tempo real e agir com mais segurança.
                         </p>
                         <div class="d-flex flex-wrap gap-3 mt-4">
                             <a class="btn btn-primary btn-lg px-4 rounded-pill" href="../login/tela-login.php">Entrar no sistema</a>
-                            <a class="btn btn-outline-light btn-lg px-4 rounded-pill" href="#funcionalidades">Conhecer recursos</a>
+                            <a class="btn btn-outline-light btn-lg px-4 rounded-pill" href="#funcionalidades">Ver recursos</a>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -64,7 +64,7 @@ session_start();
                                     <strong>128</strong>
                                 </div>
                                 <div class="metric-card">
-                                    <small>Rotas monitoradas</small>
+                                    <small>Linhas em operação</small>
                                     <strong>24</strong>
                                 </div>
                             </div>
@@ -78,24 +78,23 @@ session_start();
             <div class="container">
                 <div class="row align-items-center g-4">
                     <div class="col-lg-6">
-                        <h2>O problema que o Ferrorama resolve</h2>
+                        <h2>O que o Ferrorama ajuda a controlar</h2>
                         <p>
-                            Operações ferroviárias exigem visibilidade constante sobre a condição da frota, da infraestrutura
-                            e das rotas. Falhas em comunicação, variações de rota e ausência de monitoramento em tempo real
-                            podem aumentar riscos operacionais e impactar a segurança.
+                            Em operações ferroviárias, a qualidade da informação faz toda a diferença. Quando os dados
+                            chegam separados, lentos ou difíceis de interpretar, a equipe precisa reagir no improviso.
                         </p>
                         <p>
-                            Com dados consolidados, alertas e acompanhamento por sensores, o sistema permite reduzir intervenções
-                            reativas e aprimorar a previsibilidade da operação diária.
+                            O sistema reúne os principais indicadores em um lugar só, facilitando o acompanhamento do dia a dia,
+                            a identificação de ocorrências e a organização das ações corretivas.
                         </p>
                     </div>
                     <div class="col-lg-6">
                         <div class="info-panel">
-                            <h3>Monitoramento em um único painel</h3>
+                            <h3>Um painel de operação mais claro</h3>
                             <ul>
-                                <li>Visualização integrada de trens, rotas e sensores.</li>
-                                <li>Suporte a análise operacional e manutenção preventiva.</li>
-                                <li>Interface para tomada de decisão com clareza e velocidade.</li>
+                                <li>Visão integrada de trens, rotas e sensores.</li>
+                                <li>Organização dos dados para apoio à rotina de operação.</li>
+                                <li>Informações que ajudam a decidir com mais rapidez e segurança.</li>
                             </ul>
                         </div>
                     </div>
@@ -107,32 +106,32 @@ session_start();
             <div class="container">
                 <div class="text-center mb-5">
                     <span class="badge text-bg-light rounded-pill px-3 py-2 mb-3">Funcionalidades</span>
-                    <h2>Ferramentas que apoiam a operação ferroviária</h2>
+                    <h2>Recursos para o acompanhamento da operação</h2>
                 </div>
 
                 <div class="row g-4">
                     <div class="col-md-6 col-xl-3">
                         <div class="feature-card">
                             <h3>Sensores</h3>
-                            <p>Monitoramento de condições operacionais com foco em variações, falhas e indicadores críticos.</p>
+                            <p>Monitoramento de indicadores e condições operacionais para identificar variações e falhas.</p>
                         </div>
                     </div>
                     <div class="col-md-6 col-xl-3">
                         <div class="feature-card">
                             <h3>Trens</h3>
-                            <p>Cadastro e acompanhamento da frota para manter histórico e status operacional atualizados.</p>
+                            <p>Cadastro e acompanhamento da frota com histórico e status atualizado da operação.</p>
                         </div>
                     </div>
                     <div class="col-md-6 col-xl-3">
                         <div class="feature-card">
                             <h3>Rotas</h3>
-                            <p>Controle das linhas e itinerários para melhorar o planejamento e a visibilidade da operação.</p>
+                            <p>Organização das linhas e itinerários para manter o planejamento visual e mais seguro.</p>
                         </div>
                     </div>
                     <div class="col-md-6 col-xl-3">
                         <div class="feature-card">
                             <h3>Relatórios</h3>
-                            <p>Acompanhamento de desempenho, ocorrências e tendências com suporte à gestão e manutenção.</p>
+                            <p>Acompanhamento de desempenho, ocorrências e tendências para apoiar a gestão diária.</p>
                         </div>
                     </div>
                 </div>
@@ -143,25 +142,25 @@ session_start();
             <div class="container">
                 <div class="text-center mb-5">
                     <span class="badge text-bg-warning rounded-pill px-3 py-2 mb-3">Benefícios</span>
-                    <h2>Impacto para segurança, eficiência e operação</h2>
+                    <h2>Mais organização para a operação</h2>
                 </div>
                 <div class="row g-4">
                     <div class="col-lg-4">
                         <div class="benefit-card">
                             <h3>Segurança</h3>
-                            <p>Redução de riscos por meio do acompanhamento contínuo de indicadores e falhas.</p>
+                            <p>Ajuda a acompanhar sinais de risco e reduzir falhas antes que elas se tornem problemas maiores.</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="benefit-card">
                             <h3>Eficiência</h3>
-                            <p>Organização dos dados operacionais aumenta agilidade e qualidade da resposta da equipe.</p>
+                            <p>Centraliza informações e agiliza a rotina da equipe responsável pela operação.</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="benefit-card">
                             <h3>Decisão</h3>
-                            <p>Dashboards e relatórios permitem priorizar ações com base em evidências e contexto real.</p>
+                            <p>Permite avaliar o cenário com mais clareza e agir com base em dados relevantes.</p>
                         </div>
                     </div>
                 </div>
@@ -170,7 +169,7 @@ session_start();
 
         <section class="cta-final">
             <div class="container text-center">
-                <h2>Pronto para acompanhar suas operações com mais clareza?</h2>
+                <h2>Quer acompanhar a operação com mais clareza?</h2>
                 <a class="btn btn-primary btn-lg px-5 rounded-pill" href="../login/tela-login.php">Acessar o sistema</a>
             </div>
         </section>

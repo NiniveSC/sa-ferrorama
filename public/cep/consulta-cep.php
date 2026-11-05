@@ -75,7 +75,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['cep'])) {
                             inputmode="numeric"
                             required>
 
-                        <button type="submit" class="btn btn-primary w-100 mt-3">Consultar CEP</button>
+                        <button 
+    type="submit" 
+    class="btn w-100 mt-3"
+    style="
+        background-color: #2D3250;
+        color: #FFFFFF;
+        border: 2px solid #2D3250;
+        border-radius: 8px;
+        padding: 10px;
+        font-weight: 600;
+    ">
+    Consultar CEP
+</button>
                     </form>
 
                     <?php if ($erroCep !== ''): ?>

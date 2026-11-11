@@ -141,7 +141,7 @@ if (isset($_POST["alterar_senha"])) {
 
     <header class="meu_header">
         <div class="cabecalho">
-            <img src="../../assets/img/tela-login/imagem trem.png"
+            <img src="../../assets/img/tela-login/imagem_trem_remove.png"
                 alt="Imagem do trem" class="imagem_trem">
 
             <div class="texto_cabecalho">

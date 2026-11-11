@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $statusPermitido = ['Ativo', 'Inativo', 'Manutenção', 'Em conserto'];
     $tipoPermitido = ['Carga viva', 'Transporte de pessoas', 'Carga a granel', 'Carga a granel em seco', 'Carga a granel líquida', 'Carga Geral'];
 
-    if (!textoValido($nome_trem, 3, 60) || !in_array($status_trem, $statusPermitido, true) || !in_array($tipo_trem, $tipoPermitido, true) || !textoValido($localizacao_trem, 3, 60)) {
+    if (!textoValido($nome_trem, 1, 60) || !in_array($status_trem, $statusPermitido, true) || !in_array($tipo_trem, $tipoPermitido, true) || !textoValido($localizacao_trem, 1, 60)) {
         die('Dados inválidos para cadastro de trem.');
     }
 
@@ -87,6 +87,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </li>
                     <li class="nav-item mx-3">
                         <a class="nav-link" href="../relatorios/tela-relatorios.php">Relatórios</a>
+                    </li>
+
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="../cep/consulta-cep.php">CEP</a>
                     </li>
 
                     <li class="nav-item dropdown">

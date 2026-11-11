@@ -33,17 +33,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['cep'])) {
 <body class="pagina-cep">
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
             <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item mx-3"><a class="nav-link" href="../dashboard/tela-geral-home.php">Dashboard</a></li>
-                    <li class="nav-item mx-3"><a class="nav-link" href="../sensores/tela-lista-sensores.php">Sensores</a></li>
-                    <li class="nav-item mx-3"><a class="nav-link" href="../trens/tela-lista-trens.php">Trens</a></li>
-                    <li class="nav-item mx-3"><a class="nav-link" href="../rotas/tela-lista-rotas.php">Rotas</a></li>
-                    <li class="nav-item mx-3"><a class="nav-link" href="../funcionarios/funcionarios-cadastrados.php">Funcionário</a></li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="../dashboard/tela-geral-home.php">Dashboard</a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="../sensores/tela-lista-sensores.php">Sensores</a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="../trens/tela-lista-trens.php">Trens</a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="../rotas/tela-lista-rotas.php">Rotas</a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="../funcionarios/funcionarios-cadastrados.php">Funcionário</a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="../relatorios/tela-relatorios.php">Relatórios</a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="consulta-cep.php">CEP</a>
+                    </li>
                 </ul>
+
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             <?= htmlspecialchars($_SESSION['nome'] ?? 'Usuário') ?>
                         </a>
                         <ul class="dropdown-menu">

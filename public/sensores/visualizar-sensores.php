@@ -52,6 +52,7 @@ if (!$sensor) {
                     <li class="nav-item mx-3"><a class="nav-link" href="../rotas/tela-lista-rotas.php">Rotas</a></li>
                     <li class="nav-item mx-3"><a class="nav-link" href="../funcionarios/funcionarios-cadastrados.php">Funcionário</a></li>
                     <li class="nav-item mx-3"><a class="nav-link" href="../relatorios/tela-relatorios.php">Relatórios</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link" href="../cep/consulta-cep.php">CEP</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <?= htmlspecialchars($_SESSION['nome'] ?? 'Usuário') ?>

@@ -1,0 +1,31 @@
+# Dependências
+vendor/
+node_modules/
+
+# Arquivos locais de ambiente
+.env
+.env.*
+
+# Logs
+*.log
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# PHP / XAMPP
+php_errors.log
+
+# Arquivos temporários
+*.tmp
+*.temp
+
+# Banco local / dados locais (se quiser ignorar)
+# database/*.sql
+
+# Uploads locais
+uploads/

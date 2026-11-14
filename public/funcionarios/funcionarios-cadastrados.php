@@ -14,7 +14,9 @@ $sql = "SELECT Pessoa.id_administrador, Pessoa.nome_cadastro,
         INNER JOIN Perfil ON Pessoa.id_perfil = Perfil.id_perfil
         ORDER BY Pessoa.nome_cadastro ASC";
 
-$resultado = mysqli_query($conexao, $sql);
+$stmt = $conexao->prepare($sql);
+$stmt->execute();
+$resultado = $stmt->get_result();
 
 ?>
 

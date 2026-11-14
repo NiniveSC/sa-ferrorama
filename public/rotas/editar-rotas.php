@@ -12,9 +12,11 @@ require '../../infra/conexao.php';
 
 $id = isset($_GET["id_rota"]) ? (int) $_GET["id_rota"] : 0;
 
-$sql = "SELECT * FROM Rota WHERE id_rota = $id";
-$resultado = mysqli_query($conexao, $sql);
-$rota = mysqli_fetch_assoc($resultado);
+$stmt = $conexao->prepare("SELECT * FROM Rota WHERE id_rota = ?");
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$resultado = $stmt->get_result();
+$rota = $resultado->fetch_assoc();
 
 if (!$rota) {
     header("Location: tela-lista-rotas.php");
@@ -44,7 +46,9 @@ if (isset($_POST["editar"])) {
 }
 
 $sql_trens = "SELECT id_trem, tipo_trem FROM Trem";
-$resultado_trens = mysqli_query($conexao, $sql_trens);
+$stmt_trens = $conexao->prepare($sql_trens);
+$stmt_trens->execute();
+$resultado_trens = $stmt_trens->get_result();
 ?>
 
 <!DOCTYPE html>

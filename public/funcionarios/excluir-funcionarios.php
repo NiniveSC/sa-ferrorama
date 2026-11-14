@@ -13,9 +13,10 @@ include "../../infra/conexao.php";
 
 $id = (int) $_GET["id"];
 
-$sql = "SELECT * FROM Pessoa WHERE id_administrador = $id";
-$resultado = mysqli_query($conexao, $sql);
-$funcionario = mysqli_fetch_assoc($resultado);
+$stmt = $conexao->prepare("SELECT * FROM Pessoa WHERE id_administrador = ?");
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$funcionario = $stmt->get_result()->fetch_assoc();
 
 if (isset($_POST["excluir"])) {
     $stmt = $conexao->prepare("UPDATE Trem SET id_responsavel = NULL WHERE id_responsavel = ?");

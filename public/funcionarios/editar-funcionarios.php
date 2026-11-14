@@ -14,11 +14,15 @@ include "../../infra/conexao.php";
 
 $id = (int) $_GET["id"];
 
-$sql = "SELECT * FROM Pessoa WHERE id_administrador = $id";
-$resultado = mysqli_query($conexao, $sql);
+$stmt = $conexao->prepare("SELECT * FROM Pessoa WHERE id_administrador = ?");
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$funcionario = $stmt->get_result()->fetch_assoc();
 
-$funcionario = mysqli_fetch_assoc($resultado);
-
+if (!$funcionario) {
+    header("Location: funcionarios-cadastrados.php");
+    exit;
+}
 
 if (isset($_POST["editar"])) {
 
@@ -35,14 +39,16 @@ if (isset($_POST["editar"])) {
     }
 
     $sql = "UPDATE Pessoa SET
-    nome_cadastro='$nome',
-    email_cadastro='$email',
-    telefone_cadastro='$telefone',
-    cpf_cadastro='$cpf',
-    id_perfil='$id_perfil'
-    WHERE id_administrador = '$id'";
+    nome_cadastro = ?,
+    email_cadastro = ?,
+    telefone_cadastro = ?,
+    cpf_cadastro = ?,
+    id_perfil = ?
+    WHERE id_administrador = ?";
 
-    mysqli_query($conexao, $sql);
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param("ssssii", $nome, $email, $telefone, $cpf, $id_perfil, $id);
+    $stmt->execute();
 
     header("Location: funcionarios-cadastrados.php");
     exit();

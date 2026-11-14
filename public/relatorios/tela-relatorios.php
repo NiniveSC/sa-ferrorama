@@ -12,52 +12,70 @@ $totais = [
     'falhas_total' => 0,
 ];
 
-$totais['funcionarios'] = (int) mysqli_fetch_assoc(mysqli_query($conexao, "SELECT COUNT(*) AS total FROM Pessoa"))['total'];
-$totais['trens'] = (int) mysqli_fetch_assoc(mysqli_query($conexao, "SELECT COUNT(*) AS total FROM Trem"))['total'];
-$totais['rotas'] = (int) mysqli_fetch_assoc(mysqli_query($conexao, "SELECT COUNT(*) AS total FROM Rota"))['total'];
-$totais['sensores'] = (int) mysqli_fetch_assoc(mysqli_query($conexao, "SELECT COUNT(*) AS total FROM Sensor"))['total'];
-$totais['falhas_total'] = (int) mysqli_fetch_assoc(mysqli_query($conexao, "SELECT COUNT(*) AS total FROM Falha"))['total'];
-$totais['falhas_abertas'] = (int) mysqli_fetch_assoc(mysqli_query($conexao, "SELECT COUNT(*) AS total FROM Falha WHERE status_falha = 'Aberta'"))['total'];
+$queries = [
+    'funcionarios' => 'SELECT COUNT(*) AS total FROM Pessoa',
+    'trens' => 'SELECT COUNT(*) AS total FROM Trem',
+    'rotas' => 'SELECT COUNT(*) AS total FROM Rota',
+    'sensores' => 'SELECT COUNT(*) AS total FROM Sensor',
+    'falhas_total' => 'SELECT COUNT(*) AS total FROM Falha',
+    'falhas_abertas' => "SELECT COUNT(*) AS total FROM Falha WHERE status_falha = 'Aberta'",
+];
 
-$funcionarios = mysqli_query($conexao, "
-    SELECT P.id_administrador, P.nome_cadastro, P.email_cadastro, P.telefone_cadastro, PF.cargo
+foreach ($queries as $chave => $sql) {
+    $stmt = $conexao->prepare($sql);
+    $stmt->execute();
+    $totais[$chave] = (int) $stmt->get_result()->fetch_assoc()['total'];
+}
+
+$funcionarios = $conexao->prepare(
+    "SELECT P.id_administrador, P.nome_cadastro, P.email_cadastro, P.telefone_cadastro, PF.cargo
     FROM Pessoa P
     INNER JOIN Perfil PF ON PF.id_perfil = P.id_perfil
-    ORDER BY P.nome_cadastro ASC
-");
+    ORDER BY P.nome_cadastro ASC"
+);
+$funcionarios->execute();
+$funcionarios = $funcionarios->get_result();
 
-$trens = mysqli_query($conexao, "
-    SELECT T.id_trem, T.nome_trem, T.tipo_trem, T.status_trem, T.localizacao_trem,
+$trens = $conexao->prepare(
+    "SELECT T.id_trem, T.nome_trem, T.tipo_trem, T.status_trem, T.localizacao_trem,
            P.nome_cadastro AS responsavel
     FROM Trem T
     LEFT JOIN Pessoa P ON P.id_administrador = T.id_responsavel
-    ORDER BY T.nome_trem ASC
-");
+    ORDER BY T.nome_trem ASC"
+);
+$trens->execute();
+$trens = $trens->get_result();
 
-$rotas = mysqli_query($conexao, "
-    SELECT R.id_rota, R.nome_rota, R.descricao_rota, R.distancia_km, R.duracao_estimada, R.data_criacao, T.nome_trem
+$rotas = $conexao->prepare(
+    "SELECT R.id_rota, R.nome_rota, R.descricao_rota, R.distancia_km, R.duracao_estimada, R.data_criacao, T.nome_trem
     FROM Rota R
     INNER JOIN Trem T ON T.id_trem = R.id_trem
-    ORDER BY R.nome_rota ASC
-");
+    ORDER BY R.nome_rota ASC"
+);
+$rotas->execute();
+$rotas = $rotas->get_result();
 
-$sensores = mysqli_query($conexao, "
-    SELECT S.id_sensor, S.tipo_sensor, S.status_sensor, S.localizacao_sensor,
+$sensores = $conexao->prepare(
+    "SELECT S.id_sensor, S.tipo_sensor, S.status_sensor, S.localizacao_sensor,
            T.nome_trem, R.nome_rota
     FROM Sensor S
     LEFT JOIN Trem T ON T.id_trem = S.id_trem
     LEFT JOIN Rota R ON R.id_rota = S.id_rota
-    ORDER BY S.id_sensor ASC
-");
+    ORDER BY S.id_sensor ASC"
+);
+$sensores->execute();
+$sensores = $sensores->get_result();
 
-$falhas = mysqli_query($conexao, "
-    SELECT F.id_falha, F.tipo_falha, F.descricao_falha, F.data_hora, F.status_falha,
+$falhas = $conexao->prepare(
+    "SELECT F.id_falha, F.tipo_falha, F.descricao_falha, F.data_hora, F.status_falha,
            S.id_sensor, S.localizacao_sensor, T.nome_trem
     FROM Falha F
     INNER JOIN Sensor S ON S.id_sensor = F.Sensor_id_sensor
     LEFT JOIN Trem T ON T.id_trem = S.id_trem
-    ORDER BY F.data_hora DESC
-");
+    ORDER BY F.data_hora DESC"
+);
+$falhas->execute();
+$falhas = $falhas->get_result();
 ?>
 
 <!DOCTYPE html>

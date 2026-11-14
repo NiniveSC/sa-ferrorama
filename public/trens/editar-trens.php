@@ -11,13 +11,13 @@ if (!ehAdministrador()) {
 require '../../infra/conexao.php';
 
 $sql_usuarios = "SELECT id_administrador, nome_cadastro FROM Pessoa ORDER BY nome_cadastro ASC";
-$resultado_usuarios = $conexao->query($sql_usuarios);
+$stmt_usuarios = $conexao->prepare($sql_usuarios);
+$stmt_usuarios->execute();
+$resultado_usuarios = $stmt_usuarios->get_result();
 
-// Busca o id_trem vindo da URL
 $id_trem = isset($_GET["id_trem"]) ? (int) $_GET["id_trem"] : 0;
 $mensagem_erro = "";
 
-// Se enviou o formulário, atualiza no banco
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $tipo_trem = $_POST["tipo_trem"] ?? '';
     $localizacao_trem = $_POST["localizacao_trem"] ?? '';
@@ -46,12 +46,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 
-// Carrega dados atuais do trem
 $trem = null;
 if ($id_trem > 0) {
-    $sql_select = "SELECT * FROM Trem WHERE id_trem = $id_trem";
-    $resultado = mysqli_query($conexao, $sql_select);
-    $trem = mysqli_fetch_assoc($resultado);
+    $sql_select = "SELECT * FROM Trem WHERE id_trem = ?";
+    $stmt = $conexao->prepare($sql_select);
+    $stmt->bind_param("i", $id_trem);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+    $trem = $resultado->fetch_assoc();
 }
 
 if (!$trem) {

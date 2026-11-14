@@ -9,7 +9,10 @@ $sql = "SELECT T.*, P.nome_cadastro AS responsavel
         FROM Trem T
         LEFT JOIN Pessoa P ON P.id_administrador = T.id_responsavel
         ORDER BY T.id_trem ASC";
-$resultado = $conexao->query($sql);
+
+$stmt = $conexao->prepare($sql);
+$stmt->execute();
+$resultado = $stmt->get_result();
 
 if (!$resultado) {
     die("Erro na consulta: " . $conexao->error);

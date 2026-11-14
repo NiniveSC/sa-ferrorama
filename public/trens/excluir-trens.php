@@ -55,9 +55,12 @@ if (isset($_POST["excluir"]) && $id > 0) {
 // Busca os dados do trem para exibição
 $trem = null;
 if ($id > 0) {
-    $sql = "SELECT * FROM Trem WHERE id_trem = $id";
-    $resultado = mysqli_query($conexao, $sql);
-    $trem = mysqli_fetch_assoc($resultado);
+    $sql = "SELECT * FROM Trem WHERE id_trem = ?";
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+    $trem = $resultado->fetch_assoc();
 }
 
 // Se não encontrar o trem, redireciona para a lista

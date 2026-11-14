@@ -14,30 +14,37 @@ $id = isset($_GET["id_sensor"]) ? (int) $_GET["id_sensor"] : 0;
 
 
 if (isset($_POST["excluir"]) && $id > 0) {
+    $sql_leituras = "DELETE FROM Leitura_sensor WHERE Sensor_id_sensor = ?";
+    $stmt = $conexao->prepare($sql_leituras);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
 
-    $sql_leituras = "DELETE FROM Leitura_sensor WHERE Sensor_id_sensor = $id";
-    mysqli_query($conexao, $sql_leituras);
+    $sql_falhas = "DELETE FROM Falha WHERE Sensor_id_sensor = ?";
+    $stmt = $conexao->prepare($sql_falhas);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
 
-    $sql_falhas = "DELETE FROM Falha WHERE Sensor_id_sensor = $id";
-    mysqli_query($conexao, $sql_falhas);
+    $sql_sensor = "DELETE FROM Sensor WHERE id_sensor = ?";
+    $stmt = $conexao->prepare($sql_sensor);
+    $stmt->bind_param("i", $id);
 
-   
-    $sql_sensor = "DELETE FROM Sensor WHERE id_sensor = $id";
-    if (mysqli_query($conexao, $sql_sensor)) {
-
+    if ($stmt->execute()) {
         header("Location: tela-lista-sensores.php");
         exit();
     } else {
-        echo "Erro ao excluir o sensor: " . mysqli_error($conexao);
+        echo "Erro ao excluir o sensor: " . $stmt->error;
     }
 }
 
 
 $sensor = null;
 if ($id > 0) {
-    $sql = "SELECT * FROM Sensor WHERE id_sensor = $id";
-    $resultado = mysqli_query($conexao, $sql);
-    $sensor = mysqli_fetch_assoc($resultado);
+    $sql = "SELECT * FROM Sensor WHERE id_sensor = ?";
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+    $sensor = $resultado->fetch_assoc();
 }
 
 

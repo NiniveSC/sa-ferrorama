@@ -22,16 +22,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (!empty($tipo_sensor) && !empty($localizacao_sensor) && !empty($status_sensor) && $id_sensor > 0) {
         $sql_update = "UPDATE Sensor SET 
-                        tipo_sensor = '$tipo_sensor', 
-                        localizacao_sensor = '$localizacao_sensor', 
-                        status_sensor = '$status_sensor' 
-                       WHERE id_sensor = $id_sensor";
+                        tipo_sensor = ?, 
+                        localizacao_sensor = ?, 
+                        status_sensor = ? 
+                       WHERE id_sensor = ?";
 
-        if (mysqli_query($conexao, $sql_update)) {
+        $stmt = $conexao->prepare($sql_update);
+        $stmt->bind_param("sssi", $tipo_sensor, $localizacao_sensor, $status_sensor, $id_sensor);
+
+        if ($stmt->execute()) {
             header("Location: tela-lista-sensores.php");
             exit();
         } else {
-            $mensagem_erro = "Erro no banco de dados: " . mysqli_error($conexao);
+            $mensagem_erro = "Erro no banco de dados: " . $stmt->error;
         }
     } else {
         $mensagem_erro = "Por favor, preencha todos os campos.";
@@ -41,9 +44,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 // Carrega dados atuais do sensor
 $sensor = null;
 if ($id_sensor > 0) {
-    $sql_select = "SELECT * FROM Sensor WHERE id_sensor = $id_sensor";
-    $resultado = mysqli_query($conexao, $sql_select);
-    $sensor = mysqli_fetch_assoc($resultado);
+    $sql_select = "SELECT * FROM Sensor WHERE id_sensor = ?";
+    $stmt = $conexao->prepare($sql_select);
+    $stmt->bind_param("i", $id_sensor);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+    $sensor = $resultado->fetch_assoc();
 }
 
 if (!$sensor) {

@@ -6,7 +6,9 @@ require_once __DIR__ . "/../../infra/permissoes.php";
 include "../../infra/conexao.php";
 
 $sql = "SELECT * FROM Sensor";
-$resultado = $conexao->query($sql);
+$stmt = $conexao->prepare($sql);
+$stmt->execute();
+$resultado = $stmt->get_result();
 
 if (!$resultado) {
     die("Erro na consulta: " . $conexao->error);

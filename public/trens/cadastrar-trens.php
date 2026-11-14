@@ -12,7 +12,9 @@ require '../../infra/conexao.php';
 require_once __DIR__ . "/../../infra/seguranca.php";
 
 $sql_usuarios = "SELECT id_administrador, nome_cadastro FROM Pessoa ORDER BY nome_cadastro ASC";
-$resultado_usuarios = $conexao->query($sql_usuarios);
+$stmt_usuarios = $conexao->prepare($sql_usuarios);
+$stmt_usuarios->execute();
+$resultado_usuarios = $stmt_usuarios->get_result();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome_trem        = limparTexto($_POST['nome_trem'] ?? '');

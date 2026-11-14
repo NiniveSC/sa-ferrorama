@@ -16,7 +16,9 @@ $mensagem_erro = ""; //-> variavel vazia que é resposavel por guardar os erros 
 
 
 $sql_trens = "SELECT id_trem, tipo_trem FROM Trem ORDER BY id_trem ASC";
-$resultado_trens = mysqli_query($conexao, $sql_trens);
+$stmt_trens = $conexao->prepare($sql_trens);
+$stmt_trens->execute();
+$resultado_trens = $stmt_trens->get_result();
 // -> busca todos os trens cadastrados no banco de dados para o select de trens na tela de cadastro de rotas
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') { // -> verificar se o formulário foi enviado via POST

@@ -1,6 +1,6 @@
 # Guia visual do sistema Ferrorama
 
-Este guia foi pensado para pessoa leiga, com passo a passo simples e telas ilustradas em formato de mockup para facilitar a navegação.
+Este guia foi pensado para pessoa leiga, com passo a passo simples e telas ilustradas para facilitar a navegação.
 
 ## 1) Como acessar o sistema
 
@@ -10,8 +10,7 @@ Este guia foi pensado para pessoa leiga, com passo a passo simples e telas ilust
 4. Acesse:
    - http://localhost/sa-ferrorama/public/login/tela-login.php
 
-Mockup da tela de login:
-
+![Tela de login](../assets/img/login.png)
 
 Se o usuário já tiver conta cadastrada, basta digitar email e senha e clicar em Entrar.
 
@@ -31,8 +30,7 @@ Se os dados estiverem corretos, você será levado para o Dashboard.
 
 No canto superior direito, clique no nome do usuário e depois em "Sair".
 
-Mockup:
-
+![Logout do usuário](../assets/img/logout.png)
 
 ---
 
@@ -46,9 +44,7 @@ Ele mostra:
 - painel de relatórios/gráficos;
 - atalhos para os módulos do sistema.
 
-Mockup do Dashboard:
-
-
+![Dashboard principal](../assets/img/dashboard.png)
 
 O Dashboard funciona como o centro de navegação da aplicação.
 
@@ -68,9 +64,7 @@ A tela lista todos os funcionários cadastrados com:
 - telefone;
 - cargo.
 
-Mockup:
-
-
+![Lista de funcionários cadastrados](../assets/img/funcionarios.png)
 
 ### O que o Admin pode fazer
 
@@ -87,10 +81,15 @@ Na tela, o botão de ações aparece para o admin.
 2. Preencha nome, cargo, CPF, telefone, email;
 3. Clique em cadastrar.
 
+![Cadastro de funcionário](../assets/img/ca-func.png)
+
 ### Como editar ou excluir
 
 - Clique em "Editar" para alterar os dados;
 - Clique em "Excluir" para remover o cadastro.
+
+![Editar funcionário](../assets/img/ed-func.png)
+![Excluir funcionário](../assets/img/ex-funci.png)
 
 Observação: ações de edição/exclusão são bloqueadas para usuários comuns.
 
@@ -110,9 +109,7 @@ A tela mostra uma tabela com:
 - status;
 - tipo.
 
-Mockup:
-
-
+![Lista de sensores cadastrados](../assets/img/sensores.png)
 
 ### Como cadastrar
 
@@ -121,11 +118,17 @@ Mockup:
 3. Se necessário, informe trem ou rota relacionada;
 4. Clique em "Cadastrar".
 
+![Cadastro de sensor](../assets/img/ca-sensor.png)
+
 ### Como visualizar e editar
 
 - "Visualizar" mostra detalhes do sensor;
 - "Editar" permite alterar status ou localização;
 - "Excluir" remove o registro do sistema.
+
+![Detalhes do sensor](../assets/img/det-sensor.png)
+![Editar sensor](../assets/img/ed-sensor.png)
+![Excluir sensor](../assets/img/ex-sensor.png)
 
 ---
 
@@ -144,8 +147,7 @@ A tela lista:
 - tipo;
 - responsável.
 
-Mockup:
-
+![Lista de trens cadastrados](../assets/img/trens.png)
 
 ### Como cadastrar
 
@@ -154,16 +156,23 @@ Mockup:
 3. Escolha o responsável, se existir;
 4. Salve o cadastro.
 
+![Cadastro de trem](../assets/img/ca-trem.png)
+
 ### Como editar
 
 - Clique em "Editar";
 - Ajuste os dados;
 - Salve para confirmar.
 
+![Detalhes do trem](../assets/img/det-trem.png)
+![Editar trem](../assets/img/ed-trem.png)
+
 ### Como excluir
 
 - Clique em "Excluir";
 - O sistema impede exclusão se o trem estiver ligado a rota ou dependências importantes.
+
+![Excluir trem](../assets/img/ex-trem.png)
 
 ---
 
@@ -181,9 +190,7 @@ A tela traz:
 - duração estimada;
 - ações de visualização/edição.
 
-Mockup:
-
-
+![Lista de rotas cadastradas](../assets/img/rotas.png)
 
 ### Como cadastrar
 
@@ -191,18 +198,57 @@ Mockup:
 2. Informe nome, descrição, distância, duração e trem vinculado;
 3. Clique em Cadastrar.
 
+![Cadastro de rota](../assets/img/ca-rota.png)
+
 ### Como visualizar
 
 - "Visualizar" mostra detalhes completos da rota, trem associado e descrição.
+
+![Detalhes da rota](../assets/img/det-rota.png)
 
 ### Como editar ou excluir
 
 - "Editar" permite alterar os dados da rota;
 - "Excluir" remove a rota do sistema.
 
+![Editar rota](../assets/img/ed-rota.png)
+![Excluir rota](../assets/img/ex-rota.png)
+
 ---
 
-## 8) O que só o Admin pode fazer
+## 8) Relatórios
+
+Acesse o módulo de "Relatórios" no menu para ver o resumo geral do sistema.
+
+A tela apresenta:
+- quantidade de funcionários;
+- quantidade de trens;
+- quantidade de rotas;
+- quantidade de sensores;
+- falhas abertas;
+- falhas totais.
+
+![Relatório geral do sistema](../assets/img/relatorios.png)
+
+Também é possível gerar o relatório em PDF.
+
+![Relatório em PDF](../assets/img/gerar-pdf.png)
+
+---
+
+## 9) Consulta de CEP
+
+No menu, clique em "CEP" para consultar endereço por CEP.
+
+1. Digite o CEP;
+2. Clique em "Consultar CEP";
+3. O sistema preenche automaticamente os campos de endereço.
+
+![Consulta de CEP](../assets/img/cep.png)
+
+---
+
+## 10) O que só o Admin pode fazer
 
 No sistema, o perfil administrativo é identificado pela função de Administrador.
 
@@ -227,7 +273,7 @@ Regra implementada no projeto:
 
 ---
 
-## 9) Dicas práticas
+## 11) Dicas práticas
 
 - Sempre faça login antes de acessar qualquer funcionalidade.
 - Use o Dashboard como ponto de partida.
@@ -241,7 +287,7 @@ Regra implementada no projeto:
 
 ---
 
-## 10) Fluxo resumido do uso
+## 12) Fluxo resumido do uso
 
 ```text
 Acessar login
@@ -257,4 +303,6 @@ Consultar / Cadastrar / Editar / Excluir
 Logout ao finalizar
 ```
 
-Este guia serve como referência visual para o primeiro uso do sistema. Se você quiser, pode ser expandido com prints reais da interface após a aplicação estar rodando em ambiente local.
+Este guia serve como referência visual para o primeiro uso do sistema.
+
+

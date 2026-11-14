@@ -222,12 +222,11 @@ sa-ferrorama/
 Abaixo, alguns exemplos visuais das telas principais da aplicação.
 
 ### Tela de login
+![Tela de login](assets/img/login.png)
 
 
-### Layout geral do sistema
-
-
-### Ícones e elementos do dashboard
+### Dashboard
+![Dashboard principal](assets/img/dashboard.png)
 
 
 

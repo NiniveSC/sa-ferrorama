@@ -493,13 +493,14 @@ table {
     /* A borda externa cinza que sumiu */
     border-radius: 10px;
     /* O arredondamento da tabela */
-    overflow: hidden;
+    overflow-x: auto;
     /* Corta as células para seguirem o arredondamento */
 }
 
 .borda-tabela table {
     border-collapse: collapse;
     width: 100%;
+    table-layout: fixed;
 }
 
 /* Linhas apenas internas */
@@ -508,11 +509,17 @@ table {
     border-bottom: 1px solid #72707056;
     border-right: 1px solid #72707056;
     padding: 14px 16px;
+    vertical-align: middle;
+    overflow-wrap: break-word;
 }
 
 .borda-tabela th:last-child,
 .borda-tabela td:last-child {
     border-right: none;
+    width: 260px;
+    min-width: 260px;
+    max-width: 260px;
+    white-space: nowrap;
 }
 
 .borda-tabela tr:last-child td {
@@ -523,17 +530,17 @@ table {
 .container-branco table {
     width: 100%;
     border-collapse: collapse;
-    /* Mantém o estilo de borda separado para o arredondamento */
+    table-layout: fixed;
 }
 
 /* Aplica a linha vertical tanto no cabeçalho quanto no corpo da tabela */
 th,
 td {
     border-right: 3px solid #72707056;
-    /* A mesma cor de linha que você está usando */
     padding: 14px 16px;
     text-align: left;
     white-space: nowrap;
+    vertical-align: middle;
 }
 
 .btn-acao {
@@ -556,6 +563,7 @@ td {
     margin: 0 auto;
     text-align: center;
     padding: 2px 0;
+    min-height: 60px;
 }
 
 .acao-tabela .btn-acao {
